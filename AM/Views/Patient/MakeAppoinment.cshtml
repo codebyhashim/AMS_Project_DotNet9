@@ -1,0 +1,74 @@
+﻿@model AM.Models.AppoinmentModel
+
+@* @{ *@
+@*     ViewData["Title"] = "MakeAppoinment"; *@
+@* } *@
+
+
+
+
+
+
+<div class="row  ">
+	
+	<div class="col-md-4 m-auto card shadow   " style="border-radius:10px">
+		<form asp-action="MakeAppoinment" asp-controller="Patient" method="post" class="card-body ">
+			<h4 class="text-center">Book Appoimdent</h4>
+			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+			<div class="form-group" hidden>
+				<label asp-for="AppointmentId" class="control-label"></label>
+				<input asp-for="AppointmentId" class="form-control" />
+			</div>
+			<div class="form-group" hidden>
+				<label asp-for="PatientId" class="control-label" hidden></label>
+				<input asp-for="PatientId" class="form-control" />
+			</div>
+			<div class="form-group">
+				<label asp-for="@Model.Patient">Patient Name</label>
+				<!-- Pre-fill patient's name from the model -->
+				<input asp-for="@Model.Patient" type="text" id="PatientName" class="form-control" value="@Model.Patient.Name" readonly />
+			</div>
+
+
+
+			<div class="form-group">
+				<label asp-for="AppointmentDate" class="control-label"></label>
+				<input asp-for="AppointmentDate" type="date" value="@ViewBag.CurrentDate" min="@ViewBag.CurrentDate" class="form-control" />
+				<span asp-validation-for="AppointmentDate" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="DoctorId">Select Doctor</label>
+				<select asp-for="DoctorId" class="form-control" id="DoctorId" name="DoctorId">
+					<option value="0" disabled>select Doctor</option>
+					
+
+						@foreach (var doctor in ViewBag.Doctors as List<DoctorModel>)
+						{
+							<option value="@doctor.Id">@doctor.Name ( @doctor.Speciality)</option>
+						}
+
+					}
+					
+					
+				</select>
+			</div>
+
+
+			@* <div class="form-group">
+                <label asp-for="DoctorId" class="control-label"></label>
+                <select asp-for="DoctorId" class ="form-control" asp-items="ViewBag.DoctorId"></select>
+            </div> *@
+			<div class="form-group d-flex justify-content-center">
+				<input type="submit" value="Get Appoinment" class="btn btn-primary" />
+			</div>
+		</form>
+	</div>
+</div>
+
+
+
+
+@* <div>
+    <a asp-action="Index">Back to List</a>
+</div> *@
+

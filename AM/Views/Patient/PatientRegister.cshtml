@@ -1,0 +1,81 @@
+﻿@model 			PatientModel
+
+@{
+    ViewData["Title"] = "Index";
+    // Layout = "_Layout";
+}
+
+@* <hr /> *@
+<div class="row d-flex justify-content-center card">
+ <h4 class=" p-4">Register Details</h4>
+    <div class="col-md-8  m-auto">
+        <!-- Adjust the form width here -->
+        <form asp-action="PatientRegister" asp-controller="Patient" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <!-- First Row of Input Fields -->
+            <div class="row mb-4">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label asp-for="Name" class="control-label"></label>
+                        <input  asp-for="Name" class="form-control input-lg custom-input-width" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                </div>
+
+             
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label asp-for="DateOfBirth" class="control-label"></label>
+                        <input type="Date" asp-for="DateOfBirth" value="@ViewBag.CurrentDate" max="@ViewBag.CurrentDate" class="form-control input-lg custom-input-width" />
+                        <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+           
+
+          @* Second Row of Input Fields  *@
+            <div class="row mb-4">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label asp-for="City" class="control-label"></label>
+                        <input asp-for="City" class="form-control input-lg custom-input-width" />
+                        <span asp-validation-for="City" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-4  form-group " style="margin-top:33px">
+                    <select asp-for="Gender" class="form-select control-label form-control input-lg custom-input-width" asp-items="@Html.GetEnumSelectList<Gender>()">
+                        <option selected disabled>select Gender</option>
+
+
+                    </select>
+
+                </div>
+                </div>
+
+            
+           
+                
+           
+
+                @*                 <div class="col-md-4">
+                    <div class="form-group">
+                        <label asp-for="UserID" class="control-label"></label>
+                        <input asp-for="UserID" class="form-control input-lg custom-input-width" />
+                        <span asp-validation-for="UserID" class="text-danger"></span>
+                    </div>
+                </div> *@
+
+                
+
+            <div class="form-group">
+                <input type="submit"  value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    @* <a asp-action="Index">Back to List</a>  *@
+</div> 

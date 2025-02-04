@@ -1,0 +1,40 @@
+﻿@{
+	// ViewData["Title"] = "Create";
+	// Layout = "_AdminDashboard";
+}
+
+<div class="container">
+	<div class="row">
+
+		<div class="col-md-4">
+			<div class="card p-4">
+
+				<div class="card-body">
+					<p><strong>Id:</strong> @Model.Id</p>
+
+					<p><strong>Name:</strong> @Model.Name</p>
+					<p><strong>Email:</strong> @Model.Email</p>
+
+					<p><strong>Speciality:</strong> @Model.Speciality</p>
+					<p><strong>Degree:</strong> @Model.Degree</p>
+					<p><strong>City:</strong> @Model.City</p>
+					<p><strong>Phone Number:</strong> @Model.PhoneNumber</p>
+					<p><strong>Experience:</strong> @Model.Experience</p>
+					<p><strong>Status:</strong> @Model.IsActive</p>
+				</div>
+
+				<div class="">
+
+
+					<form asp-controller="Doctor" asp-action="Delete" method="post">
+						<a class="btn btn-secondary btn-sm" asp-action="ViewDoctors" asp-controller="Admin" asp-route-id="@Model.Id">Back to List</a>
+
+						<button type="submit" class="btn btn-danger btn-sm" asp-route-id="@Model.Id">Delete</button>
+
+					</form>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>

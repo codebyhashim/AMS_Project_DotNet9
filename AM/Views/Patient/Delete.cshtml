@@ -1,0 +1,39 @@
+﻿ @model 			PatientModel
+
+
+
+<h1>Are you want to Delete </h1>
+
+
+<div class="container card-body">
+    <div class="row ">
+      
+            <div class="col-md-4 ">
+                <div class="card p-4">
+
+                    <div>
+                        @* <p><strong>Id:</strong> @Model.Id</p> *@
+
+                        <p><strong>Name:</strong> @Model.Name</p>
+
+                        <p><strong>City:</strong> @Model.City</p>
+                        <p><strong>DateOfBirth:</strong> @Model.DateOfBirth.ToString("MMMM dd,yy")</p>
+                        <p><strong>City:</strong> @Model.City</p>
+                        <p><strong>Gender:</strong> @Model.Gender</p>
+
+
+                    </div>
+                    <div class="">
+                    <form asp-action="Delete"  asp-controller="Patient" method="post">
+                    <a class="btn btn-secondary btn-sm" asp-action="Index" asp-route-id="@Model.Id">Back to List</a>
+
+                        <button class="btn btn-danger btn-sm" asp-route-id="@Model.Id" type="submit">Delete</button>
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        
+    </div>
+</div>

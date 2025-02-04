@@ -1,0 +1,156 @@
+﻿@model IEnumerable<AM.Models.AppoinmentModel>
+
+@{
+    ViewData["Title"] = "ViewAppoinments";
+}
+
+<h1>ViewAppoinments</h1>
+
+@* <p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.AppointmentDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Doctor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Patient)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+ @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AppointmentDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Doctor.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Patient.Name)
+            </td>
+
+               
+
+
+
+
+            <td>
+
+                <a asp-action="Edit" asp-route-id="@item.AppointmentId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.AppointmentId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.AppointmentId">Delete</a>
+            </td>
+        </tr>
+} 
+    </tbody>
+</table>
+ *@
+
+@if (ViewBag.msg==null){
+    <div class="card shadow mb-4">
+        <div class="card-header py-3" style="display:flex;justify-content:end">
+        </div>
+
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.AppointmentDate)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Status)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Doctor)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Patient)
+                            </th>
+                            <th></th>
+                        </tr>
+
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @item.AppointmentDate.ToString("MM-dd-yyyy")
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Status)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Doctor.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Patient.Name)
+                                </td>
+
+
+
+
+                                <td style="width:80px">
+
+                                    <a asp-action="Approve" asp-route-id="@item.AppointmentId" asp-controller="Admin" style="font-size: 23px; color: #2196F3;">
+                                        <i class="fas fa-check-circle"></i>
+                                    </a>
+
+
+
+
+
+
+
+                                    @* <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.Id">Delete<i class="fa-solid fa-trash"></i></a> *@
+                                    <a asp-action="Cancel" asp-route-id="@item.AppointmentId" asp-controller="Admin" style="font-size: 23px;color: #FF5733"><i class="  fas fa-times-circle"></i></a>
+                                </td>
+
+                                @* <td>
+
+                                <a asp-action="Edit" asp-route-id="@item.AppointmentId">Edit</a> |
+                                <a asp-action="Details" asp-route-id="@item.AppointmentId">Details</a> |
+                                <a asp-action="Delete" asp-route-id="@item.AppointmentId">Delete</a>
+                            </td> *@
+                            </tr>
+                        }
+                    </tbody>
+
+
+
+
+                </table>
+
+            </div>
+        </div>
+
+    </div>
+}else{
+    <h1>@ViewBag.msg</h1>
+   
+}
+
+@section scripts {
+    <script src="~/Theme/vendor/jquery/jquery.min.js"></script>
+    <script src="~/Theme/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="~/Theme/js/sb-admin-2.min.js"></script>
+    <script src="~/Theme/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/Theme/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="~/Theme/js/demo/datatables-demo.js"></script>
+}  

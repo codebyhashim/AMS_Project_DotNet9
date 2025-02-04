@@ -1,0 +1,133 @@
+﻿ @model PatientModel;
+
+@{
+    ViewData["Title"] = "Index";
+}
+@if (TempData["sucessMessage"] != null)
+{
+    <div id="msg" class="alert alert-success" role="alert">
+        @TempData["sucessMessage"] 
+    </div>
+}
+@if (@ViewBag.msg!=null){
+
+
+
+
+}
+<div class="row  ">
+
+    <div class="col-md-4 m-auto card shadow   " style="border-radius:10px">
+        <form asp-action="Updatedetails" asp-controller="Patient" method="post" class="card-body ">
+<h4 class="text-center">Update Fields</h4>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <input hidden asp-for="Id" class="form-control" />
+
+            <input hidden  asp-for="UserId" class="form-control" />
+            
+            <div class="form-group" >
+                <label asp-for="Name" class="control-label">Name</label>
+                <input asp-for="Name" class="form-control" />
+            </div>
+            <div class="form-group" >
+                <label asp-for="DateOfBirth" class="control-label" >DateOfBirth</label>
+                <input type="date" asp-for="DateOfBirth" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="City" class="control-label">City</label>
+                <input  asp-for="City" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Gender">Gender</label>
+                <br />
+                <select class="form-control" asp-for="Gender" asp-items="@Html.GetEnumSelectList<Gender>()">
+                   
+                </select>
+                @* <label asp-for="Gender">Gender</label> *@
+                <!-- Pre-fill patient's name from the model -->
+                @* <input asp-for="Gender" type="text" id="PatientName" class="form-control"  readonly /> *@
+            </div>
+            <div class="form-group d-flex justify-content-center">
+                <input type="submit" value="Save Changes" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+
+    setTimeout(function(){
+        var updatedMessage=document.getElementById("msg");
+        updatedMessage.remove();
+    },1000)
+</script>
+
+@* <table class="table">
+    <thead class="">
+        <tr>
+           
+
+            <th scope="col">Name</th>
+            <th scope="col">DateOfBirth</th>
+            <th scope="col">Gender</th>
+        
+        </tr>
+    </thead>
+    <tbody>
+  @foreach (var item in Model)
+        {
+        <tr>
+                <td>@item.Name</td>
+
+            <td> @item.DateOfBirth.ToString("MMMM dd, yyyy")</td>
+                <td>@item.Gender</td>
+               
+                <td>
+                 <a class="btn  btn-sm text-white" style="background-color: #4e73df" asp-action="Create" asp-route-id="@item.Id">Create</a> 
+                    <a class="btn  btn-sm text-white" style="background-color: #4e73df" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+
+                   | <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+
+               
+
+
+        </tr>
+        }
+    </tbody>
+</table> *@
+
+@* 
+
+<div class="container card-body">
+    <div class="row ">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-4 ">
+                <div class="card p-4">
+
+                    <div>
+                        <p><strong>Id:</strong> @item.Id</p>
+
+                        <p><strong>Name:</strong> @item.Name</p>
+
+
+                        <p><strong>DateOfBirth:</strong> @item.DateOfBirth.ToString("MMMM dd, yyyy")</p>
+                        <p><strong>City:</strong> @item.City</p>
+                       
+                         <p><strong>Gender:</strong> @item.Gender</p> 
+                        
+                    
+                    </div>
+                    <div class="">
+                        <a class="btn btn-info btn-sm" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                        <a class="btn btn-info btn-sm" asp-action="Create" asp-route-id="@item.Id">Create</a>
+
+                        <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div> *@

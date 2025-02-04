@@ -1,0 +1,168 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@* @model List<AM.Models.AppoinmentModel>
+@if (ViewBag.msg==null){
+    @if (Model.Count==0){
+        <h1>You have no Appoinments</h1>
+    }
+    else{
+
+    
+    <h1>View Appoinment</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">AppointmentId</th>
+                <th scope="col">.AppointmentDate</th>
+                <th scope="col">Doctor Name</th>
+                <th scope="col">Speciality</th>
+
+                <th scope="col">Status</th>
+
+                @* <th scope="col">Patient Name</th> *@
+@*             </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <th scope="col"> @item.AppointmentId</th>
+                    <th scope="col"> @item.AppointmentDate.ToString("dd-MM-yyyy") </th>
+                    <th scope="col">@item.Doctor.Name</th>
+                    <th scope="col">@item.Doctor.Speciality</th>
+                    <th scope="col">@item.Status</th>
+
+
+              
+                </tr>
+            }
+
+
+        </tbody>
+    </table>
+}
+}
+else
+{
+    <h1>@ViewBag.msg</h1>
+}
+@* } *@
+
+
+                @model List<AM.Models.AppoinmentModel>
+
+@if (ViewBag.msg != null)
+{
+    <h1>@ViewBag.msg</h1>
+}
+else
+{
+    @if (Model.Count == 0)
+    {
+        <h1>You have no appointments</h1>
+    }
+    else
+    {
+        <div class="card shadow mb-4">
+            
+
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%">
+                        <thead>
+                            <tr>
+                                
+                                <th scope="col">AppointmentDate</th>
+                                <th scope="col">Doctor Name</th>
+                                <th scope="col">Speciality</th>
+
+                                <th scope="col">Patient Name</th> 
+                                <th scope="col">Status</th>
+
+                                           </tr>
+
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    
+                                    <th scope="col"> @item.AppointmentDate.ToString("dd-MM-yyyy") </th>
+                                    <th scope="col">@item.Doctor.Name</th>
+                                    <th scope="col">@item.Doctor.Speciality</th>
+                                    <th scope="col">@item.Patient.Name</th>
+                                    <th scope="col">@item.Status</th>
+
+
+
+
+                                </tr>
+                            }
+
+
+
+                                        
+                           
+                        </tbody>
+
+
+
+
+                    </table>
+
+                </div>
+            </div>
+
+        </div>
+       @*  <div class="card shadow">
+
+
+            <h1 class="text-center pt-2">View Appointments</h1>
+            <table class="table card-body ">
+                <thead>
+                    <tr>
+                       
+                        <th scope="col">Appointment Date</th>
+                        <th scope="col">Doctor Name</th>
+                        <th scope="col">Specialty</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Patient Name</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            
+                            <td>@item.AppointmentDate.ToString("dd-MM-yyyy")</td>
+                            <td>@item.Doctor.Name</td>
+                            <td>@item.Doctor.Speciality</td>
+                            <td>@item.Status</td>
+                            <td>@item.Patient.Name</td>
+
+                            <td>
+                             
+
+                                |        <a class="btn btn-danger btn-sm" asp-action="CancelAppoinment" asp-asp-controller="Patient" asp-route-id="@item.AppointmentId">Cancel</a>
+                            </td>
+                        </tr> 
+                    }
+                </tbody>
+            </table>
+        </div>*@
+       
+    }
+}
+@section scripts {
+    <script src="~/Theme/vendor/jquery/jquery.min.js"></script>
+    <script src="~/Theme/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="~/Theme/js/sb-admin-2.min.js"></script>
+    <script src="~/Theme/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/Theme/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="~/Theme/js/demo/datatables-demo.js"></script>
+}
+<script>
