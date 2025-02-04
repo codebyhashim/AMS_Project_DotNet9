@@ -8,6 +8,6 @@ namespace AM.ApplicationCore.Interfaces
 {
     public interface IEmailService
     {
-        Task<bool> SendEmail(string email, string subject, string body);
+        Task<bool> SendEmailAsync(string email, string subject, string body);
     }
 }

@@ -11,7 +11,7 @@ namespace AM.Infrastructure.Services
 {
     public class EmailServie : IEmailService
     {
-        public async Task<bool> SendEmail(string email, string subject, string body)
+        public async Task<bool> SendEmailAsync(string email, string subject, string body)
         {
 
             {

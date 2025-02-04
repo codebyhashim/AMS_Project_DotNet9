@@ -62,7 +62,7 @@ namespace AM.Repositories
                     var message = $"Hello, \n\nYour doctor account has been created. Please use the following details to log in:\n\nEmail: {user.Email}\nPassword: {password}\n\nLogin URL: {loginUrl}";
                     if (user.Email != null)
                     {
-                        await emailService.SendEmail(user.Email, "Your Doctor Account Credentials", message);
+                        await emailService.SendEmailAsync(user.Email, "Your Doctor Account Credentials", message);
                     }
 
                 }
@@ -147,7 +147,7 @@ namespace AM.Repositories
                 //_context.Doctors.Remove(doctor);
                 //await _context.SaveChangesAsync();
             }
-            return true;
+            //return true;
         }
 
         public async Task<bool> DoctorStatusUpdate(DoctorModel doctor)

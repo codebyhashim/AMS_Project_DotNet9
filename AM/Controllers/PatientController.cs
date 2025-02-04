@@ -56,8 +56,8 @@ namespace AM.Controllers
             if (ModelState.IsValid)
             {
 
-                var getLoginID = _patientRepository.GetLoginPatient();
-                _patientRepository.RegisterPatient(patient);
+                var getLoginID =  _patientRepository.GetLoginPatient();
+                 _patientRepository.RegisterPatient(patient);
                 return RedirectToAction("MakeAppoinment");
             }
 
