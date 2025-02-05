@@ -1,8 +1,14 @@
 ﻿using System.Net;
 using System.Net.Mail;
+using AM.ApplicationCore.Features.Admin.Appointments.Queries;
+using AM.ApplicationCore.Features.Admin.DashboardCounts;
+
+using AM.ApplicationCore.Features.Admin.Doctors.Queries;
+//using AM.ApplicationCore.queries.Admin;
 using AM.Data;
 using AM.Interfaces;
 using AM.Models;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -17,22 +23,25 @@ namespace AM.Controllers
         private readonly UserManager<IdentityUser> userManager;
         private readonly RoleManager<IdentityRole> roleManager;
         private readonly IAdminRepository adminRepository;
+        private readonly IMediator _mediator;
 
-        public AdminController(ApplicationDbContext _Context, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager, IAdminRepository adminRepository)
+        public AdminController(ApplicationDbContext _Context, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager, IAdminRepository adminRepository, IMediator _mediator)
         {
             context = _Context;
             this.userManager = userManager;
             this.roleManager = roleManager;
             this.adminRepository = adminRepository;
+            this._mediator = _mediator;
         }
 
         //  create button and action method in admin controllers
         // in action method we change logic of true and false
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
 
-            var counts = adminRepository.Counts();
+            //var counts =  adminRepository.Counts();
+            var counts= await _mediator.Send(new DashboardCountsQuery());
 
             return View(counts);
         }
@@ -40,11 +49,12 @@ namespace AM.Controllers
         [HttpGet("Admin/ViewDoctors")]
 
 
-        public IActionResult ViewDoctors()
+     
+        public async Task<IActionResult> ViewDoctors()
         {
 
-            var listOfDoctors = adminRepository.ViewDoctors().Result;
-
+            //var listOfDoctors = adminRepository.ViewDoctors().Result;
+            var listOfDoctors = await _mediator.Send(new GetAllDoctorsRequest());
             return View(listOfDoctors);
         }
 
@@ -59,7 +69,26 @@ namespace AM.Controllers
         {
             if (ModelState.IsValid)
             {
-                var doctr = await adminRepository.CreateDoctor(doctor);
+                 //await _adminRepository.CreateDoctor(doctor);
+                 await adminRepository.CreateDoctor(doctor);
+                //await _mediator.Send(new CreateDoctorCommand(doctor));
+                //await _mediator.Send(new CreateDoctorCommand(
+                //    doctor.Name,
+                //    doctor.Description,
+                //    doctor.Email,
+                //    doctor.Experience,
+                //    doctor.IsActive,
+                //    doctor.City,
+                //    doctor.AvailabilityDays,
+                //    doctor.AvailabilityHours,
+                //    doctor.WaitTime,
+                //    doctor.Speciality,
+                //    doctor.PhoneNumber,
+                //    doctor.UserId,
+
+                //    doctor.Degree,
+                //    doctor.Address));
+
                 //await context.Doctors.AddAsync(doctor);
                 //await context.SaveChangesAsync();
                 return RedirectToAction("ViewDoctors", "Admin");
@@ -70,7 +99,9 @@ namespace AM.Controllers
         public async Task<IActionResult> Delete(int Id)
         {
             //var selectData = await context.Doctors.FindAsync(Id);
-            var doctor = await adminRepository.GetDoctor(Id);
+            //var doctor = await adminRepository.GetDoctorById(Id);
+
+            var doctor = await _mediator.Send(new GetDoctorByIdRequest() { id = Id });
             if (doctor == null) NotFound();
 
             return View(doctor);
@@ -80,7 +111,8 @@ namespace AM.Controllers
         public async Task<IActionResult> DeleteConfirmed(int Id)
         {
 
-            var doctor = await adminRepository.GetDoctor(Id);
+            //var doctor = await adminRepository.GetDoctorById(Id);
+            var doctor = await _mediator.Send(new GetDoctorByIdRequest() { id = Id });
 
             if (doctor != null)
             {
@@ -100,7 +132,8 @@ namespace AM.Controllers
         public async Task<IActionResult> ShowDoctor(int id)
         {
             //var doctor =await context.Doctors.FindAsync(id);
-            var doctor = adminRepository.GetDoctor(id).Result;
+            //var doctor = adminRepository.GetDoctorById(id).Result;
+            var doctor = await _mediator.Send(new GetDoctorByIdRequest() { id=id});
             if (doctor != null)
             {
                 if (doctor.IsActive == true)
@@ -121,7 +154,9 @@ namespace AM.Controllers
         [HttpGet("Doctor/Edit")]
         public async Task<IActionResult> Edit(int id)
         {
-            var doctor = await adminRepository.GetDoctor(id);
+            //var doctor = await adminRepository.GetDoctorById(id);
+            var doctor = await _mediator.Send(new GetDoctorByIdRequest() { id = id });
+
             return View(doctor);
         }
         [HttpPost("Doctor/Edit")]
@@ -137,7 +172,9 @@ namespace AM.Controllers
         public async Task<IActionResult> Approve(int id)
         {
             //var appointment = context.Appoinments.Find(id);
-            var appointment = await adminRepository.GetAppointment(id);
+            //var appointment = await adminRepository.GetAppointmentById(id);
+            var appointment = await _mediator.Send(new GetAppointmentByIdRequest { id = id });
+
             if (appointment != null)
             {
                 adminRepository.BookAppointment(appointment);
@@ -159,15 +196,19 @@ namespace AM.Controllers
         public async Task<IActionResult> Cancel(int id)
         {
 
-            var appointment = await adminRepository.GetAppointment(id);
+            //var appointment = await adminRepository.GetAppointmentById(id);
+            var appointment = await _mediator.Send(new GetAppointmentByIdRequest() { id = id });
+
             adminRepository.CancelAppointment(appointment);
             return RedirectToAction("ViewAppoinments", "Admin"); // Redirect back to the Index page after cancellation
         }
 
         [HttpGet]
         public async Task<IActionResult> ViewAppoinments()
-        {
-            var appointments = await adminRepository.ViewAppointments();
+        {   
+            //var appointments = await adminRepository.ViewAppointments();
+            var appointments = await _mediator.Send(new GetAllAppoinmentsRequest());
+
             if (appointments.Count == 0)
             {
                 ViewBag.msg = "No appointments found";

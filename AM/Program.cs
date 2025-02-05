@@ -1,3 +1,4 @@
+using System.Reflection;
 using AM.ApplicationCore.Interfaces;
 using AM.Data;
 using AM.Infrastructure;
@@ -36,6 +37,7 @@ namespace AM
             builder.Services.AddScoped<IPatientRepository, PatientRepository>();
             builder.Services.AddScoped<IAdminRepository, AdminRepository>();
             builder.Services.AddScoped<IEmailService, EmailServie>();
+            builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));  // For .NET 6+
 
             //builder.Services.AddScoped<IDoctor, DoctorRepository>();
             //builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
@@ -56,6 +58,8 @@ namespace AM
             //});
 
             builder.Services.AddInfrastructure(builder.Configuration);
+            builder.Services.AddApplication(builder.Configuration);
+
             var app = builder.Build();
             
 

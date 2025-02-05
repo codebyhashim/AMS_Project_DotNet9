@@ -7,6 +7,7 @@ using AM.Interfaces;
 using System.Net.Mail;
 using System.Net;
 using AM.ApplicationCore.Interfaces;
+
 namespace AM.Repositories
 {
     public class AdminRepository : IAdminRepository
@@ -70,7 +71,7 @@ namespace AM.Repositories
             return doctor;
         }
 
-        public async Task<AppoinmentModel> GetAppointment(int id)
+        public async Task<AppoinmentModel> GetAppointmentById(int id)
         {
             var appointment = await _context.Appoinments.FindAsync(id);
             return appointment;
@@ -95,35 +96,29 @@ namespace AM.Repositories
 
         }
 
-        public DashbaordCounts Counts()
+        public async Task<DashboardCountsModel> Counts()
         {
 
-            var totalRegisterdDoctor = _context.Doctors.Count();
-            var totalRegisterdPatients = _context.Patients.Count();
-            var totalApprovedAppointments = _context.Appoinments.Count(x => x.Status == AppoinmentStatus.Booked);
-            var totalPendingAppointments = _context.Appoinments.Count(x => x.Status == AppoinmentStatus.Pending);
-            var totalCanceleAppointments = _context.Appoinments.Count(x => x.Status == AppoinmentStatus.Cancelled);
+            var totalRegisterdDoctor = await  _context.Doctors.CountAsync();
+            var totalRegisterdPatients =await _context.Patients.CountAsync();
+            var totalApprovedAppointments =await _context.Appoinments.CountAsync(x => x.Status == AppoinmentStatus.Booked);
+            var totalPendingAppointments = await _context.Appoinments.CountAsync(x => x.Status == AppoinmentStatus.Pending);
+            var totalCanceleAppointments = await _context.Appoinments.CountAsync(x => x.Status == AppoinmentStatus.Cancelled);
 
-            var counts = new DashbaordCounts
+            var counts = new DashboardCountsModel
             {
-                TotalRegisterdDoctor = totalRegisterdDoctor,
+                 TotalRegisterdDoctor = totalRegisterdDoctor,
                 TotalRegisterdPatients = totalRegisterdPatients,
                 TotalApprovedAppointments = totalApprovedAppointments,
                 TotalPendingAppointments = totalPendingAppointments,
                 TotalCanceleAppointments = totalCanceleAppointments,
             };
 
-            return counts;
+            return  counts;
 
         }
 
-        public async Task<bool> CreateDoctor(DoctorModel doctor)
-        {
-            await _context.Doctors.AddAsync(doctor);
-            await _context.SaveChangesAsync();
-            return true;
-        }
-
+     
         public async Task<bool> DeleteDoctor(DoctorModel doctor)
         {
             var user = await userManager.FindByEmailAsync(doctor.Email);
@@ -199,7 +194,7 @@ namespace AM.Repositories
 
         }
 
-        public async Task<DoctorModel> GetDoctor(int id)
+        public async Task<DoctorModel> GetDoctorById(int id)
         {
             var doctor = await _context.Doctors.FindAsync(id);
             return doctor;
@@ -221,8 +216,15 @@ namespace AM.Repositories
         }
 
        
-    
-}
+        public async Task<bool> CreateDoctor(DoctorModel doctor)
+        {
+            await _context.Doctors.AddAsync(doctor);
+            await _context.SaveChangesAsync();
+            return true;
+        }
+
+      
+    }
 }
 
 

@@ -1,6 +1,6 @@
 ﻿namespace AM.Models
 {
-    public class DashbaordCounts
+    public class DashboardCountsModel
     {
         public int TotalRegisterdDoctor { get; set; }
         public int TotalRegisterdPatients { get; set; }

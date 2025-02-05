@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 using AM.Interfaces;
+using System.Reflection;
 
 namespace AM.Infrastructure
 {
@@ -15,11 +16,7 @@ namespace AM.Infrastructure
     {
         public static IServiceCollection AddApplication(this IServiceCollection Services, IConfiguration configuration)
         {
-            //var connectionString = configuration.GetConnectionString("DefaultConnection");
-            //Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
-            //Services.AddScoped<IDoctorRepository, DoctorRepository>();
-            //Services.AddScoped<IPatientRepository, PatientRepository>();
-            //Services.AddScoped<IAdminRepository, AdminRepository>();
+            Services.AddMediatR(config=>config.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly() ));
             return Services;
         }
     }
