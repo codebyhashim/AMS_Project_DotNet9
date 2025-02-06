@@ -14,14 +14,19 @@ namespace AM.Interfaces
 
         Task<bool> CreateDoctor(DoctorModel doctor);
         Task<bool> DeleteDoctor(DoctorModel doctor);
+
+
         Task<bool> DoctorUpdate(DoctorModel doctor);
-        void BookAppointment(AppoinmentModel appoinment);
-        void CancelAppointment(AppoinmentModel appoinment);
+        Task<bool> BookAppointment(AppoinmentModel appoinment);
+        Task<bool> CancelAppointment(AppoinmentModel appoinment);
 
 
         Task<bool> DoctorStatusUpdate(DoctorModel doctor);
 
         Task<DoctorModel> InviteDoctor(DoctorModel doctor);
-        
+
+        //Task<bool> InviteDoctor(DoctorModel doctor);
+
+
     }
 }

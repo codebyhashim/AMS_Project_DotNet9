@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AM.ApplicationCore.Features.Admin.Doctors.Queries;
-using AM.Interfaces;
+﻿using AM.Interfaces;
 using AM.Models;
 using MediatR;
 
-namespace AM.ApplicationCore.Features.Admin.Doctors.Handlers
+namespace AM.ApplicationCore.Features.Admin.GetDoctorById
 {
     public class GetDoctorByIdHandler : IRequestHandler<GetDoctorByIdRequest, DoctorModel>
     {
@@ -16,7 +10,7 @@ namespace AM.ApplicationCore.Features.Admin.Doctors.Handlers
 
         public GetDoctorByIdHandler(IAdminRepository adminRepository)
         {
-            this._adminRepository = adminRepository;
+            _adminRepository = adminRepository;
         }
 
         public async Task<DoctorModel> Handle(GetDoctorByIdRequest request, CancellationToken cancellationToken)

@@ -1,5 +1,10 @@
 ﻿using System.Security.Claims;
+using AM.ApplicationCore.Features.Admin.GetAppointmentById;
+using AM.ApplicationCore.Features.Doctor.BookAppoinment;
+using AM.ApplicationCore.Features.Doctor.GetDoctor;
+using AM.ApplicationCore.Features.Doctor.GetDoctorAppointments;
 using AM.Interfaces;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,11 +16,13 @@ namespace AM.Controllers
 
 
         private readonly IDoctorRepository _doctorRepository;
+        private readonly IMediator _mediator;
 
-        public DoctorController(IDoctorRepository doctorRepository)
+        public DoctorController(IDoctorRepository doctorRepository, IMediator mediator)
         {
 
             _doctorRepository = doctorRepository;
+            this._mediator = mediator;
         }
 
 
@@ -25,7 +32,9 @@ namespace AM.Controllers
         public async Task<IActionResult> Index()
         {
             var loginId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var doctor = await _doctorRepository.GetDoctor(loginId);
+            //var doctor = await _doctorRepository.GetDoctor(loginId);
+            var doctor = await _mediator.Send(new GetDoctorRequest() { Id = loginId });
+
             //var doctor = await context.Doctors.FirstOrDefaultAsync(x => x.UserId == loginId);
 
 
@@ -38,7 +47,9 @@ namespace AM.Controllers
 
             //var Appoinment = await context.Appoinments.Where(a => a.DoctorId == doctor.Id).Include(x => x.Doctor).Include(x => x.Patient).ToListAsync();
 
-            var appoinment = await _doctorRepository.GetDoctorAppoinments(doctor.Id);
+            //var appoinment = await _doctorRepository.GetDoctorAppoinments(doctor.Id);
+            var appoinment = await _mediator.Send(new GetDoctorAppoinmentsRequest { Id = doctor.Id });
+
             return View(appoinment);
 
 
@@ -50,10 +61,13 @@ namespace AM.Controllers
 
 
             var appointmet = await _doctorRepository.GetAppointment(id);
+            //var appointmet = await _mediator.Send(new GetDoctorAppoinmentsRequest() { Id = id });
+
 
             if (appointmet != null)
             {
-                _doctorRepository.BookAppointment(appointmet);
+                //await _mediator.Send(new BookAppointmentRequest(appointmet));
+                await _doctorRepository.BookAppointment(appointmet);
 
             }
 
@@ -62,17 +76,18 @@ namespace AM.Controllers
             return RedirectToAction("Index", "Doctor");
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Cancel(int Id)
-        {
-
-            var appointment = await _doctorRepository.GetAppointment(Id);
-            if (appointment != null)
+            [HttpPost]
+            public async Task<IActionResult> Cancel(int Id)
             {
-                _doctorRepository.CanceleAppointment(appointment);
 
+                var appointment = await _doctorRepository.GetAppointment(Id);
+                if (appointment != null)
+                {
+                    await _doctorRepository.CanceleAppointment(appointment);
+
+                }
+                return RedirectToAction("Index", "Doctor");
             }
-            return RedirectToAction("Index", "Doctor");
         }
     }
-}
+

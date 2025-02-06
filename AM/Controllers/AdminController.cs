@@ -1,9 +1,19 @@
 ﻿using System.Net;
 using System.Net.Mail;
-using AM.ApplicationCore.Features.Admin.Appointments.Queries;
-using AM.ApplicationCore.Features.Admin.DashboardCounts;
 
-using AM.ApplicationCore.Features.Admin.Doctors.Queries;
+using AM.ApplicationCore.Features.Admin.BookAppoinment;
+using AM.ApplicationCore.Features.Admin.CancelAppointment;
+using AM.ApplicationCore.Features.Admin.CreateDoctor;
+using AM.ApplicationCore.Features.Admin.DashboardCounts;
+using AM.ApplicationCore.Features.Admin.DeleteDoctor;
+
+using AM.ApplicationCore.Features.Admin.GetAllAppoinments;
+using AM.ApplicationCore.Features.Admin.GetAllDoctors;
+using AM.ApplicationCore.Features.Admin.GetAppointmentById;
+using AM.ApplicationCore.Features.Admin.GetDoctorById;
+using AM.ApplicationCore.Features.Admin.InviteDoctor;
+using AM.ApplicationCore.Features.Admin.UpdateDoctor;
+
 //using AM.ApplicationCore.queries.Admin;
 using AM.Data;
 using AM.Interfaces;
@@ -41,7 +51,7 @@ namespace AM.Controllers
         {
 
             //var counts =  adminRepository.Counts();
-            var counts= await _mediator.Send(new DashboardCountsQuery());
+            var counts = await _mediator.Send(new DashboardCountsRequest());
 
             return View(counts);
         }
@@ -49,7 +59,7 @@ namespace AM.Controllers
         [HttpGet("Admin/ViewDoctors")]
 
 
-     
+
         public async Task<IActionResult> ViewDoctors()
         {
 
@@ -69,9 +79,10 @@ namespace AM.Controllers
         {
             if (ModelState.IsValid)
             {
-                 //await _adminRepository.CreateDoctor(doctor);
-                 await adminRepository.CreateDoctor(doctor);
-                //await _mediator.Send(new CreateDoctorCommand(doctor));
+
+                //await adminRepository.CreateDoctor(doctor);
+
+                await _mediator.Send(new CreateDoctorRequest(doctor));
                 //await _mediator.Send(new CreateDoctorCommand(
                 //    doctor.Name,
                 //    doctor.Description,
@@ -116,7 +127,8 @@ namespace AM.Controllers
 
             if (doctor != null)
             {
-                await adminRepository.DeleteDoctor(doctor);
+                //await adminRepository.DeleteDoctor(doctor);
+                await _mediator.Send(new DeleteDoctorRequest() { id = doctor.Id });
                 TempData["deleteMessage"] = "Deleted Sucessfully";
                 return RedirectToAction("ViewDoctors", "Admin");
             }
@@ -133,7 +145,7 @@ namespace AM.Controllers
         {
             //var doctor =await context.Doctors.FindAsync(id);
             //var doctor = adminRepository.GetDoctorById(id).Result;
-            var doctor = await _mediator.Send(new GetDoctorByIdRequest() { id=id});
+            var doctor = await _mediator.Send(new GetDoctorByIdRequest() { id = id });
             if (doctor != null)
             {
                 if (doctor.IsActive == true)
@@ -147,7 +159,9 @@ namespace AM.Controllers
                     doctor.IsActive = true;
 
                 }
-                await adminRepository.DoctorStatusUpdate(doctor);
+                //await adminRepository.DoctorStatusUpdate(doctor);
+                await _mediator.Send(new UpdateDoctorRequest(doctor));
+
             }
             return RedirectToAction("ViewDoctors", "Admin");
         }
@@ -164,7 +178,9 @@ namespace AM.Controllers
         {
             if (ModelState.IsValid)
             {
-                await adminRepository.DoctorUpdate(doctorModel);
+                //await adminRepository.DoctorUpdate(doctorModel);
+                await _mediator.Send(new UpdateDoctorRequest(doctorModel));
+
                 TempData["UpdatedMessage"] = "Updated Successfully";                                                       // Step 5: Redirect to the Index page after succ 
             }
             return RedirectToAction("ViewDoctors", "Admin");
@@ -177,7 +193,8 @@ namespace AM.Controllers
 
             if (appointment != null)
             {
-                adminRepository.BookAppointment(appointment);
+                await _mediator.Send(new BookAppointmentRequest(appointment));
+                //adminRepository.BookAppointment(appointment);
 
             }
             //if (appoinmet != null)
@@ -199,13 +216,15 @@ namespace AM.Controllers
             //var appointment = await adminRepository.GetAppointmentById(id);
             var appointment = await _mediator.Send(new GetAppointmentByIdRequest() { id = id });
 
-            adminRepository.CancelAppointment(appointment);
+            //adminRepository.CancelAppointment(appointment);
+            await _mediator.Send(new CancelAppointmentRequest(appointment));
+
             return RedirectToAction("ViewAppoinments", "Admin"); // Redirect back to the Index page after cancellation
         }
 
         [HttpGet]
         public async Task<IActionResult> ViewAppoinments()
-        {   
+        {
             //var appointments = await adminRepository.ViewAppointments();
             var appointments = await _mediator.Send(new GetAllAppoinmentsRequest());
 
@@ -220,13 +239,15 @@ namespace AM.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DoctorUser(DoctorModel Doctor)
+        public async Task<IActionResult> DoctorUser(DoctorModel doctor)
         {
-            await adminRepository.InviteDoctor(Doctor);
-            //await adminRepository.DoctorUpdate(Doctor);
+            //var updatedDoctor = await adminRepository.InviteDoctor(doctor);
+            var updatedDoctor = await _mediator.Send(new InviteDoctorRequest(doctor));
+            await _mediator.Send(new UpdateDoctorRequest(updatedDoctor));
+            //await adminRepository.DoctorUpdate(updatedDoctor);
             //return Ok("Doctor account created and email sent.");
             TempData["SuccessMessage"] = "Account created successfully! A confirmation email has been sent.";
-         
+
             return RedirectToAction("ViewDoctors", "Admin");
         }
 

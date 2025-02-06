@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 using AM.Models;
 using MediatR;
 
-namespace AM.ApplicationCore.Features.Admin.Appointments.Queries
+namespace AM.ApplicationCore.Features.Doctor.GetDoctor
 {
-    public class GetAllAppoinmentsRequest : IRequest<List<AppoinmentModel>>
+    public class GetDoctorRequest : IRequest<DoctorModel>
     {
+        public string Id { get; set; }
     }
 }

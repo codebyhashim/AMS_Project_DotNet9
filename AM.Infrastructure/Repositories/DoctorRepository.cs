@@ -35,20 +35,22 @@ namespace AM.Repositories
             return appointment;
         }
 
-        public void BookAppointment(AppoinmentModel appointment)
+        public async Task<bool> BookAppointment(AppoinmentModel appointment)
         {
 
 
             appointment.Status = AppoinmentStatus.Booked;
-            _context.Appoinments.Update(appointment);
-            _context.SaveChanges();
+             _context.Appoinments.Update(appointment);
+           await _context.SaveChangesAsync();
+            return true;
         }
 
-        public void CanceleAppointment(AppoinmentModel appointment)
+        public async Task<bool> CanceleAppointment(AppoinmentModel appointment)
         {
             appointment.Status = AppoinmentStatus.Cancelled;
             _context.Appoinments.Update(appointment);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
+            return true;
         }
 
 

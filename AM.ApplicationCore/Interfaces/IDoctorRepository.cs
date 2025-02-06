@@ -8,8 +8,8 @@ namespace AM.Interfaces
 
         Task<List<AppoinmentModel>> GetDoctorAppoinments(int id);
         Task<AppoinmentModel> GetAppointment(int Id);
-        void BookAppointment(AppoinmentModel appoinment);
-        void CanceleAppointment(AppoinmentModel appoinment);
+        Task<bool> BookAppointment(AppoinmentModel appoinment);
+        Task<bool> CanceleAppointment(AppoinmentModel appoinment);
 
     }
 }

@@ -7,6 +7,8 @@ using AM.Interfaces;
 using System.Net.Mail;
 using System.Net;
 using AM.ApplicationCore.Interfaces;
+using Microsoft.AspNetCore.Http;
+using System.Numerics;
 
 namespace AM.Repositories
 {
@@ -16,18 +18,20 @@ namespace AM.Repositories
         private readonly UserManager<IdentityUser> userManager;
         private readonly RoleManager<IdentityRole> roleManager;
         private readonly IEmailService emailService;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public AdminRepository(ApplicationDbContext _context, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager, IEmailService emailService
+        public AdminRepository(ApplicationDbContext _context, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager, IEmailService emailService, IHttpContextAccessor httpContextAccessor
             )
         {
             this._context = _context;
             this.userManager = userManager;
             this.roleManager = roleManager;
             this.emailService = emailService;
+            this._httpContextAccessor = httpContextAccessor;
         }
         public async Task<DoctorModel> InviteDoctor(DoctorModel Doctor)
         {
-            var doctor = _context.Doctors.Find(Doctor.Id);
+            var doctor =await _context.Doctors.FindAsync(Doctor.Id);
             if (doctor != null)
             {
 
@@ -56,7 +60,7 @@ namespace AM.Repositories
                     doctor.UserId = user.Id;
 
                     _context.Doctors.Update(doctor);
-                   _context.SaveChanges();
+                  await _context.SaveChangesAsync();
 
 
                     var loginUrl = "https://localhost:7251/Identity/Account/login";  // Replace with your actual login URL
@@ -78,21 +82,23 @@ namespace AM.Repositories
         }
 
 
-        public void BookAppointment(AppoinmentModel appointment)
+        public async Task<bool> BookAppointment(AppoinmentModel appointment)
         {
             appointment.Status = AppoinmentStatus.Booked;
-            _context.Appoinments.Update(appointment);
-            _context.SaveChanges();
+             _context.Appoinments.Update(appointment);
+           await  _context.SaveChangesAsync();
+            return true;
 
         }
 
 
 
-        public void CancelAppointment(AppoinmentModel appointment)
+        public async Task<bool> CancelAppointment(AppoinmentModel appointment)
         {
             appointment.Status = AppoinmentStatus.Cancelled;
             _context.Appoinments.Update(appointment);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
+            return true;
 
         }
 
@@ -121,7 +127,12 @@ namespace AM.Repositories
      
         public async Task<bool> DeleteDoctor(DoctorModel doctor)
         {
-            var user = await userManager.FindByEmailAsync(doctor.Email);
+            //var user = await userManager.FindByEmailAsync(doctor.Email);
+            var user = await userManager.Users.FirstOrDefaultAsync(x=>x.Id==doctor.UserId);
+
+            //var user = _httpContextAccessor.HttpContext?.User;
+            // var user = await userManager.fin
+
             if (user != null)
             {
                 var result = await userManager.DeleteAsync(user);
@@ -190,8 +201,8 @@ namespace AM.Repositories
             _context.Doctors.Update(doctor);
             // Step 4: Save changes to the database (both the doctor and the user)
             await _context.SaveChangesAsync();
+            
             return true;
-
         }
 
         public async Task<DoctorModel> GetDoctorById(int id)
