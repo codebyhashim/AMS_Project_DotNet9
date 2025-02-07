@@ -28,7 +28,7 @@ namespace AM.Repositories
 
             return loginId;
         }
-        public void RegisterPatient(PatientModel patient)
+        public async Task<bool> RegisterPatient(PatientModel patient)
         {
             var user = _httpContextAccessor.HttpContext?.User;
 
@@ -36,16 +36,17 @@ namespace AM.Repositories
             var loginId = user.FindFirst(ClaimTypes.NameIdentifier).Value;
             patient.UserId = loginId;
 
-            _context.Patients.Add(patient);
-            _context.SaveChanges();
+           await _context.Patients.AddAsync(patient);
+            await _context.SaveChangesAsync();
+            return true;
         }
 
 
-        public async Task<PatientModel> UpdatePatient(PatientModel patient)
+        public async Task<bool> UpdatePatient(PatientModel patient)
         {
             _context.Patients.Update(patient);
             await _context.SaveChangesAsync();
-            return patient;
+            return true;
         }
 
         public async Task<PatientModel> GetPatient(string id)
@@ -62,9 +63,9 @@ namespace AM.Repositories
 
         }
 
-        public async Task<AppoinmentModel> ShowAppointmetForm(PatientModel patient)
+        public async Task<AppointmentModel> ShowAppointmetForm(PatientModel patient)
         {
-            var appointment = new AppoinmentModel
+            var appointment = new AppointmentModel
             {
                 PatientId = patient.Id,
                 Patient = patient,
@@ -73,14 +74,15 @@ namespace AM.Repositories
             return appointment;
         }
 
-        public async Task GetAppoinments(AppoinmentModel appointments)
+        public async Task<bool> GetAppointments(AppointmentModel appointments)
         {
             await _context.Appoinments.AddAsync(appointments);
             await _context.SaveChangesAsync();
+            return true;
 
         }
 
-        public async Task<List<AppoinmentModel>> ViewAppoinments(PatientModel patient)
+        public async Task<List<AppointmentModel>> ViewAppoinments(PatientModel patient)
         {
             var appointments = await _context.Appoinments.Where(x => x.PatientId == patient.Id).Include(x => x.Doctor).Include(x => x.Patient).ToListAsync();
             return appointments;

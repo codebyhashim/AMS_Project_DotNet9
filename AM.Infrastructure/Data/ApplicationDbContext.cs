@@ -11,7 +11,7 @@ namespace AM.Data
         {
         }
         public DbSet<DoctorModel> Doctors { get; set; }
-        public DbSet<AppoinmentModel> Appoinments { get; set; }
+        public DbSet<AppointmentModel> Appoinments { get; set; }
         public DbSet<PatientModel> Patients { get; set; }
     }
 }

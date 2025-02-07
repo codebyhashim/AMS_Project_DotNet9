@@ -21,7 +21,7 @@ namespace AM.Repositories
             return doctor;
         }
 
-        public async Task<List<AppoinmentModel>> GetDoctorAppoinments(int id)
+        public async Task<List<AppointmentModel>> GetDoctorAppoinments(int id)
         {
             var appoinment = await _context.Appoinments.Where(x => x.DoctorId == id).Include(x => x.Patient).Include(x => x.Doctor).ToListAsync();
             return appoinment;
@@ -29,13 +29,13 @@ namespace AM.Repositories
 
         }
 
-        public async Task<AppoinmentModel> GetAppointment(int id)
+        public async Task<AppointmentModel> GetAppointment(int id)
         {
             var appointment = await _context.Appoinments.FindAsync(id);
             return appointment;
         }
 
-        public async Task<bool> BookAppointment(AppoinmentModel appointment)
+        public async Task<bool> BookAppointment(AppointmentModel appointment)
         {
 
 
@@ -45,7 +45,7 @@ namespace AM.Repositories
             return true;
         }
 
-        public async Task<bool> CanceleAppointment(AppoinmentModel appointment)
+        public async Task<bool> CanceleAppointment(AppointmentModel appointment)
         {
             appointment.Status = AppoinmentStatus.Cancelled;
             _context.Appoinments.Update(appointment);

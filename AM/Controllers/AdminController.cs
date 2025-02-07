@@ -32,15 +32,15 @@ namespace AM.Controllers
         private readonly ApplicationDbContext context;
         private readonly UserManager<IdentityUser> userManager;
         private readonly RoleManager<IdentityRole> roleManager;
-        private readonly IAdminRepository adminRepository;
+       
         private readonly IMediator _mediator;
 
-        public AdminController(ApplicationDbContext _Context, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager, IAdminRepository adminRepository, IMediator _mediator)
+        public AdminController(ApplicationDbContext _Context, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager, IMediator _mediator)
         {
             context = _Context;
             this.userManager = userManager;
             this.roleManager = roleManager;
-            this.adminRepository = adminRepository;
+          
             this._mediator = _mediator;
         }
 
@@ -189,7 +189,7 @@ namespace AM.Controllers
         {
             //var appointment = context.Appoinments.Find(id);
             //var appointment = await adminRepository.GetAppointmentById(id);
-            var appointment = await _mediator.Send(new GetAppointmentByIdRequest { id = id });
+            var appointment = await _mediator.Send(new GetAppointmentByIdRequest { Id = id });
 
             if (appointment != null)
             {
@@ -214,7 +214,7 @@ namespace AM.Controllers
         {
 
             //var appointment = await adminRepository.GetAppointmentById(id);
-            var appointment = await _mediator.Send(new GetAppointmentByIdRequest() { id = id });
+            var appointment = await _mediator.Send(new GetAppointmentByIdRequest() { Id = id });
 
             //adminRepository.CancelAppointment(appointment);
             await _mediator.Send(new CancelAppointmentRequest(appointment));
@@ -230,7 +230,7 @@ namespace AM.Controllers
 
             if (appointments.Count == 0)
             {
-                ViewBag.msg = "No appointments found";
+                ViewBag.msg = "No appointments have been booked yet";
             }
             return View(appointments);
         }

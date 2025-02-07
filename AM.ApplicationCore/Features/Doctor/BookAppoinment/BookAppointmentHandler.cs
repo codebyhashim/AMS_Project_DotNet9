@@ -12,9 +12,9 @@ namespace AM.ApplicationCore.Features.Doctor.BookAppoinment
             this._doctorRepository = doctorRepository;
         }
 
-        public Task<bool> Handle(BookAppointmentRequest request, CancellationToken cancellationToken)
+        public async Task<bool> Handle(BookAppointmentRequest request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return await _doctorRepository.BookAppointment(request._appoinment);
         }
 
         //public async Task<bool> Handle(BookAppointmentRequest request, CancellationToken cancellationToken)

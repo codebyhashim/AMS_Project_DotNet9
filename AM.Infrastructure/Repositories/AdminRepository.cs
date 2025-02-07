@@ -75,14 +75,14 @@ namespace AM.Repositories
             return doctor;
         }
 
-        public async Task<AppoinmentModel> GetAppointmentById(int id)
+        public async Task<AppointmentModel> GetAppointmentById(int id)
         {
             var appointment = await _context.Appoinments.FindAsync(id);
             return appointment;
         }
 
 
-        public async Task<bool> BookAppointment(AppoinmentModel appointment)
+        public async Task<bool> BookAppointment(AppointmentModel appointment)
         {
             appointment.Status = AppoinmentStatus.Booked;
              _context.Appoinments.Update(appointment);
@@ -93,7 +93,7 @@ namespace AM.Repositories
 
 
 
-        public async Task<bool> CancelAppointment(AppoinmentModel appointment)
+        public async Task<bool> CancelAppointment(AppointmentModel appointment)
         {
             appointment.Status = AppoinmentStatus.Cancelled;
             _context.Appoinments.Update(appointment);
@@ -213,7 +213,7 @@ namespace AM.Repositories
 
 
 
-        public async Task<List<AppoinmentModel>> ViewAppointments()
+        public async Task<List<AppointmentModel>> ViewAppointments()
         {
             var appointments = await _context.Appoinments.Include(x => x.Doctor).Include(x => x.Patient).ToListAsync();
 

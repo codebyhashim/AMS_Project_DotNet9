@@ -6,10 +6,10 @@ namespace AM.Interfaces
     public interface IAdminRepository
     {
         Task<DashboardCountsModel> Counts();
-        Task<List<AppoinmentModel>> ViewAppointments();
+        Task<List<AppointmentModel>> ViewAppointments();
         Task<List<DoctorModel>> ViewDoctors();
         Task<DoctorModel> GetDoctorById(int id);
-        Task<AppoinmentModel> GetAppointmentById(int Id);
+        Task<AppointmentModel> GetAppointmentById(int Id);
         //Task<bool> InviteDoctor(DoctorModel Doctor);
 
         Task<bool> CreateDoctor(DoctorModel doctor);
@@ -17,8 +17,8 @@ namespace AM.Interfaces
 
 
         Task<bool> DoctorUpdate(DoctorModel doctor);
-        Task<bool> BookAppointment(AppoinmentModel appoinment);
-        Task<bool> CancelAppointment(AppoinmentModel appoinment);
+        Task<bool> BookAppointment(AppointmentModel appoinment);
+        Task<bool> CancelAppointment(AppointmentModel appoinment);
 
 
         Task<bool> DoctorStatusUpdate(DoctorModel doctor);

@@ -34,7 +34,7 @@ namespace AM.Models
         public string? AvailabilityHours { get; set; }
 
         //Navigation Property to Appointments
-        public ICollection<AppoinmentModel>? Appoinment { get; set; }
+        public ICollection<AppointmentModel>? Appoinment { get; set; }
     }
 
 }

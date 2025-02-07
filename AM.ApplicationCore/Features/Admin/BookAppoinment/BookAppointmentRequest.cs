@@ -5,9 +5,9 @@ namespace AM.ApplicationCore.Features.Admin.BookAppoinment
 {
     public class BookAppointmentRequest : IRequest<bool>
     {
-        public readonly AppoinmentModel _appoinment;
+        public readonly AppointmentModel _appoinment;
 
-        public BookAppointmentRequest(AppoinmentModel appoinment)
+        public BookAppointmentRequest(AppointmentModel appoinment)
         {
             _appoinment = appoinment;
         }

@@ -4,7 +4,7 @@ using MediatR;
 
 namespace AM.ApplicationCore.Features.Admin.GetAppointmentById
 {
-    public class GetAppointmentByIdHandler : IRequestHandler<GetAppointmentByIdRequest, AppoinmentModel>
+    public class GetAppointmentByIdHandler : IRequestHandler<GetAppointmentByIdRequest, AppointmentModel>
     {
         private readonly IAdminRepository _adminRepository;
 
@@ -13,9 +13,9 @@ namespace AM.ApplicationCore.Features.Admin.GetAppointmentById
             _adminRepository = adminRepository;
         }
 
-        public async Task<AppoinmentModel> Handle(GetAppointmentByIdRequest request, CancellationToken cancellationToken)
+        public async Task<AppointmentModel> Handle(GetAppointmentByIdRequest request, CancellationToken cancellationToken)
         {
-            return await _adminRepository.GetAppointmentById(request.id);
+            return await _adminRepository.GetAppointmentById(request.Id);
         }
     }
 }

@@ -4,7 +4,7 @@ using MediatR;
 
 namespace AM.ApplicationCore.Features.Admin.GetAllAppoinments
 {
-    public class GetAllAppointmetsHandler : IRequestHandler<GetAllAppoinmentsRequest, List<AppoinmentModel>>
+    public class GetAllAppointmetsHandler : IRequestHandler<GetAllAppoinmentsRequest, List<AppointmentModel>>
     {
         private readonly IAdminRepository _adminRepository;
 
@@ -13,7 +13,7 @@ namespace AM.ApplicationCore.Features.Admin.GetAllAppoinments
             _adminRepository = adminRepository;
         }
 
-        public async Task<List<AppoinmentModel>> Handle(GetAllAppoinmentsRequest request, CancellationToken cancellationToken)
+        public async Task<List<AppointmentModel>> Handle(GetAllAppoinmentsRequest request, CancellationToken cancellationToken)
         {
             return await _adminRepository.ViewAppointments();
         }

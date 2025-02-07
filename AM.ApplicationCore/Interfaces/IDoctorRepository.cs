@@ -6,10 +6,10 @@ namespace AM.Interfaces
     {
         Task<DoctorModel> GetDoctor(string Id);
 
-        Task<List<AppoinmentModel>> GetDoctorAppoinments(int id);
-        Task<AppoinmentModel> GetAppointment(int Id);
-        Task<bool> BookAppointment(AppoinmentModel appoinment);
-        Task<bool> CanceleAppointment(AppoinmentModel appoinment);
+        Task<List<AppointmentModel>> GetDoctorAppoinments(int id);
+        Task<AppointmentModel> GetAppointment(int Id);
+        Task<bool> BookAppointment(AppointmentModel appoinment);
+        Task<bool> CanceleAppointment(AppointmentModel appoinment);
 
     }
 }

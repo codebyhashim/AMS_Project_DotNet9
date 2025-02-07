@@ -5,9 +5,9 @@ namespace AM.ApplicationCore.Features.Doctor.BookAppoinment
 {
     public class BookAppointmentRequest : IRequest<bool>
     {
-        private readonly AppoinmentModel _appoinment;
+        public readonly AppointmentModel _appoinment;
 
-        public BookAppointmentRequest(AppoinmentModel appoinment)
+        public BookAppointmentRequest(AppointmentModel appoinment)
         {
             this._appoinment = appoinment;
         }

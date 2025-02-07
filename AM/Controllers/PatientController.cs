@@ -1,5 +1,16 @@
-﻿using AM.Interfaces;
+﻿using AM.ApplicationCore.Features.Doctor.GetDoctor;
+using AM.ApplicationCore.Features.Patient.BookAppoinments;
+using AM.ApplicationCore.Features.Patient.DisplayAppointmentForm;
+using AM.ApplicationCore.Features.Patient.GetActiveDoctors;
+using AM.ApplicationCore.Features.Patient.GetLoginUserId;
+using AM.ApplicationCore.Features.Patient.GetPateint;
+using AM.ApplicationCore.Features.Patient.RegisterPatient;
+using AM.ApplicationCore.Features.Patient.UpdatePatient;
+using AM.ApplicationCore.Features.Patient.ViewAppoinments;
+using AM.Interfaces;
 using AM.Models;
+using AM.Views.Patient;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,12 +21,13 @@ namespace AM.Controllers
     public class PatientController : Controller
     {
 
-        private readonly IPatientRepository _patientRepository;
+       
+        private readonly IMediator _mediator;
 
-        public PatientController(IPatientRepository patientRepository)
+        public PatientController(IMediator mediator)
         {
 
-            this._patientRepository = patientRepository;
+            this._mediator = mediator;
         }
 
 
@@ -24,17 +36,20 @@ namespace AM.Controllers
 
 
         [HttpGet("Patient/PatientRegister")]
-        public IActionResult PatientRegister()
+        public async Task<IActionResult> PatientRegister()
         {
             //var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var userId = _patientRepository.GetLoginPatient();
+            //var userId = _patientRepository.GetLoginPatient();
+            var userId =_mediator.Send(new GetLoginUserIdRequest()).Result;
+
 
             if (string.IsNullOrEmpty(userId))
             {
                 return RedirectToAction("Login", "Account");
             }
             //var user = context.Patients.Where(x => x.UserId == userId).Count();
-            var user = _patientRepository.GetPatient(userId).Result;
+            //var user = _patientRepository.GetPatient(userId).Result;
+            var user = _mediator.Send(new GetPatientRequest() { Id = userId }).Result;
 
             if (user != null)
             {
@@ -55,9 +70,10 @@ namespace AM.Controllers
         {
             if (ModelState.IsValid)
             {
-                
-                var getLoginID =  _patientRepository.GetLoginPatient();
-                _patientRepository.RegisterPatient(patient);
+
+                //var getLoginID =  _patientRepository.GetLoginPatient();
+                //_patientRepository.RegisterPatient(patient);
+                await _mediator.Send(new RegisterPatientRequest(patient));
                 return RedirectToAction("MakeAppoinment");
             }
 
@@ -65,17 +81,21 @@ namespace AM.Controllers
         }
 
 
-        public IActionResult Updatedetails()
+        public async Task<IActionResult> Updatedetails()
         {
-            var logInId = _patientRepository.GetLoginPatient();
-            var patient = _patientRepository.GetPatient(logInId).Result;
+            //var logInId = _patientRepository.GetLoginPatient();
+            var logInId =await _mediator.Send(new GetLoginUserIdRequest());
+            //var patient = _patientRepository.GetPatient(logInId).Result;
+            var patient =await _mediator.Send(new GetPatientRequest() { Id=logInId});
             return View(patient);
 
         }
         [HttpPost]
         public async Task<IActionResult> Updatedetails(PatientModel patient)
         {
-            await _patientRepository.UpdatePatient(patient);
+            //await _patientRepository.UpdatePatient(patient);
+            await _mediator.Send(new UpdatePatientRequest(patient));
+             
             TempData["sucessMessage"] = "Updated Successfully";
             return RedirectToAction("Updatedetails");
         }
@@ -83,14 +103,21 @@ namespace AM.Controllers
         public async Task<IActionResult> MakeAppoinment()
         {
 
-            var userId = _patientRepository.GetLoginPatient();
+            //var userId = _patientRepository.GetLoginPatient();
 
-            var patient = await _patientRepository.GetPatient(userId);
+            var userId = _mediator.Send(new GetLoginUserIdRequest()).Result;
+            //var patient = await _patientRepository.GetPatient(userId);
+            var patient = await _mediator.Send(new GetPatientRequest() { Id= userId });
+
             if (patient != null)
             {
-                var doctors = _patientRepository.GetActiveDoctors();
+                //var doctors = _patientRepository.GetActiveDoctors();
+                var doctors = _mediator.Send(new GetActiveDoctorsRequest());
+
                 ViewBag.doctors = doctors.Result;
-                var appointmentModel = _patientRepository.ShowAppointmetForm(patient);
+                //var appointmentModel = _patientRepository.ShowAppointmetForm(patient);
+                var appointmentModel = _mediator.Send(new DisplayAppointmentFormRequest() {Patients=patient });
+
                 ViewBag.CurrentDate = DateTime.Now.ToString("yyyy-MM-dd");
                 return View(appointmentModel.Result);
             }
@@ -103,35 +130,44 @@ namespace AM.Controllers
 
         }
         [HttpPost]
-        public async Task<IActionResult> MakeAppoinment(AppoinmentModel appoinment)
+        public async Task<IActionResult> MakeAppoinment(AppointmentModel appointment)
         {
-            await _patientRepository.GetAppoinments(appoinment);
+            //await _patientRepository.GetAppointments(appoinment);
+            await _mediator.Send(new BookAppointmentsRequest(appointment));
+
             return RedirectToAction("ViewAppoinment", "Patient");
         }
 
 
-        public IActionResult ViewAppoinment()
+        public async Task<IActionResult> ViewAppoinment()
         {
 
-            var loginId = _patientRepository.GetLoginPatient();
-            var patient = _patientRepository.GetPatient(loginId).Result;
+            //var loginId = _patientRepository.GetLoginPatient();
+            var loginId = _mediator.Send(new GetLoginUserIdRequest()).Result;
+
+            //var patient = _patientRepository.GetPatient(loginId).Result;
+            var patient =await _mediator.Send(new GetPatientRequest() { Id=loginId});
+
             if (patient == null)
             {
                 ViewBag.msg = "no Appointment";
             }
             else
             {
-                var data = _patientRepository.ViewAppoinments(patient).Result;
+                //var data = _patientRepository.ViewAppoinments(patient).Result;
+                var data = _mediator.Send(new ViewAppointmentsRequest(patient)).Result;
+                //var data = _mediator.Send(new ViewAp);
 
-                if (data.Count == 0)
-                {
-                    ViewBag.msg = "NO Appoinment";
-                }
-                else
-                {
+
+                //if (data.Count == 0)
+                //{
+                //    ViewBag.msg = "NO Appoinment";
+                //}
+                //else
+                //{
 
                     return View(data);
-                }
+                //}
 
 
             }

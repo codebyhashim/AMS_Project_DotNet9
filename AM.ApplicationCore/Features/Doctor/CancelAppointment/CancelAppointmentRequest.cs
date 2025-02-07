@@ -5,9 +5,9 @@ namespace AM.ApplicationCore.Features.Doctor.CancelAppointment
 {
     public class CancelAppointmentRequest : IRequest<bool>
     {
-        public AppoinmentModel _appointment;
+        public AppointmentModel _appointment;
 
-        public CancelAppointmentRequest(AppoinmentModel appointment)
+        public CancelAppointmentRequest(AppointmentModel appointment)
         {
             _appointment = appointment;
         }

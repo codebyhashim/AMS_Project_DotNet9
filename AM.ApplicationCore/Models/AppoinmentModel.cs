@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace AM.Models
 {
-    public class AppoinmentModel
+    public class AppointmentModel
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

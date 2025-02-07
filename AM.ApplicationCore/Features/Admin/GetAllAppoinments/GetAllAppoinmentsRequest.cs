@@ -3,7 +3,7 @@ using MediatR;
 
 namespace AM.ApplicationCore.Features.Admin.GetAllAppoinments
 {
-    public class GetAllAppoinmentsRequest : IRequest<List<AppoinmentModel>>
+    public class GetAllAppoinmentsRequest : IRequest<List<AppointmentModel>>
     {
     }
 }

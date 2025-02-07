@@ -5,16 +5,16 @@ namespace AM.ApplicationCore.Features.Doctor.CancelAppointment
 {
     public class CancelAppointmentHandler : IRequestHandler<CancelAppointmentRequest, bool>
     {
-        private readonly IAdminRepository _adminRepository;
+        private readonly IDoctorRepository _doctorRepository;
 
-        public CancelAppointmentHandler(IAdminRepository adminRepository)
+        public CancelAppointmentHandler(IDoctorRepository doctorRepository)
         {
-            _adminRepository = adminRepository;
+            this._doctorRepository = doctorRepository;
         }
 
         public async Task<bool> Handle(CancelAppointmentRequest request, CancellationToken cancellationToken)
         {
-            return await _adminRepository.CancelAppointment(request._appointment);
+            return await _doctorRepository.CanceleAppointment(request._appointment);
         }
     }
 }

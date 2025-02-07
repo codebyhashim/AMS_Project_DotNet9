@@ -9,11 +9,11 @@ using MediatR;
 
 namespace AM.ApplicationCore.Features.Doctor.GetDoctorAppointments
 {
-    public class GetDoctorAppoinmentsHandler : IRequestHandler<GetDoctorAppoinmentsRequest, List<AppoinmentModel>>
+    public class GetDoctorAllAppoinmentsHandler : IRequestHandler<GetDoctorAllAppoinmentsRequest, List<AppointmentModel>>
     {
-        private readonly IDoctorRepository _doctorRepository;
+        public readonly IDoctorRepository _doctorRepository;
 
-        public GetDoctorAppoinmentsHandler(IDoctorRepository doctorRepository)
+        public GetDoctorAllAppoinmentsHandler(IDoctorRepository doctorRepository)
         {
             this._doctorRepository = doctorRepository;
         }
@@ -23,7 +23,7 @@ namespace AM.ApplicationCore.Features.Doctor.GetDoctorAppointments
         //    return await _doctorRepository.GetAppointment(request.Id);
         //}
 
-        async Task<List<AppoinmentModel>> IRequestHandler<GetDoctorAppoinmentsRequest, List<AppoinmentModel>>.Handle(GetDoctorAppoinmentsRequest request, CancellationToken cancellationToken)
+        async Task<List<AppointmentModel>> IRequestHandler<GetDoctorAllAppoinmentsRequest, List<AppointmentModel>>.Handle(GetDoctorAllAppoinmentsRequest request, CancellationToken cancellationToken)
         {
             var appointment= await _doctorRepository.GetDoctorAppoinments(request.Id);
             return appointment;
