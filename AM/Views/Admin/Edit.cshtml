@@ -1,98 +1,149 @@
-﻿@model 			DoctorModel;
+﻿@model DoctorModel;
 
 @{
-    ViewData["Title"] = "Edit Doctor";
+	ViewData["Title"] = "Edit Doctor";
 }
 
-<h1>Edit Doctor</h1>
+<div class="row justify-content-center card shadow">
+	<h4 class="text-center p-4">Update Doctor</h4>
+	<div class="col-md-12 card-body">
 
 
-<hr />
+		<hr />
 
-<form asp-action="Edit" asp-controller="Doctor" method="post">
-    @Html.AntiForgeryToken()
+		<form asp-action="Edit" asp-controller="Doctor" method="post">
+			@Html.AntiForgeryToken()
+			@* first row *@
+			<div class="row mb-4">
+				<div class="col-md-3">
+					<div class="form-group">
+						<label asp-for="Name" class="control-label"></label>
+						<input asp-for="Name" class="form-control" />
+						<span asp-validation-for="Name" class="text-danger"></span>
+					</div>
+				</div>
 
-    <div class="form-group">
-        <label asp-for="Name" class="control-label"></label>
-        <input asp-for="Name" class="form-control" />
-        <span asp-validation-for="Name" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Email" class="control-label"></label>
-        <input asp-for="Email" class="form-control" />
-        <span asp-validation-for="Email" class="text-danger"></span>
-    </div>
+				<div class="col-md-3">
+					<div class="form-group">
+						<label asp-for="Email" class="control-label"></label>
+						<input asp-for="Email" class="form-control" />
+						<span asp-validation-for="Email" class="text-danger"></span>
+					</div>
+				</div>
+				<div class="col-md-3">
 
-    <div class="form-group">
-        <label asp-for="Speciality" class="control-label"></label>
-        <input asp-for="Speciality" class="form-control" />
-        <span asp-validation-for="Speciality" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="Degree" class="control-label"></label>
-        <input asp-for="Degree" class="form-control" />
-        <span asp-validation-for="Degree" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="City" class="control-label"></label>
-        <input asp-for="City" class="form-control" />
-        <span asp-validation-for="City" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="PhoneNumber" class="control-label"></label>
-        <input asp-for="PhoneNumber" class="form-control" />
-        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="Experience" class="control-label"></label>
-        <input asp-for="Experience" class="form-control" />
-        <span asp-validation-for="Experience" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="WaitTime" class="control-label"></label>
-        <input asp-for="WaitTime" class="form-control input-lg custom-input-width" />
-        <span asp-validation-for="WaitTime" class="text-danger"></span>
-    </div>
-    
-   
-        <div class="form-group">
-            <label asp-for="AvailabilityDays" class="control-label"></label>
-            <input asp-for="AvailabilityDays" class="form-control input-lg custom-input-width" />
-            <span asp-validation-for="AvailabilityDays" class="text-danger"></span>
-        </div>
-    
+					<div class="form-group">
+						<label asp-for="Speciality" class="control-label"></label>
+						<input asp-for="Speciality" class="form-control" />
+						<span asp-validation-for="Speciality" class="text-danger"></span>
+					</div>
+				</div>
 
 
+				<div class="col-md-3">
+					<div class="form-group">
+						<label asp-for="Degree" class="control-label"></label>
+						<input asp-for="Degree" class="form-control" />
+						<span asp-validation-for="Degree" class="text-danger"></span>
+					</div>
+				</div>
+			</div>
+			@* second row *@
+			<div class="row mb-4">
 
-        <div class="form-group">
-            <label asp-for="AvailabilityHours" class="control-label"></label>
-            <input asp-for="AvailabilityHours" class="form-control input-lg custom-input-width" />
-            <span asp-validation-for="AvailabilityHours" class="text-danger"></span>
-        </div>
-
-    
-    <div class="form-group">
-        <label asp-for="IsActive" class="control-label"></label>
-        <input asp-for="IsActive" type="checkbox" class="form-check-input" />
-        <span asp-validation-for="IsActive" class="text-danger"></span>
-    </div>
-   <div class="form-group">
-        <label asp-for="Id" class="control-label" hidden></label>
-        <input asp-for="Id" class="form-control"  hidden/>
-        <span asp-validation-for="Name" class="text-danger"></span>
-    </div>
-    <div class="form-group" hidden>
-        <label asp-for="UserId" class="control-label" hidden></label>
-        <input asp-for="UserId" class="form-control" hidden />
-        <span asp-validation-for="Name" class="text-danger"></span>
-    </div>
+				<div class="col-md-3">
+					<div class="form-group">
+						<label asp-for="City" class="control-label"></label>
+						<input asp-for="City" class="form-control" />
+						<span asp-validation-for="City" class="text-danger"></span>
+					</div>
+				</div>
 
 
-    <button type="submit" class="btn btn-primary">Save Changes</button>
-    <a asp-action="ViewDoctors" asp-controller="Admin" asp-route-id="id"  class="btn btn-secondary">Back to List</a>
-</form>
+				<div class="col-md-3">
+					<div class="form-group">
+						<label asp-for="PhoneNumber" class="control-label"></label>
+						<input asp-for="PhoneNumber" class="form-control" />
+						<span asp-validation-for="PhoneNumber" class="text-danger"></span>
+					</div>
+				</div>
+
+				<div class="col-md-3">
+					<div class="form-group">
+						<label asp-for="Experience" class="control-label"></label>
+						<input asp-for="Experience" class="form-control" />
+						<span asp-validation-for="Experience" class="text-danger"></span>
+					</div>
+				</div>
+
+				<div class="col-md-3">
+					<div class="form-group">
+						<label asp-for="WaitTime" class="control-label"></label>
+						<input asp-for="WaitTime" class="form-control input-lg custom-input-width" />
+						<span asp-validation-for="WaitTime" class="text-danger"></span>
+					</div>
+				</div>
+			</div>
+			@* third row *@
+			<div class="row mb-4">
+
+				<div class="col-md-3">
+					<div class="form-group">
+						<label asp-for="AvailabilityDays" class="control-label"></label>
+						<input asp-for="AvailabilityDays" class="form-control input-lg custom-input-width" />
+						<span asp-validation-for="AvailabilityDays" class="text-danger"></span>
+					</div>
+				</div>
+
+				<div class="col-md-3">
+					<div class="form-group">
+						<label asp-for="AvailabilityHours" class="control-label"></label>
+						<input asp-for="AvailabilityHours" class="form-control input-lg custom-input-width" />
+						<span asp-validation-for="AvailabilityHours" class="text-danger"></span>
+					</div>
+				</div>
+
+
+				<div class="col-md-3">
+
+					<div class="form-group">
+						<label asp-for="IsActive" class="control-label"></label>
+						<input asp-for="IsActive" type="checkbox" class="form-check-input" />
+						<span asp-validation-for="IsActive" class="text-danger"></span>
+					</div>
+
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="form-group">
+					<label asp-for="Id" class="control-label" hidden></label>
+					<input asp-for="Id" class="form-control" hidden />
+					<span asp-validation-for="Name" class="text-danger"></span>
+				</div>
+			</div>
+
+
+
+			<div class="col-md-3">
+				<div class="form-group" hidden>
+					<label asp-for="UserId" class="control-label" hidden></label>
+					<input asp-for="UserId" class="form-control" hidden />
+					<span asp-validation-for="Name" class="text-danger"></span>
+				</div>
+			</div>
+
+
+			<button type="submit" class="btn btn-primary">Save Changes</button>
+			<a asp-action="ViewDoctors" asp-controller="Admin" asp-route-id="id" class="btn btn-secondary">Back to List</a>
+		</form>
+	</div>
+</div>
+
+
+
+
+
+
+
+
 
