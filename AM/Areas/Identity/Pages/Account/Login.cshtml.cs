@@ -113,12 +113,13 @@ namespace AM.Areas.Identity.Pages.Account
                 var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
+                    _logger.LogInformation("code worked ");
 
                     var user = await _signInManager.UserManager.FindByEmailAsync(Input.Email);
-
+                   
                     // get role
                     var userRoll = await _signInManager.UserManager.GetRolesAsync(user);
-
+                    
 
                     var data = context.Patients.Where(x => x.UserId == user.Id).Count();
 

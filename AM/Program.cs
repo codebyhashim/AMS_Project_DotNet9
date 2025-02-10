@@ -9,15 +9,23 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Serilog;
+using Serilog.Sinks.MSSqlServer;
 
 namespace AM
 {
     public class Program
     {
+       
         public static async Task Main(string[] args)
         {
-            var builder = WebApplication.CreateBuilder(args);
+            Log.Logger = new LoggerConfiguration()
+              .WriteTo.Console()
+              .Enrich.FromLogContext()
+              .CreateLogger();
 
+            var builder = WebApplication.CreateBuilder(args);
+           
             // Add services to the container.
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
@@ -49,21 +57,35 @@ namespace AM
             {
                 options.Conventions.AddAreaPageRoute("Identity", "/Account/Login", "");
             });
-            //builder.Services.AddDistributedMemoryCache();  // Session storage
-            //builder.Services.AddSession(options =>
-            //{
-            //    options.IdleTimeout = TimeSpan.FromMinutes(30);
-            //    options.Cookie.HttpOnly = true;
-            //    options.Cookie.IsEssential = true;
-            //});
+          
+           
 
             builder.Services.AddInfrastructure(builder.Configuration);
             builder.Services.AddApplication(builder.Configuration);
 
+
+
+            Log.Logger = new LoggerConfiguration()
+     .WriteTo.MSSqlServer(
+         connectionString: "Server=localhost; Database=AM; Integrated Security=True; TrustServerCertificate=True; Trusted_Connection=True; MultipleActiveResultSets=true",
+         sinkOptions: new MSSqlServerSinkOptions
+         {
+             TableName = "LogEvents",
+             AutoCreateSqlTable = true   // This ensures that the table will be created automatically
+         })
+     .Enrich.FromLogContext()
+     .CreateLogger();
+
+
+
+            // Example of logging
+            //Log.Information("This is a test log entry");
+            Log.Error("dvcasdfac");
+            builder.Host.UseSerilog();
             var app = builder.Build();
-            
 
-
+          
+            app.UseSerilogRequestLogging();
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
@@ -71,7 +93,6 @@ namespace AM
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
@@ -88,7 +109,7 @@ namespace AM
                 .WithStaticAssets();
             app.MapRazorPages()
                .WithStaticAssets();
-
+            app.UseSerilogRequestLogging();
 
 
             // create roll

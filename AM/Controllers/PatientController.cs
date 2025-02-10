@@ -40,7 +40,7 @@ namespace AM.Controllers
         {
             //var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             //var userId = _patientRepository.GetLoginPatient();
-            var userId =_mediator.Send(new GetLoginUserIdRequest()).Result;
+            var userId = _mediator.Send(new GetLoginUserIdRequest()).Result;
 
 
             if (string.IsNullOrEmpty(userId))

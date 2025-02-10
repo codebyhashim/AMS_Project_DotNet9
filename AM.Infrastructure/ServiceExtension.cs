@@ -7,12 +7,15 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.Extensions.Logging;
+using Serilog;
 namespace AM.Infrastructure
 {
     public static class ServiceExtension
     {
         public static IServiceCollection AddInfrastructure(this IServiceCollection Services, IConfiguration configuration)
         {
+
             var connectionString = configuration.GetConnectionString("DefaultConnection");
             Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
             Services.AddScoped<IDoctorRepository, DoctorRepository>();
@@ -20,6 +23,7 @@ namespace AM.Infrastructure
             Services.AddScoped<IAdminRepository, AdminRepository>();
             Services.AddScoped<IEmailService, EmailServie>();
             //Services.AddHttpContextAccessor();
+          
 
             return Services;
         }

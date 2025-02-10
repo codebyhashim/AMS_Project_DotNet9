@@ -22,6 +22,7 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 
 namespace AM.Controllers
@@ -34,14 +35,16 @@ namespace AM.Controllers
         private readonly RoleManager<IdentityRole> roleManager;
        
         private readonly IMediator _mediator;
+        private readonly ILogger logger;
 
-        public AdminController(ApplicationDbContext _Context, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager, IMediator _mediator)
+        public AdminController(ApplicationDbContext _Context, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager, IMediator _mediator, ILogger<AdminController> logger)
         {
             context = _Context;
             this.userManager = userManager;
             this.roleManager = roleManager;
           
             this._mediator = _mediator;
+            this.logger = logger;
         }
 
         //  create button and action method in admin controllers
@@ -62,10 +65,12 @@ namespace AM.Controllers
 
         public async Task<IActionResult> ViewDoctors()
         {
-
+            logger.LogInformation("kjjjjjjjjjjjjjjjjjjjj");
+            logger.LogError("error is when view the doctor list");
             //var listOfDoctors = adminRepository.ViewDoctors().Result;
             var listOfDoctors = await _mediator.Send(new GetAllDoctorsRequest());
             return View(listOfDoctors);
+          
         }
 
         [HttpGet("Doctor/Create")]

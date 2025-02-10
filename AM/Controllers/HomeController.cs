@@ -15,6 +15,7 @@ namespace AM.Controllers
 
         public IActionResult Index()
         {
+            _logger.LogError("Hello world");
             return View();
         }
 
