@@ -1,0 +1,288 @@
+2025-02-11 17:38:03.088 +05:00 [ERR] dvcasdfac
+2025-02-11 17:38:03.663 +05:00 [INF] User profile is available. Using 'C:\Users\hashi\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-02-11 17:38:04.571 +05:00 [INF] Executed DbCommand (38ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2025-02-11 17:38:04.614 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2025-02-11 17:38:04.616 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2025-02-11 17:38:04.661 +05:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2025-02-11 17:38:04.702 +05:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+2025-02-11 17:38:04.708 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedRoleName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedRoleName_0
+2025-02-11 17:38:04.733 +05:00 [INF] Executed DbCommand (4ms) [Parameters=[@__p_0='?' (Size = 450), @__p_1='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[UserId], [a].[RoleId]
+FROM [AspNetUserRoles] AS [a]
+WHERE [a].[UserId] = @__p_0 AND [a].[RoleId] = @__p_1
+2025-02-11 17:38:04.742 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedRoleName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedRoleName_0
+2025-02-11 17:38:04.743 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (Size = 450), @__p_1='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[UserId], [a].[RoleId]
+FROM [AspNetUserRoles] AS [a]
+WHERE [a].[UserId] = @__p_0 AND [a].[RoleId] = @__p_1
+2025-02-11 17:38:04.745 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedRoleName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedRoleName_0
+2025-02-11 17:38:04.746 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (Size = 450), @__p_1='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[UserId], [a].[RoleId]
+FROM [AspNetUserRoles] AS [a]
+WHERE [a].[UserId] = @__p_0 AND [a].[RoleId] = @__p_1
+2025-02-11 17:38:04.747 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedRoleName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedRoleName_0
+2025-02-11 17:38:04.748 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (Size = 450), @__p_1='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[UserId], [a].[RoleId]
+FROM [AspNetUserRoles] AS [a]
+WHERE [a].[UserId] = @__p_0 AND [a].[RoleId] = @__p_1
+2025-02-11 17:38:10.843 +05:00 [INF] Now listening on: https://localhost:7251
+2025-02-11 17:38:10.843 +05:00 [INF] Now listening on: http://localhost:5018
+2025-02-11 17:38:10.923 +05:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-02-11 17:38:10.923 +05:00 [INF] Hosting environment: Development
+2025-02-11 17:38:10.923 +05:00 [INF] Content root path: C:\Users\hashi\source\repos\AMSystem\AM
+2025-02-11 17:38:11.130 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7251/ - null null
+2025-02-11 17:38:12.650 +05:00 [INF] Executing endpoint '/Account/Login'
+2025-02-11 17:38:12.695 +05:00 [INF] Route matched with {page = "/Account/Login", area = "Identity", action = "", controller = ""}. Executing page /Account/Login
+2025-02-11 17:38:12.725 +05:00 [INF] Executing handler method AM.Areas.Identity.Pages.Account.LoginModel.OnGetAsync - ModelState is "Valid"
+2025-02-11 17:38:12.734 +05:00 [INF] AuthenticationScheme: Identity.External signed out.
+2025-02-11 17:38:12.736 +05:00 [INF] Executed handler method OnGetAsync, returned result .
+2025-02-11 17:38:12.740 +05:00 [INF] Executing an implicit handler method - ModelState is "Valid"
+2025-02-11 17:38:12.741 +05:00 [INF] Executed an implicit handler method, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2025-02-11 17:38:12.925 +05:00 [INF] Executed page /Account/Login in 221.4085ms
+2025-02-11 17:38:12.931 +05:00 [INF] Executed endpoint '/Account/Login'
+2025-02-11 17:38:12.931 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7251/Theme/vendor/fontawesome-free/css/all.min.guatu28glt.css - null null
+2025-02-11 17:38:12.931 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7251/_framework/aspnetcore-browser-refresh.js - null null
+2025-02-11 17:38:12.931 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7251/Theme/css/sb-admin-2.min.02037ac2e4.css - null null
+2025-02-11 17:38:13.008 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7251/Theme/vendor/jquery/jquery.min.dd6z7egasc.js - null null
+2025-02-11 17:38:13.010 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7251/Theme/vendor/bootstrap/js/bootstrap.bundle.min.8u741w00kw.js - null null
+2025-02-11 17:38:13.052 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7251/Theme/vendor/jquery-easing/jquery.easing.min.5n6xhusdby.js - null null
+2025-02-11 17:38:13.050 +05:00 [INF] HTTP GET / responded 200 in 285.1210 ms
+2025-02-11 17:38:13.090 +05:00 [INF] HTTP GET / responded 200 in 1753.0044 ms
+2025-02-11 17:38:13.143 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7251/Theme/js/sb-admin-2.min.3wkk0jr7h6.js - null null
+2025-02-11 17:38:13.186 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7251/_vs/browserLink - null null
+2025-02-11 17:38:13.244 +05:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2025-02-11 17:38:13.245 +05:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2025-02-11 17:38:13.244 +05:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2025-02-11 17:38:13.244 +05:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2025-02-11 17:38:13.245 +05:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2025-02-11 17:38:13.272 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7251/_framework/aspnetcore-browser-refresh.js - 200 13756 application/javascript; charset=utf-8 311.0163ms
+2025-02-11 17:38:13.286 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7251/ - 200 null text/html; charset=utf-8 2169.693ms
+2025-02-11 17:38:13.324 +05:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2025-02-11 17:38:13.411 +05:00 [INF] Sending file. Request path: 'Theme/vendor/jquery-easing/jquery.easing.min.5n6xhusdby.js'. Physical path: 'C:\Users\hashi\source\repos\AMSystem\AM\obj\Debug\net9.0\compressed\ldzqw64tl6-5n6xhusdby.gz'
+2025-02-11 17:38:13.411 +05:00 [INF] Sending file. Request path: 'Theme/js/sb-admin-2.min.3wkk0jr7h6.js'. Physical path: 'C:\Users\hashi\source\repos\AMSystem\AM\obj\Debug\net9.0\compressed\qjd9cbn62h-3wkk0jr7h6.gz'
+2025-02-11 17:38:13.411 +05:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2025-02-11 17:38:13.412 +05:00 [INF] HTTP GET /Theme/vendor/jquery-easing/jquery.easing.min.5n6xhusdby.js responded 200 in 167.4296 ms
+2025-02-11 17:38:13.411 +05:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2025-02-11 17:38:13.412 +05:00 [INF] HTTP GET /Theme/vendor/jquery-easing/jquery.easing.min.5n6xhusdby.js responded 200 in 321.4506 ms
+2025-02-11 17:38:13.412 +05:00 [INF] HTTP GET /Theme/js/sb-admin-2.min.3wkk0jr7h6.js responded 200 in 88.1726 ms
+2025-02-11 17:38:13.412 +05:00 [INF] HTTP GET /Theme/js/sb-admin-2.min.3wkk0jr7h6.js responded 200 in 88.7694 ms
+2025-02-11 17:38:13.412 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7251/Theme/vendor/jquery-easing/jquery.easing.min.5n6xhusdby.js - 200 2565 text/javascript 360.8529ms
+2025-02-11 17:38:13.413 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7251/Theme/js/sb-admin-2.min.3wkk0jr7h6.js - 200 1298 text/javascript 269.9824ms
+2025-02-11 17:38:13.423 +05:00 [INF] Sending file. Request path: 'Theme/vendor/jquery/jquery.min.dd6z7egasc.js'. Physical path: 'C:\Users\hashi\source\repos\AMSystem\AM\obj\Debug\net9.0\compressed\m8eqy5i8lq-dd6z7egasc.gz'
+2025-02-11 17:38:13.422 +05:00 [INF] Sending file. Request path: 'Theme/vendor/fontawesome-free/css/all.min.guatu28glt.css'. Physical path: 'C:\Users\hashi\source\repos\AMSystem\AM\obj\Debug\net9.0\compressed\sl23tztxas-guatu28glt.gz'
+2025-02-11 17:38:13.423 +05:00 [INF] Sending file. Request path: 'Theme/vendor/bootstrap/js/bootstrap.bundle.min.8u741w00kw.js'. Physical path: 'C:\Users\hashi\source\repos\AMSystem\AM\obj\Debug\net9.0\compressed\qwun04st55-8u741w00kw.gz'
+2025-02-11 17:38:13.430 +05:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2025-02-11 17:38:13.430 +05:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2025-02-11 17:38:13.430 +05:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2025-02-11 17:38:13.431 +05:00 [INF] HTTP GET /Theme/vendor/bootstrap/js/bootstrap.bundle.min.8u741w00kw.js responded 200 in 186.1849 ms
+2025-02-11 17:38:13.431 +05:00 [INF] HTTP GET /Theme/vendor/fontawesome-free/css/all.min.guatu28glt.css responded 200 in 187.3847 ms
+2025-02-11 17:38:13.432 +05:00 [INF] HTTP GET /Theme/vendor/jquery/jquery.min.dd6z7egasc.js responded 200 in 187.5218 ms
+2025-02-11 17:38:13.435 +05:00 [INF] HTTP GET /Theme/vendor/jquery/jquery.min.dd6z7egasc.js responded 200 in 384.7590 ms
+2025-02-11 17:38:13.435 +05:00 [INF] HTTP GET /Theme/vendor/fontawesome-free/css/all.min.guatu28glt.css responded 200 in 382.6706 ms
+2025-02-11 17:38:13.435 +05:00 [INF] HTTP GET /Theme/vendor/bootstrap/js/bootstrap.bundle.min.8u741w00kw.js responded 200 in 384.5173 ms
+2025-02-11 17:38:13.441 +05:00 [INF] Sending file. Request path: 'Theme/css/sb-admin-2.min.02037ac2e4.css'. Physical path: 'C:\Users\hashi\source\repos\AMSystem\AM\obj\Debug\net9.0\compressed\32fyvifizd-02037ac2e4.gz'
+2025-02-11 17:38:13.441 +05:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2025-02-11 17:38:13.441 +05:00 [INF] HTTP GET /Theme/css/sb-admin-2.min.02037ac2e4.css responded 200 in 196.3777 ms
+2025-02-11 17:38:13.441 +05:00 [INF] HTTP GET /Theme/css/sb-admin-2.min.02037ac2e4.css responded 200 in 390.8559 ms
+2025-02-11 17:38:13.442 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7251/Theme/css/sb-admin-2.min.02037ac2e4.css - 200 170795 text/css 510.4727ms
+2025-02-11 17:38:13.442 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7251/Theme/vendor/jquery/jquery.min.dd6z7egasc.js - 200 89544 text/javascript 444.1577ms
+2025-02-11 17:38:13.442 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7251/Theme/vendor/bootstrap/js/bootstrap.bundle.min.8u741w00kw.js - 200 84421 text/javascript 432.0146ms
+2025-02-11 17:38:13.442 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7251/Theme/vendor/fontawesome-free/css/all.min.guatu28glt.css - 200 59382 text/css 510.1917ms
+2025-02-11 17:38:13.479 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7251/_vs/browserLink - 200 null text/javascript; charset=UTF-8 292.5378ms
+2025-02-11 17:38:13.531 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7251/Theme/vendor/fontawesome-free/webfonts/fa-brands-400.woff2 - null null
+2025-02-11 17:38:13.553 +05:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2025-02-11 17:38:13.555 +05:00 [INF] The file Theme/vendor/fontawesome-free/webfonts/fa-brands-400.woff2 was not modified
+2025-02-11 17:38:13.556 +05:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2025-02-11 17:38:13.556 +05:00 [INF] HTTP GET /Theme/vendor/fontawesome-free/webfonts/fa-brands-400.woff2 responded 304 in 3.2739 ms
+2025-02-11 17:38:13.556 +05:00 [INF] HTTP GET /Theme/vendor/fontawesome-free/webfonts/fa-brands-400.woff2 responded 304 in 24.4118 ms
+2025-02-11 17:38:13.557 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7251/Theme/vendor/fontawesome-free/webfonts/fa-brands-400.woff2 - 304 null font/woff2 26.1638ms
+2025-02-11 17:38:16.581 +05:00 [INF] Request starting HTTP/2 POST https://localhost:7251/ - application/x-www-form-urlencoded 282
+2025-02-11 17:38:16.592 +05:00 [INF] Executing endpoint '/Account/Login'
+2025-02-11 17:38:16.593 +05:00 [INF] Route matched with {page = "/Account/Login", area = "Identity", action = "", controller = ""}. Executing page /Account/Login
+2025-02-11 17:38:16.633 +05:00 [INF] Executing handler method AM.Areas.Identity.Pages.Account.LoginModel.OnPostAsync - ModelState is "Valid"
+2025-02-11 17:38:16.667 +05:00 [INF] Executed DbCommand (7ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2025-02-11 17:38:16.898 +05:00 [INF] Executed DbCommand (3ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @__user_Id_0
+2025-02-11 17:38:16.926 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2025-02-11 17:38:16.930 +05:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2025-02-11 17:38:16.939 +05:00 [INF] Executed DbCommand (3ms) [Parameters=[@__role_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0
+2025-02-11 17:38:16.942 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2025-02-11 17:38:16.943 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__role_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0
+2025-02-11 17:38:16.950 +05:00 [INF] AuthenticationScheme: Identity.Application signed in.
+2025-02-11 17:38:16.951 +05:00 [INF] code worked 
+2025-02-11 17:38:16.993 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2025-02-11 17:38:16.995 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2025-02-11 17:38:17.030 +05:00 [INF] Executed DbCommand (11ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Patients] AS [p]
+WHERE [p].[UserId] = @__user_Id_0
+2025-02-11 17:38:17.033 +05:00 [INF] Executed handler method OnPostAsync, returned result Microsoft.AspNetCore.Mvc.RedirectToActionResult.
+2025-02-11 17:38:17.037 +05:00 [INF] Executing RedirectResult, redirecting to /Admin/Index.
+2025-02-11 17:38:17.039 +05:00 [INF] Executed page /Account/Login in 445.6628ms
+2025-02-11 17:38:17.039 +05:00 [INF] Executed endpoint '/Account/Login'
+2025-02-11 17:38:17.039 +05:00 [INF] HTTP POST / responded 302 in 446.8964 ms
+2025-02-11 17:38:17.039 +05:00 [INF] HTTP POST / responded 302 in 447.1140 ms
+2025-02-11 17:38:17.043 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7251/Admin/Index - null null
+2025-02-11 17:38:17.044 +05:00 [INF] Request finished HTTP/2 POST https://localhost:7251/ - 302 0 null 463.1091ms
+2025-02-11 17:38:17.056 +05:00 [INF] Executing endpoint 'AM.Controllers.AdminController.Index (AM)'
+2025-02-11 17:38:17.070 +05:00 [INF] Route matched with {action = "Index", controller = "Admin", page = "", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller AM.Controllers.AdminController (AM).
+2025-02-11 17:38:17.096 +05:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Doctors] AS [d]
+2025-02-11 17:38:17.106 +05:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Patients] AS [p]
+2025-02-11 17:38:17.123 +05:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Appoinments] AS [a]
+WHERE [a].[Status] = 1
+2025-02-11 17:38:17.129 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Appoinments] AS [a]
+WHERE [a].[Status] = 0
+2025-02-11 17:38:17.135 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Appoinments] AS [a]
+WHERE [a].[Status] = 2
+2025-02-11 17:38:17.147 +05:00 [INF] Executing ViewResult, running view Index.
+2025-02-11 17:38:17.230 +05:00 [INF] Executed ViewResult - view Index executed in 87.1082ms.
+2025-02-11 17:38:17.232 +05:00 [INF] Executed action AM.Controllers.AdminController.Index (AM) in 161.2483ms
+2025-02-11 17:38:17.232 +05:00 [INF] Executed endpoint 'AM.Controllers.AdminController.Index (AM)'
+2025-02-11 17:38:17.233 +05:00 [INF] HTTP GET /Admin/Index responded 200 in 176.1361 ms
+2025-02-11 17:38:17.233 +05:00 [INF] HTTP GET /Admin/Index responded 200 in 186.7691 ms
+2025-02-11 17:38:17.234 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7251/Admin/Index - 200 null text/html; charset=utf-8 190.9164ms
+2025-02-11 17:38:17.264 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7251/Theme/css/sb-admin-2.min.css - null null
+2025-02-11 17:38:17.264 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7251/_framework/aspnetcore-browser-refresh.js - null null
+2025-02-11 17:38:17.264 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7251/Theme/vendor/fontawesome-free/css/all.min.css - null null
+2025-02-11 17:38:17.265 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7251/_framework/aspnetcore-browser-refresh.js - 200 13756 application/javascript; charset=utf-8 1.2258ms
+2025-02-11 17:38:17.265 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7251/Theme/vendor/bootstrap/js/bootstrap.bundle.min.js - null null
+2025-02-11 17:38:17.265 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7251/Theme/vendor/jquery/jquery.min.js - null null
+2025-02-11 17:38:17.265 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7251/Theme/vendor/datatables/dataTables.bootstrap4.min.css - null null
+2025-02-11 17:38:17.266 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7251/Theme/js/sb-admin-2.min.js - null null
+2025-02-11 17:38:17.267 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7251/Theme/js/demo/chart-area-demo.js - null null
+2025-02-11 17:38:17.266 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7251/Theme/vendor/chart.js/Chart.min.js - null null
+2025-02-11 17:38:17.266 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7251/Theme/vendor/jquery-easing/jquery.easing.min.js - null null
+2025-02-11 17:38:17.269 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7251/Theme/js/demo/chart-pie-demo.js - null null
+2025-02-11 17:38:17.271 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7251/_vs/browserLink - null null
+2025-02-11 17:38:17.271 +05:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2025-02-11 17:38:17.271 +05:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2025-02-11 17:38:17.275 +05:00 [INF] Sending file. Request path: 'Theme/vendor/datatables/dataTables.bootstrap4.min.css'. Physical path: 'C:\Users\hashi\source\repos\AMSystem\AM\obj\Debug\net9.0\compressed\vohes0ejkn-uycvkzzoji.gz'
+2025-02-11 17:38:17.276 +05:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2025-02-11 17:38:17.276 +05:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2025-02-11 17:38:17.276 +05:00 [INF] HTTP GET /Theme/vendor/datatables/dataTables.bootstrap4.min.css responded 200 in 5.1211 ms
+2025-02-11 17:38:17.277 +05:00 [INF] HTTP GET /Theme/vendor/datatables/dataTables.bootstrap4.min.css responded 200 in 7.3086 ms
+2025-02-11 17:38:17.278 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7251/Theme/vendor/datatables/dataTables.bootstrap4.min.css - 200 5262 text/css 12.6566ms
+2025-02-11 17:38:17.284 +05:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2025-02-11 17:38:17.284 +05:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2025-02-11 17:38:17.284 +05:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2025-02-11 17:38:17.286 +05:00 [INF] Sending file. Request path: 'Theme/js/sb-admin-2.min.js'. Physical path: 'C:\Users\hashi\source\repos\AMSystem\AM\obj\Debug\net9.0\compressed\qjd9cbn62h-3wkk0jr7h6.gz'
+2025-02-11 17:38:17.286 +05:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2025-02-11 17:38:17.287 +05:00 [INF] HTTP GET /Theme/js/sb-admin-2.min.js responded 200 in 3.2285 ms
+2025-02-11 17:38:17.288 +05:00 [INF] Sending file. Request path: 'Theme/js/demo/chart-pie-demo.js'. Physical path: 'C:\Users\hashi\source\repos\AMSystem\AM\obj\Debug\net9.0\compressed\y2i9q95azs-vuyk5hsu8t.gz'
+2025-02-11 17:38:17.288 +05:00 [INF] HTTP GET /Theme/js/sb-admin-2.min.js responded 200 in 15.3079 ms
+2025-02-11 17:38:17.288 +05:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2025-02-11 17:38:17.288 +05:00 [INF] Sending file. Request path: 'Theme/js/demo/chart-area-demo.js'. Physical path: 'C:\Users\hashi\source\repos\AMSystem\AM\obj\Debug\net9.0\compressed\giqzhuf6je-cge9ud2ou6.gz'
+2025-02-11 17:38:17.288 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7251/Theme/js/sb-admin-2.min.js - 200 1298 text/javascript 21.9585ms
+2025-02-11 17:38:17.288 +05:00 [INF] HTTP GET /Theme/js/demo/chart-pie-demo.js responded 200 in 3.4990 ms
+2025-02-11 17:38:17.288 +05:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2025-02-11 17:38:17.288 +05:00 [INF] HTTP GET /Theme/js/demo/chart-pie-demo.js responded 200 in 15.6798 ms
+2025-02-11 17:38:17.288 +05:00 [INF] HTTP GET /Theme/js/demo/chart-area-demo.js responded 200 in 4.0865 ms
+2025-02-11 17:38:17.289 +05:00 [INF] HTTP GET /Theme/js/demo/chart-area-demo.js responded 200 in 17.2766 ms
+2025-02-11 17:38:17.288 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7251/Theme/js/demo/chart-pie-demo.js - 200 1090 text/javascript 19.663ms
+2025-02-11 17:38:17.289 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7251/Theme/js/demo/chart-area-demo.js - 200 3602 text/javascript 22.2111ms
+2025-02-11 17:38:17.290 +05:00 [INF] Sending file. Request path: 'Theme/css/sb-admin-2.min.css'. Physical path: 'C:\Users\hashi\source\repos\AMSystem\AM\obj\Debug\net9.0\compressed\32fyvifizd-02037ac2e4.gz'
+2025-02-11 17:38:17.290 +05:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2025-02-11 17:38:17.290 +05:00 [INF] HTTP GET /Theme/css/sb-admin-2.min.css responded 200 in 13.9184 ms
+2025-02-11 17:38:17.290 +05:00 [INF] HTTP GET /Theme/css/sb-admin-2.min.css responded 200 in 23.9243 ms
+2025-02-11 17:38:17.290 +05:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2025-02-11 17:38:17.291 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7251/Theme/css/sb-admin-2.min.css - 200 170795 text/css 26.6726ms
+2025-02-11 17:38:17.292 +05:00 [INF] Sending file. Request path: 'Theme/vendor/jquery-easing/jquery.easing.min.js'. Physical path: 'C:\Users\hashi\source\repos\AMSystem\AM\obj\Debug\net9.0\compressed\ldzqw64tl6-5n6xhusdby.gz'
+2025-02-11 17:38:17.292 +05:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2025-02-11 17:38:17.292 +05:00 [INF] Sending file. Request path: 'Theme/vendor/chart.js/Chart.min.js'. Physical path: 'C:\Users\hashi\source\repos\AMSystem\AM\obj\Debug\net9.0\compressed\isqs3lcgaa-dz54bq2ur0.gz'
+2025-02-11 17:38:17.292 +05:00 [INF] HTTP GET /Theme/vendor/jquery-easing/jquery.easing.min.js responded 200 in 2.3208 ms
+2025-02-11 17:38:17.293 +05:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2025-02-11 17:38:17.293 +05:00 [INF] HTTP GET /Theme/vendor/jquery-easing/jquery.easing.min.js responded 200 in 22.9407 ms
+2025-02-11 17:38:17.293 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7251/Theme/vendor/jquery-easing/jquery.easing.min.js - 200 2565 text/javascript 27.1203ms
+2025-02-11 17:38:17.293 +05:00 [INF] HTTP GET /Theme/vendor/chart.js/Chart.min.js responded 200 in 21.4703 ms
+2025-02-11 17:38:17.293 +05:00 [INF] HTTP GET /Theme/vendor/chart.js/Chart.min.js responded 200 in 22.4022 ms
+2025-02-11 17:38:17.294 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7251/Theme/vendor/chart.js/Chart.min.js - 200 173135 text/javascript 27.3792ms
+2025-02-11 17:38:17.296 +05:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2025-02-11 17:38:17.300 +05:00 [INF] Sending file. Request path: 'Theme/vendor/jquery/jquery.min.js'. Physical path: 'C:\Users\hashi\source\repos\AMSystem\AM\obj\Debug\net9.0\compressed\m8eqy5i8lq-dd6z7egasc.gz'
+2025-02-11 17:38:17.301 +05:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2025-02-11 17:38:17.301 +05:00 [INF] HTTP GET /Theme/vendor/jquery/jquery.min.js responded 200 in 4.9313 ms
+2025-02-11 17:38:17.301 +05:00 [INF] HTTP GET /Theme/vendor/jquery/jquery.min.js responded 200 in 33.2076 ms
+2025-02-11 17:38:17.301 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7251/Theme/vendor/jquery/jquery.min.js - 200 89544 text/javascript 36.034ms
+2025-02-11 17:38:17.311 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7251/_vs/browserLink - 200 null text/javascript; charset=UTF-8 40.2861ms
+2025-02-11 17:38:17.318 +05:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2025-02-11 17:38:17.321 +05:00 [INF] Sending file. Request path: 'Theme/vendor/bootstrap/js/bootstrap.bundle.min.js'. Physical path: 'C:\Users\hashi\source\repos\AMSystem\AM\obj\Debug\net9.0\compressed\qwun04st55-8u741w00kw.gz'
+2025-02-11 17:38:17.321 +05:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2025-02-11 17:38:17.321 +05:00 [INF] HTTP GET /Theme/vendor/bootstrap/js/bootstrap.bundle.min.js responded 200 in 3.4071 ms
+2025-02-11 17:38:17.321 +05:00 [INF] HTTP GET /Theme/vendor/bootstrap/js/bootstrap.bundle.min.js responded 200 in 51.5931 ms
+2025-02-11 17:38:17.322 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7251/Theme/vendor/bootstrap/js/bootstrap.bundle.min.js - 200 84421 text/javascript 56.2855ms
+2025-02-11 17:38:17.400 +05:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2025-02-11 17:38:17.401 +05:00 [INF] Sending file. Request path: 'Theme/vendor/fontawesome-free/css/all.min.css'. Physical path: 'C:\Users\hashi\source\repos\AMSystem\AM\obj\Debug\net9.0\compressed\sl23tztxas-guatu28glt.gz'
+2025-02-11 17:38:17.401 +05:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2025-02-11 17:38:17.402 +05:00 [INF] HTTP GET /Theme/vendor/fontawesome-free/css/all.min.css responded 200 in 1.5197 ms
+2025-02-11 17:38:17.402 +05:00 [INF] HTTP GET /Theme/vendor/fontawesome-free/css/all.min.css responded 200 in 134.0213 ms
+2025-02-11 17:38:17.402 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7251/Theme/vendor/fontawesome-free/css/all.min.css - 200 59382 text/css 138.2437ms
+2025-02-11 17:38:17.426 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7251/Theme/vendor/fontawesome-free/webfonts/fa-solid-900.woff2 - null null
+2025-02-11 17:38:17.461 +05:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2025-02-11 17:38:17.461 +05:00 [INF] The file Theme/vendor/fontawesome-free/webfonts/fa-solid-900.woff2 was not modified
+2025-02-11 17:38:17.461 +05:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2025-02-11 17:38:17.461 +05:00 [INF] HTTP GET /Theme/vendor/fontawesome-free/webfonts/fa-solid-900.woff2 responded 304 in 0.6885 ms
+2025-02-11 17:38:17.462 +05:00 [INF] HTTP GET /Theme/vendor/fontawesome-free/webfonts/fa-solid-900.woff2 responded 304 in 33.2348 ms
+2025-02-11 17:38:17.462 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7251/Theme/vendor/fontawesome-free/webfonts/fa-solid-900.woff2 - 304 null font/woff2 35.4098ms

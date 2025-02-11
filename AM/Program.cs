@@ -5,6 +5,8 @@ using AM.Infrastructure;
 using AM.Infrastructure.Services;
 using AM.Interfaces;
 using AM.Repositories;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -35,6 +37,10 @@ namespace AM
 
             //builder.Services.AddInfrastructure(builder.Configuration);
 
+            //builder.Services.AddFluentValidationAutoValidation()
+            //    .AddFluentValidationClientsideAdapters()
+            //    .AddValidatorsFromAssemblies(AppDomain.CurrentDomain.GetAssemblies());
+            //builder.Services.AddValidatorsFromAssemblyContaining<createDoctorRequestValidator>;
 
             builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false).AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
@@ -75,6 +81,12 @@ namespace AM
          })
      .Enrich.FromLogContext()
      .CreateLogger();
+
+
+            Log.Logger = new LoggerConfiguration()
+    .WriteTo.Console()
+    .WriteTo.File("LogFiles/log-.txt", outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level:u3}] {Message:lj}{NewLine}{Exception}", rollingInterval: RollingInterval.Day)
+    .CreateLogger();
 
 
 

@@ -1,44 +1,28 @@
-﻿using AM.Models;
+﻿using AM.ApplicationCore.Features.Admin.CreateDoctor;
+using AM.Models;
+using FluentValidation;
 using MediatR;
+using Microsoft.Identity.Client;
 
 namespace AM.ApplicationCore.Features.Admin.CreateDoctor
 {
     public class CreateDoctorRequest : IRequest<bool>
     {
         public readonly DoctorModel _doctor;
-
+       
         public CreateDoctorRequest(DoctorModel doctor)
         {
             _doctor = doctor;
+
         }
-
-        //[Key]
-        //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        //public int Id { get; set; }
-
-        //public string? Name { get; set; }
-        //public string? Speciality { get; set; }
-        //public string? Degree { get; set; }
-        //public string? City { get; set; }
-        //public string? PhoneNumber { get; set; }
-        //public string? Experience { get; set; }
-        //public bool IsActive { get; set; }
-        //public string? Description { get; set; }
-        //public string? Address { get; set; }
-        //public string? WaitTime { get; set; }
-
-        //public string? Email { get; set; }
-
-
-
-        //public string? UserId { get; set; }
-        //[ForeignKey("UserId")]
-        //public IdentityUser? User { get; set; }
-
-        //public string? AvailabilityDays { get; set; }
-        //public string? AvailabilityHours { get; set; }
-
-        ////Navigation Property to Appointments
-        //public ICollection<AppoinmentModel>? Appoinment { get; set; }
+    }
+}
+public class createDoctorRequestValidator : AbstractValidator<CreateDoctorRequest>
+{
+    public createDoctorRequestValidator()
+    {
+        RuleFor(x => x._doctor.Name)
+            .NotEmpty()
+            .WithMessage("name is required");
     }
 }

@@ -18,6 +18,7 @@ using AM.ApplicationCore.Features.Admin.UpdateDoctor;
 using AM.Data;
 using AM.Interfaces;
 using AM.Models;
+using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -36,6 +37,7 @@ namespace AM.Controllers
        
         private readonly IMediator _mediator;
         private readonly ILogger logger;
+       
 
         public AdminController(ApplicationDbContext _Context, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager, IMediator _mediator, ILogger<AdminController> logger)
         {
@@ -45,6 +47,7 @@ namespace AM.Controllers
           
             this._mediator = _mediator;
             this.logger = logger;
+           
         }
 
         //  create button and action method in admin controllers
@@ -82,35 +85,22 @@ namespace AM.Controllers
         [HttpPost("Doctor/Create")]
         public async Task<IActionResult> Create(DoctorModel doctor)
         {
-            if (ModelState.IsValid)
-            {
 
-                //await adminRepository.CreateDoctor(doctor);
+          
+            
+                if (ModelState.IsValid)
+                {
 
-                await _mediator.Send(new CreateDoctorRequest(doctor));
-                //await _mediator.Send(new CreateDoctorCommand(
-                //    doctor.Name,
-                //    doctor.Description,
-                //    doctor.Email,
-                //    doctor.Experience,
-                //    doctor.IsActive,
-                //    doctor.City,
-                //    doctor.AvailabilityDays,
-                //    doctor.AvailabilityHours,
-                //    doctor.WaitTime,
-                //    doctor.Speciality,
-                //    doctor.PhoneNumber,
-                //    doctor.UserId,
+                    //await adminRepository.CreateDoctor(doctor);
 
-                //    doctor.Degree,
-                //    doctor.Address));
+                    await _mediator.Send(new CreateDoctorRequest(doctor));
 
-                //await context.Doctors.AddAsync(doctor);
-                //await context.SaveChangesAsync();
-                return RedirectToAction("ViewDoctors", "Admin");
-            }
-            return View();
+                    return RedirectToAction("ViewDoctors", "Admin");
+                }
+            
+                return View();
         }
+        
         [HttpGet("Doctor/Delete")]
         public async Task<IActionResult> Delete(int Id)
         {

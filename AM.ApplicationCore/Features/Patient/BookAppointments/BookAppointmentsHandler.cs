@@ -16,7 +16,7 @@ namespace AM.ApplicationCore.Features.Patient.BookAppoinments
         {
             this._patientRepository = patientRepository;
         }
-
+         
         public async Task<bool> Handle(BookAppointmentsRequest request, CancellationToken cancellationToken)
         {
             return await _patientRepository.GetAppointments(request.appointment);
