@@ -3,6 +3,7 @@ using System.Security.Claims;
 using AM.Data;
 using AM.Interfaces;
 using AM.Models;
+using FluentValidation;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,11 +13,13 @@ namespace AM.Repositories
     {
         private readonly ApplicationDbContext _context;
         private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly IValidator<AppointmentModel> validator;
 
-        public PatientRepository(ApplicationDbContext _context, IHttpContextAccessor _HttpContextAccessor)
+        public PatientRepository(ApplicationDbContext _context, IHttpContextAccessor _HttpContextAccessor, IValidator<AppointmentModel> validator)
         {
             this._context = _context;
             _httpContextAccessor = _HttpContextAccessor;
+            this.validator = validator;
         }
 
         public string GetLoginPatient()
@@ -76,6 +79,7 @@ namespace AM.Repositories
 
         public async Task<bool> GetAppointments(AppointmentModel appointments)
         {
+
             await _context.Appoinments.AddAsync(appointments);
             await _context.SaveChangesAsync();
             return true;

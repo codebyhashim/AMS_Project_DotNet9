@@ -9,6 +9,7 @@ using System.Net;
 using AM.ApplicationCore.Interfaces;
 using Microsoft.AspNetCore.Http;
 using System.Numerics;
+using FluentValidation;
 
 namespace AM.Repositories
 {
@@ -19,6 +20,7 @@ namespace AM.Repositories
         private readonly RoleManager<IdentityRole> roleManager;
         private readonly IEmailService emailService;
         private readonly IHttpContextAccessor _httpContextAccessor;
+        
 
         public AdminRepository(ApplicationDbContext _context, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager, IEmailService emailService, IHttpContextAccessor httpContextAccessor
             )
@@ -28,6 +30,7 @@ namespace AM.Repositories
             this.roleManager = roleManager;
             this.emailService = emailService;
             this._httpContextAccessor = httpContextAccessor;
+            
         }
         public async Task<DoctorModel> InviteDoctor(DoctorModel Doctor)
         {
@@ -229,6 +232,11 @@ namespace AM.Repositories
        
         public async Task<bool> CreateDoctor(DoctorModel doctor)
         {
+            //var validateResult=await validator.ValidateAsync(doctor);
+            //if (!validateResult.IsValid)
+            //{
+            //    throw new ValidationException(validateResult.Errors);
+            //}
             await _context.Doctors.AddAsync(doctor);
             await _context.SaveChangesAsync();
             return true;

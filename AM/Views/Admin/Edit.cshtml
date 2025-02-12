@@ -12,6 +12,8 @@
 		<hr />
 
 		<form asp-action="Edit" asp-controller="Doctor" method="post">
+			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
 			@Html.AntiForgeryToken()
 			@* first row *@
 			<div class="row mb-4">
@@ -102,6 +104,15 @@
 						<span asp-validation-for="AvailabilityHours" class="text-danger"></span>
 					</div>
 				</div>
+
+				<div class="col-md-3">
+					<div class="form-group">
+						<label asp-for="Description" class="control-label"></label>
+						<input asp-for="Description" class="form-control input-lg custom-input-width" />
+						<span asp-validation-for="Description" class="text-danger"></span>
+					</div>
+				</div>
+
 
 
 				<div class="col-md-3">

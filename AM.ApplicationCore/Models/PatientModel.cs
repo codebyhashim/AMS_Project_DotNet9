@@ -25,7 +25,7 @@ namespace AM.Models
     }
     public enum Gender
     {
-        Male, Female, Other
+        selectGender, Male, Female, Other
     }
 }
 

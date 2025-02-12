@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Net;
 using System.Net.Mail;
 
 using AM.ApplicationCore.Features.Admin.BookAppoinment;
@@ -13,6 +14,8 @@ using AM.ApplicationCore.Features.Admin.GetAppointmentById;
 using AM.ApplicationCore.Features.Admin.GetDoctorById;
 using AM.ApplicationCore.Features.Admin.InviteDoctor;
 using AM.ApplicationCore.Features.Admin.UpdateDoctor;
+using AM.ApplicationCore.Validator;
+
 
 //using AM.ApplicationCore.queries.Admin;
 using AM.Data;
@@ -23,7 +26,9 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.Extensions.Logging;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Model;
 
 
 namespace AM.Controllers
@@ -37,9 +42,9 @@ namespace AM.Controllers
        
         private readonly IMediator _mediator;
         private readonly ILogger logger;
-       
+        private readonly IValidator<DoctorModel> _validator;
 
-        public AdminController(ApplicationDbContext _Context, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager, IMediator _mediator, ILogger<AdminController> logger)
+        public AdminController(ApplicationDbContext _Context, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager, IMediator _mediator, ILogger<AdminController> logger, IValidator<DoctorModel> validator )
         {
             context = _Context;
             this.userManager = userManager;
@@ -47,7 +52,10 @@ namespace AM.Controllers
           
             this._mediator = _mediator;
             this.logger = logger;
-           
+            this._validator = validator;
+
+
+            //this.validator = this.validator;
         }
 
         //  create button and action method in admin controllers
@@ -63,9 +71,6 @@ namespace AM.Controllers
         }
 
         [HttpGet("Admin/ViewDoctors")]
-
-
-
         public async Task<IActionResult> ViewDoctors()
         {
             logger.LogInformation("kjjjjjjjjjjjjjjjjjjjj");
@@ -82,25 +87,36 @@ namespace AM.Controllers
             return View();
         }
 
+
         [HttpPost("Doctor/Create")]
         public async Task<IActionResult> Create(DoctorModel doctor)
         {
 
-          
-            
-                if (ModelState.IsValid)
-                {
+            //var validator = await _validator.ValidateAsync(doctor);
+            var validation = await _validator.ValidateAsync(doctor);
+            if (validation.IsValid)
+            {
+                await _mediator.Send(new CreateDoctorRequest(doctor));
 
-                    //await adminRepository.CreateDoctor(doctor);
+                return RedirectToAction("ViewDoctors", "Admin");
+            }
+            foreach (var error in validation.Errors)
+            {
+                ModelState.AddModelError(error.PropertyName, error.ErrorMessage);
+            }
+            //if (ModelState.IsValid)
+            //{
 
-                    await _mediator.Send(new CreateDoctorRequest(doctor));
+            //    //await adminRepository.CreateDoctor(doctor);
 
-                    return RedirectToAction("ViewDoctors", "Admin");
-                }
-            
-                return View();
+            //    await _mediator.Send(new CreateDoctorRequest(doctor));
+
+            //    return RedirectToAction("ViewDoctors", "Admin");
+            //}
+
+            return View();
         }
-        
+
         [HttpGet("Doctor/Delete")]
         public async Task<IActionResult> Delete(int Id)
         {
@@ -171,14 +187,36 @@ namespace AM.Controllers
         [HttpPost("Doctor/Edit")]
         public async Task<IActionResult> Edit(DoctorModel doctorModel)
         {
-            if (ModelState.IsValid)
+            var validation =await _validator.ValidateAsync(doctorModel);
+
+            if (validation.IsValid)
             {
                 //await adminRepository.DoctorUpdate(doctorModel);
                 await _mediator.Send(new UpdateDoctorRequest(doctorModel));
 
-                TempData["UpdatedMessage"] = "Updated Successfully";                                                       // Step 5: Redirect to the Index page after succ 
+                TempData["UpdatedMessage"] = "Updated Successfully";
+                return RedirectToAction("ViewDoctors", "Admin");
+
             }
-            return RedirectToAction("ViewDoctors", "Admin");
+            else
+            {
+                foreach (var error in validation.Errors)
+                {
+                    ModelState.AddModelError(error.PropertyName, error.ErrorMessage);
+                }
+                return View();
+            }
+
+
+            //if (ModelState.IsValid)
+            //{
+            //    //await adminRepository.DoctorUpdate(doctorModel);
+            //    await _mediator.Send(new UpdateDoctorRequest(doctorModel));
+
+            //    TempData["UpdatedMessage"] = "Updated Successfully";                                                       // Step 5: Redirect to the Index page after succ 
+            //}
+
+
         }
         public async Task<IActionResult> Approve(int id)
         {

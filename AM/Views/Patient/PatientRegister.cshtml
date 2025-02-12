@@ -45,11 +45,14 @@
                     </div>
                 </div>
                 <div class="col-md-4  form-group " style="margin-top:33px">
+                    @* <label asp-for="Gender" class="control-label"></label> *@
+
                     <select asp-for="Gender" class="form-select control-label form-control input-lg custom-input-width" asp-items="@Html.GetEnumSelectList<Gender>()">
-                        <option selected disabled>select Gender</option>
+                        @* <option value="-1" selected disabled>select Gender</option> *@
 
 
                     </select>
+                    <span asp-validation-for="Gender" class="text-danger"></span>
 
                 </div>
                 </div>

@@ -17,12 +17,12 @@ namespace AM.ApplicationCore.Features.Admin.CreateDoctor
         }
     }
 }
-public class createDoctorRequestValidator : AbstractValidator<CreateDoctorRequest>
-{
-    public createDoctorRequestValidator()
-    {
-        RuleFor(x => x._doctor.Name)
-            .NotEmpty()
-            .WithMessage("name is required");
-    }
-}
+//public class createDoctorRequestValidator : AbstractValidator<CreateDoctorRequest>
+//{
+//    public createDoctorRequestValidator()
+//    {
+//        RuleFor(x => x._doctor.Name)
+//            .NotEmpty()
+//            .WithMessage("name is required");
+//    }
+//}

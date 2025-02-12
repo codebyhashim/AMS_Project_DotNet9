@@ -286,3 +286,279 @@ WHERE [a].[Status] = 2
 2025-02-11 17:38:17.461 +05:00 [INF] HTTP GET /Theme/vendor/fontawesome-free/webfonts/fa-solid-900.woff2 responded 304 in 0.6885 ms
 2025-02-11 17:38:17.462 +05:00 [INF] HTTP GET /Theme/vendor/fontawesome-free/webfonts/fa-solid-900.woff2 responded 304 in 33.2348 ms
 2025-02-11 17:38:17.462 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7251/Theme/vendor/fontawesome-free/webfonts/fa-solid-900.woff2 - 304 null font/woff2 35.4098ms
+2025-02-11 18:24:39.106 +05:00 [ERR] dvcasdfac
+2025-02-11 18:30:51.328 +05:00 [ERR] dvcasdfac
+2025-02-11 18:30:52.009 +05:00 [INF] User profile is available. Using 'C:\Users\hashi\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-02-11 18:30:52.831 +05:00 [INF] Executed DbCommand (39ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2025-02-11 18:30:52.872 +05:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2025-02-11 18:30:52.874 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2025-02-11 18:30:52.916 +05:00 [INF] Executed DbCommand (4ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2025-02-11 18:30:52.963 +05:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+2025-02-11 18:30:52.975 +05:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedRoleName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedRoleName_0
+2025-02-11 18:30:52.998 +05:00 [INF] Executed DbCommand (5ms) [Parameters=[@__p_0='?' (Size = 450), @__p_1='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[UserId], [a].[RoleId]
+FROM [AspNetUserRoles] AS [a]
+WHERE [a].[UserId] = @__p_0 AND [a].[RoleId] = @__p_1
+2025-02-11 18:30:53.008 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedRoleName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedRoleName_0
+2025-02-11 18:30:53.010 +05:00 [INF] Executed DbCommand (0ms) [Parameters=[@__p_0='?' (Size = 450), @__p_1='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[UserId], [a].[RoleId]
+FROM [AspNetUserRoles] AS [a]
+WHERE [a].[UserId] = @__p_0 AND [a].[RoleId] = @__p_1
+2025-02-11 18:30:53.011 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedRoleName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedRoleName_0
+2025-02-11 18:30:53.012 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (Size = 450), @__p_1='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[UserId], [a].[RoleId]
+FROM [AspNetUserRoles] AS [a]
+WHERE [a].[UserId] = @__p_0 AND [a].[RoleId] = @__p_1
+2025-02-11 18:30:53.013 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedRoleName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedRoleName_0
+2025-02-11 18:30:53.014 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (Size = 450), @__p_1='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[UserId], [a].[RoleId]
+FROM [AspNetUserRoles] AS [a]
+WHERE [a].[UserId] = @__p_0 AND [a].[RoleId] = @__p_1
+2025-02-11 18:31:00.155 +05:00 [INF] Now listening on: https://localhost:7251
+2025-02-11 18:31:00.155 +05:00 [INF] Now listening on: http://localhost:5018
+2025-02-11 18:31:00.246 +05:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-02-11 18:31:00.246 +05:00 [INF] Hosting environment: Development
+2025-02-11 18:31:00.246 +05:00 [INF] Content root path: C:\Users\hashi\source\repos\AMSystem\AM
+2025-02-11 18:31:00.576 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7251/ - null null
+2025-02-11 18:31:00.799 +05:00 [INF] Executed DbCommand (9ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0
+2025-02-11 18:31:00.850 +05:00 [INF] Executed DbCommand (6ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @__user_Id_0
+2025-02-11 18:31:00.884 +05:00 [INF] Executed DbCommand (2ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2025-02-11 18:31:00.886 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2025-02-11 18:31:00.898 +05:00 [INF] Executed DbCommand (4ms) [Parameters=[@__role_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0
+2025-02-11 18:31:00.902 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2025-02-11 18:31:00.903 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__role_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0
+2025-02-11 18:31:01.829 +05:00 [INF] Executing endpoint '/Account/Login'
+2025-02-11 18:31:01.870 +05:00 [INF] Route matched with {page = "/Account/Login", area = "Identity", action = "", controller = ""}. Executing page /Account/Login
+2025-02-11 18:31:01.892 +05:00 [INF] Executing handler method AM.Areas.Identity.Pages.Account.LoginModel.OnGetAsync - ModelState is "Valid"
+2025-02-11 18:31:01.898 +05:00 [INF] AuthenticationScheme: Identity.External signed out.
+2025-02-11 18:31:01.899 +05:00 [INF] Executed handler method OnGetAsync, returned result .
+2025-02-11 18:31:01.902 +05:00 [INF] Executing an implicit handler method - ModelState is "Valid"
+2025-02-11 18:31:01.902 +05:00 [INF] Executed an implicit handler method, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2025-02-11 18:31:02.093 +05:00 [INF] Executed page /Account/Login in 214.9772ms
+2025-02-11 18:31:02.097 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7251/Theme/vendor/fontawesome-free/css/all.min.guatu28glt.css - null null
+2025-02-11 18:31:02.097 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7251/_framework/aspnetcore-browser-refresh.js - null null
+2025-02-11 18:31:02.169 +05:00 [INF] Executed endpoint '/Account/Login'
+2025-02-11 18:31:02.169 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7251/Theme/vendor/jquery/jquery.min.dd6z7egasc.js - null null
+2025-02-11 18:31:02.170 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7251/Theme/css/sb-admin-2.min.02037ac2e4.css - null null
+2025-02-11 18:31:02.228 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7251/Theme/vendor/bootstrap/js/bootstrap.bundle.min.8u741w00kw.js - null null
+2025-02-11 18:31:02.235 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7251/Theme/vendor/jquery-easing/jquery.easing.min.5n6xhusdby.js - null null
+2025-02-11 18:31:02.279 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7251/Theme/js/sb-admin-2.min.3wkk0jr7h6.js - null null
+2025-02-11 18:31:02.338 +05:00 [INF] HTTP GET / responded 200 in 377.0519 ms
+2025-02-11 18:31:02.342 +05:00 [INF] HTTP GET / responded 200 in 1434.4050 ms
+2025-02-11 18:31:02.344 +05:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2025-02-11 18:31:02.344 +05:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2025-02-11 18:31:02.344 +05:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2025-02-11 18:31:02.344 +05:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2025-02-11 18:31:02.344 +05:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2025-02-11 18:31:02.345 +05:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2025-02-11 18:31:02.454 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7251/_framework/aspnetcore-browser-refresh.js - 200 13756 application/javascript; charset=utf-8 339.8417ms
+2025-02-11 18:31:02.481 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7251/ - 200 null text/html; charset=utf-8 1919.7711ms
+2025-02-11 18:31:02.522 +05:00 [INF] Sending file. Request path: 'Theme/js/sb-admin-2.min.3wkk0jr7h6.js'. Physical path: 'C:\Users\hashi\source\repos\AMSystem\AM\obj\Debug\net9.0\compressed\qjd9cbn62h-3wkk0jr7h6.gz'
+2025-02-11 18:31:02.522 +05:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2025-02-11 18:31:02.522 +05:00 [INF] HTTP GET /Theme/js/sb-admin-2.min.3wkk0jr7h6.js responded 200 in 178.1711 ms
+2025-02-11 18:31:02.523 +05:00 [INF] HTTP GET /Theme/js/sb-admin-2.min.3wkk0jr7h6.js responded 200 in 183.9169 ms
+2025-02-11 18:31:02.523 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7251/Theme/js/sb-admin-2.min.3wkk0jr7h6.js - 200 1298 text/javascript 244.8156ms
+2025-02-11 18:31:02.524 +05:00 [INF] Sending file. Request path: 'Theme/vendor/fontawesome-free/css/all.min.guatu28glt.css'. Physical path: 'C:\Users\hashi\source\repos\AMSystem\AM\obj\Debug\net9.0\compressed\sl23tztxas-guatu28glt.gz'
+2025-02-11 18:31:02.525 +05:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2025-02-11 18:31:02.526 +05:00 [INF] HTTP GET /Theme/vendor/fontawesome-free/css/all.min.guatu28glt.css responded 200 in 181.9606 ms
+2025-02-11 18:31:02.526 +05:00 [INF] HTTP GET /Theme/vendor/fontawesome-free/css/all.min.guatu28glt.css responded 200 in 291.2533 ms
+2025-02-11 18:31:02.526 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7251/Theme/vendor/fontawesome-free/css/all.min.guatu28glt.css - 200 59382 text/css 429.1077ms
+2025-02-11 18:31:02.532 +05:00 [INF] Sending file. Request path: 'Theme/css/sb-admin-2.min.02037ac2e4.css'. Physical path: 'C:\Users\hashi\source\repos\AMSystem\AM\obj\Debug\net9.0\compressed\32fyvifizd-02037ac2e4.gz'
+2025-02-11 18:31:02.533 +05:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2025-02-11 18:31:02.533 +05:00 [INF] HTTP GET /Theme/css/sb-admin-2.min.02037ac2e4.css responded 200 in 188.4907 ms
+2025-02-11 18:31:02.533 +05:00 [INF] HTTP GET /Theme/css/sb-admin-2.min.02037ac2e4.css responded 200 in 298.2147 ms
+2025-02-11 18:31:02.533 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7251/Theme/css/sb-admin-2.min.02037ac2e4.css - 200 170795 text/css 363.5688ms
+2025-02-11 18:31:02.561 +05:00 [INF] Sending file. Request path: 'Theme/vendor/jquery-easing/jquery.easing.min.5n6xhusdby.js'. Physical path: 'C:\Users\hashi\source\repos\AMSystem\AM\obj\Debug\net9.0\compressed\ldzqw64tl6-5n6xhusdby.gz'
+2025-02-11 18:31:02.561 +05:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2025-02-11 18:31:02.561 +05:00 [INF] HTTP GET /Theme/vendor/jquery-easing/jquery.easing.min.5n6xhusdby.js responded 200 in 216.8549 ms
+2025-02-11 18:31:02.562 +05:00 [INF] HTTP GET /Theme/vendor/jquery-easing/jquery.easing.min.5n6xhusdby.js responded 200 in 282.7709 ms
+2025-02-11 18:31:02.562 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7251/Theme/vendor/jquery-easing/jquery.easing.min.5n6xhusdby.js - 200 2565 text/javascript 327.0491ms
+2025-02-11 18:31:02.567 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7251/_vs/browserLink - null null
+2025-02-11 18:31:02.570 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7251/Theme/vendor/fontawesome-free/webfonts/fa-brands-400.woff2 - null null
+2025-02-11 18:31:02.623 +05:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2025-02-11 18:31:02.624 +05:00 [INF] The file Theme/vendor/fontawesome-free/webfonts/fa-brands-400.woff2 was not modified
+2025-02-11 18:31:02.625 +05:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2025-02-11 18:31:02.625 +05:00 [INF] HTTP GET /Theme/vendor/fontawesome-free/webfonts/fa-brands-400.woff2 responded 304 in 1.2839 ms
+2025-02-11 18:31:02.625 +05:00 [INF] HTTP GET /Theme/vendor/fontawesome-free/webfonts/fa-brands-400.woff2 responded 304 in 15.7311 ms
+2025-02-11 18:31:02.625 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7251/Theme/vendor/fontawesome-free/webfonts/fa-brands-400.woff2 - 304 null font/woff2 55.2002ms
+2025-02-11 18:31:02.631 +05:00 [INF] Sending file. Request path: 'Theme/vendor/bootstrap/js/bootstrap.bundle.min.8u741w00kw.js'. Physical path: 'C:\Users\hashi\source\repos\AMSystem\AM\obj\Debug\net9.0\compressed\qwun04st55-8u741w00kw.gz'
+2025-02-11 18:31:02.631 +05:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2025-02-11 18:31:02.631 +05:00 [INF] HTTP GET /Theme/vendor/bootstrap/js/bootstrap.bundle.min.8u741w00kw.js responded 200 in 286.7798 ms
+2025-02-11 18:31:02.631 +05:00 [INF] HTTP GET /Theme/vendor/bootstrap/js/bootstrap.bundle.min.8u741w00kw.js responded 200 in 396.4288 ms
+2025-02-11 18:31:02.631 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7251/Theme/vendor/bootstrap/js/bootstrap.bundle.min.8u741w00kw.js - 200 84421 text/javascript 426.983ms
+2025-02-11 18:31:02.634 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7251/_vs/browserLink - 200 null text/javascript; charset=UTF-8 67.1397ms
+2025-02-11 18:31:02.642 +05:00 [INF] Sending file. Request path: 'Theme/vendor/jquery/jquery.min.dd6z7egasc.js'. Physical path: 'C:\Users\hashi\source\repos\AMSystem\AM\obj\Debug\net9.0\compressed\m8eqy5i8lq-dd6z7egasc.gz'
+2025-02-11 18:31:02.643 +05:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2025-02-11 18:31:02.643 +05:00 [INF] HTTP GET /Theme/vendor/jquery/jquery.min.dd6z7egasc.js responded 200 in 299.0602 ms
+2025-02-11 18:31:02.643 +05:00 [INF] HTTP GET /Theme/vendor/jquery/jquery.min.dd6z7egasc.js responded 200 in 408.1658 ms
+2025-02-11 18:31:02.643 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7251/Theme/vendor/jquery/jquery.min.dd6z7egasc.js - 200 89544 text/javascript 473.6439ms
+2025-02-11 18:31:04.053 +05:00 [INF] Request starting HTTP/2 POST https://localhost:7251/ - application/x-www-form-urlencoded 282
+2025-02-11 18:31:04.070 +05:00 [INF] Executing endpoint '/Account/Login'
+2025-02-11 18:31:04.071 +05:00 [INF] Route matched with {page = "/Account/Login", area = "Identity", action = "", controller = ""}. Executing page /Account/Login
+2025-02-11 18:31:04.109 +05:00 [INF] Executing handler method AM.Areas.Identity.Pages.Account.LoginModel.OnPostAsync - ModelState is "Valid"
+2025-02-11 18:31:04.136 +05:00 [INF] Executed DbCommand (7ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2025-02-11 18:31:04.290 +05:00 [INF] Executed DbCommand (5ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @__user_Id_0
+2025-02-11 18:31:04.292 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2025-02-11 18:31:04.293 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2025-02-11 18:31:04.294 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__role_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0
+2025-02-11 18:31:04.295 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2025-02-11 18:31:04.296 +05:00 [INF] Executed DbCommand (0ms) [Parameters=[@__role_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0
+2025-02-11 18:31:04.299 +05:00 [INF] AuthenticationScheme: Identity.Application signed in.
+2025-02-11 18:31:04.300 +05:00 [INF] code worked 
+2025-02-11 18:31:04.302 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2025-02-11 18:31:04.303 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2025-02-11 18:31:04.325 +05:00 [INF] Executed DbCommand (6ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Patients] AS [p]
+WHERE [p].[UserId] = @__user_Id_0
+2025-02-11 18:31:04.327 +05:00 [INF] Executed handler method OnPostAsync, returned result Microsoft.AspNetCore.Mvc.RedirectToActionResult.
+2025-02-11 18:31:04.329 +05:00 [INF] Executing RedirectResult, redirecting to /Admin/Index.
+2025-02-11 18:31:04.329 +05:00 [INF] Executed page /Account/Login in 257.9765ms
+2025-02-11 18:31:04.329 +05:00 [INF] Executed endpoint '/Account/Login'
+2025-02-11 18:31:04.329 +05:00 [INF] HTTP POST / responded 302 in 259.3362 ms
+2025-02-11 18:31:04.329 +05:00 [INF] HTTP POST / responded 302 in 259.7043 ms
+2025-02-11 18:31:04.330 +05:00 [INF] Request finished HTTP/2 POST https://localhost:7251/ - 302 0 null 277.2178ms
+2025-02-11 18:31:04.333 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7251/Admin/Index - null null
+2025-02-11 18:31:04.341 +05:00 [INF] Executing endpoint 'AM.Controllers.AdminController.Index (AM)'
+2025-02-11 18:31:04.349 +05:00 [INF] Route matched with {action = "Index", controller = "Admin", page = "", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller AM.Controllers.AdminController (AM).
+2025-02-11 18:31:04.353 +05:00 [INF] Executed action AM.Controllers.AdminController.Index (AM) in 3.0334ms
+2025-02-11 18:31:04.353 +05:00 [INF] Executed endpoint 'AM.Controllers.AdminController.Index (AM)'
+2025-02-11 18:31:04.354 +05:00 [ERR] HTTP GET /Admin/Index responded 500 in 12.4065 ms
+System.InvalidOperationException: Unable to resolve service for type 'FluentValidation.IValidator`1[AM.ApplicationCore.Validator.CreateDoctorValidator]' while attempting to activate 'AM.Controllers.AdminController'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.ThrowHelperUnableToResolveService(Type type, Type requiredBy)
+   at lambda_method228(Closure, IServiceProvider, Object[])
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass6_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2025-02-11 18:31:04.376 +05:00 [ERR] HTTP GET /Admin/Index responded 500 in 40.3905 ms
+System.InvalidOperationException: Unable to resolve service for type 'FluentValidation.IValidator`1[AM.ApplicationCore.Validator.CreateDoctorValidator]' while attempting to activate 'AM.Controllers.AdminController'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.ThrowHelperUnableToResolveService(Type type, Type requiredBy)
+   at lambda_method228(Closure, IServiceProvider, Object[])
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass6_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2025-02-11 18:31:04.379 +05:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: Unable to resolve service for type 'FluentValidation.IValidator`1[AM.ApplicationCore.Validator.CreateDoctorValidator]' while attempting to activate 'AM.Controllers.AdminController'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.ThrowHelperUnableToResolveService(Type type, Type requiredBy)
+   at lambda_method228(Closure, IServiceProvider, Object[])
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass6_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-02-11 18:31:04.427 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7251/Admin/Index - 500 null text/html; charset=utf-8 94.5586ms
+2025-02-11 18:31:04.437 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7251/_vs/browserLink - null null
+2025-02-11 18:31:04.437 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7251/_framework/aspnetcore-browser-refresh.js - null null
+2025-02-11 18:31:04.438 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7251/_framework/aspnetcore-browser-refresh.js - 200 13756 application/javascript; charset=utf-8 0.477ms
+2025-02-11 18:31:04.454 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7251/_vs/browserLink - 200 null text/javascript; charset=UTF-8 17.0526ms

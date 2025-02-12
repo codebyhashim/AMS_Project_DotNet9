@@ -10,6 +10,7 @@ using AM.ApplicationCore.Features.Patient.ViewAppoinments;
 using AM.Interfaces;
 using AM.Models;
 using AM.Views.Patient;
+using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -23,11 +24,17 @@ namespace AM.Controllers
 
        
         private readonly IMediator _mediator;
+        private readonly IValidator<PatientModel> _validator;
+        private readonly IValidator<AppointmentModel> appoinmentvalidator;
 
-        public PatientController(IMediator mediator)
+        //private readonly IValidator<AppointmentModel> _appoinmentvalidator;
+
+        public PatientController(IMediator mediator , IValidator<PatientModel> validator, IValidator<AppointmentModel> appoinmentvalidator )
         {
 
             this._mediator = mediator;
+            this._validator = validator;
+            this.appoinmentvalidator = appoinmentvalidator;
         }
 
 
@@ -68,16 +75,33 @@ namespace AM.Controllers
         [HttpPost("Patient/PatientRegister")]
         public async Task<IActionResult> PatientRegister(PatientModel patient)
         {
-            if (ModelState.IsValid)
+            
+
+            var validation =await _validator.ValidateAsync(patient);
+            if (validation.IsValid)
             {
-
-                //var getLoginID =  _patientRepository.GetLoginPatient();
-                //_patientRepository.RegisterPatient(patient);
                 await _mediator.Send(new RegisterPatientRequest(patient));
-                return RedirectToAction("MakeAppoinment");
-            }
 
-            return View();
+                   return RedirectToAction("MakeAppoinment");
+            }
+            else
+            {
+                foreach (var error in validation.Errors)
+                {
+                    ModelState.AddModelError(error.PropertyName,error.ErrorMessage);
+                }
+                return View();
+
+            }
+            //if (ModelState.IsValid)
+            //{
+
+            //    //var getLoginID =  _patientRepository.GetLoginPatient();
+            //    //_patientRepository.RegisterPatient(patient);
+            //    await _mediator.Send(new RegisterPatientRequest(patient));
+            //    return RedirectToAction("MakeAppoinment");
+            //}
+
         }
 
 
@@ -93,11 +117,29 @@ namespace AM.Controllers
         [HttpPost]
         public async Task<IActionResult> Updatedetails(PatientModel patient)
         {
+            var validation =await _validator.ValidateAsync(patient);
+            if (validation.IsValid)
+            {
+                 await _mediator.Send(new UpdatePatientRequest(patient));
+
+                TempData["sucessMessage"] = "Updated Successfully";
+                return RedirectToAction("Updatedetails");
+            }
+            else
+            {
+
+                foreach (var error in validation.Errors)
+                {
+                    ModelState.AddModelError(error.PropertyName, error.ErrorMessage);
+                }
+                return View();
+            }
+            
             //await _patientRepository.UpdatePatient(patient);
-            await _mediator.Send(new UpdatePatientRequest(patient));
-             
-            TempData["sucessMessage"] = "Updated Successfully";
-            return RedirectToAction("Updatedetails");
+            //await _mediator.Send(new UpdatePatientRequest(patient));
+
+            //TempData["sucessMessage"] = "Updated Successfully";
+            //return RedirectToAction("Updatedetails");
         }
 
         public async Task<IActionResult> MakeAppoinment()
@@ -132,11 +174,30 @@ namespace AM.Controllers
         [HttpPost]
         public async Task<IActionResult> MakeAppoinment(AppointmentModel appointment)
         {
-            //await _patientRepository.GetAppointments(appoinment);
-            await _mediator.Send(new BookAppointmentsRequest(appointment));
+            //var validation = await appoinmentvalidator.ValidateAsync(appointment);
+            //if (validation.IsValid)
+            //{
+                await _mediator.Send(new BookAppointmentsRequest(appointment));
 
-            return RedirectToAction("ViewAppoinment", "Patient");
+                return RedirectToAction("ViewAppoinment", "Patient");
+            //}
+            //else
+            //{
+            //    foreach (var error in validation.Errors)
+            //    {
+            //        ModelState.AddModelError(error.PropertyName, error.ErrorMessage);
+            //    }
+            //    return View();
+            //}
         }
+            
+            //return View();
+            //await _patientRepository.GetAppointments(appoinment);
+            //await _mediator.Send(new BookAppointmentsRequest(appointment));
+
+            //return RedirectToAction("ViewAppoinment", "Patient");
+        
+
 
 
         public async Task<IActionResult> ViewAppoinment()

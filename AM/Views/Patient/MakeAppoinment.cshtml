@@ -51,13 +51,15 @@
 					
 					
 				</select>
+				<span asp-validation-for="DoctorId" class="text-danger"></span>
+
 			</div>
 
 
-			@* <div class="form-group">
+			 <div class="form-group" hidden>
                 <label asp-for="DoctorId" class="control-label"></label>
                 <select asp-for="DoctorId" class ="form-control" asp-items="ViewBag.DoctorId"></select>
-            </div> *@
+            </div> 
 			<div class="form-group d-flex justify-content-center">
 				<input type="submit" value="Get Appoinment" class="btn btn-primary" />
 			</div>

@@ -1,5 +1,6 @@
 using System.Reflection;
 using AM.ApplicationCore.Interfaces;
+using AM.ApplicationCore.Validator;
 using AM.Data;
 using AM.Infrastructure;
 using AM.Infrastructure.Services;
@@ -27,7 +28,8 @@ namespace AM
               .CreateLogger();
 
             var builder = WebApplication.CreateBuilder(args);
-           
+            
+            builder.Services.AddValidatorsFromAssemblyContaining<DoctorValidator>();
             // Add services to the container.
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
@@ -40,12 +42,12 @@ namespace AM
             //builder.Services.AddFluentValidationAutoValidation()
             //    .AddFluentValidationClientsideAdapters()
             //    .AddValidatorsFromAssemblies(AppDomain.CurrentDomain.GetAssemblies());
-            //builder.Services.AddValidatorsFromAssemblyContaining<createDoctorRequestValidator>;
 
             builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false).AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             builder.Services.AddControllersWithViews();
-            
+
+
             //Register repository pattern
             builder.Services.AddScoped<IDoctorRepository, DoctorRepository>();
             builder.Services.AddScoped<IPatientRepository, PatientRepository>();
@@ -65,28 +67,35 @@ namespace AM
             });
           
            
-
+            // add extension method
             builder.Services.AddInfrastructure(builder.Configuration);
             builder.Services.AddApplication(builder.Configuration);
 
+            //Registere validator
+            builder.Services.AddValidatorsFromAssemblyContaining<DoctorValidator>();
+            builder.Services.AddValidatorsFromAssemblyContaining<PatientRepository>();
+            builder.Services.AddValidatorsFromAssemblyContaining<BookAppointmentValidator>();
+            //builder.Services.AddValidatorsFromAssemblyContaining<UpdateDoctorValidator>();
 
 
+            //Creating log table in sqldatabase
             Log.Logger = new LoggerConfiguration()
-     .WriteTo.MSSqlServer(
-         connectionString: "Server=localhost; Database=AM; Integrated Security=True; TrustServerCertificate=True; Trusted_Connection=True; MultipleActiveResultSets=true",
-         sinkOptions: new MSSqlServerSinkOptions
-         {
+           .WriteTo.MSSqlServer(
+            connectionString: "Server=localhost; Database=AM; Integrated Security=True; TrustServerCertificate=True; Trusted_Connection=True; MultipleActiveResultSets=true",
+            sinkOptions: new MSSqlServerSinkOptions
+            {
              TableName = "LogEvents",
              AutoCreateSqlTable = true   // This ensures that the table will be created automatically
-         })
-     .Enrich.FromLogContext()
-     .CreateLogger();
+            })
+            .Enrich.FromLogContext()
+            .CreateLogger();
 
+            //Creating log file in project
 
             Log.Logger = new LoggerConfiguration()
-    .WriteTo.Console()
-    .WriteTo.File("LogFiles/log-.txt", outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level:u3}] {Message:lj}{NewLine}{Exception}", rollingInterval: RollingInterval.Day)
-    .CreateLogger();
+            .WriteTo.Console()
+            .WriteTo.File("LogFiles/log-.txt", outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level:u3}] {Message:lj}{NewLine}{Exception}", rollingInterval: RollingInterval.Day)
+            .CreateLogger();
 
 
 
@@ -123,7 +132,7 @@ namespace AM
                .WithStaticAssets();
             app.UseSerilogRequestLogging();
 
-
+            //using Identity for rols
             // create roll
             using (var scope = app.Services.CreateScope())
             {

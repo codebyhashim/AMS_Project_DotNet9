@@ -134,6 +134,8 @@
                         <th>Experience</th>
                         @* <th>Speciality</th>
                         <th>Degree</th> *@
+                        <th>About Details</th>
+
                         <th>IsActive</th>
                         <th >Actions</th>
                     </tr>
@@ -149,6 +151,8 @@
                             <td>WaitTime: @item.WaitTime  <br />AvailabilityDays: @item.AvailabilityDays  <br />AvailabilityHours: @item.AvailabilityHours</td>
                             <td>Speciality :@item.Speciality  <br />   Degree: @item.Degree</td>
                             <td>@item.Experience</td>
+                            <td>@item.Description</td>
+
                             @* <td>@item.Degree</td> *@
                             <form asp-controller="Admin" asp-route-id="@item.Id" asp-action="ShowDoctor" method="post">
                             <td class="text-center pt-5">

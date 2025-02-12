@@ -139,7 +139,7 @@ namespace AM.Areas.Identity.Pages.Account
                         $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
 
-                    //return RedirectToPage("/Account/Login");
+                    return RedirectToPage("/Account/Login");
 
                     //if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     //{
