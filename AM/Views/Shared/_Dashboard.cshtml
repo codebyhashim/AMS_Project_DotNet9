@@ -14,7 +14,7 @@
     <title>SB Admin 2 - Dashboard</title>
 
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
-
+   
     <!-- Custom fonts for this template-->
     <link rel="stylesheet" href="https://cdn.datatables.net/2.2.1/css/dataTables.dataTables.css" />
     <link rel="stylesheet" href=" https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
@@ -31,6 +31,8 @@
 
     <link href="~/Theme/vendor/datatables/jquery.dataTables.min.js" rel="stylesheet">
     <link href="~/Theme/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
+   
 
 </head>
 
@@ -861,18 +863,19 @@
     <script src="~/Theme/js/sb-admin-2.min.js"></script>
 
     <!-- Page level plugins -->
-    <script src="~/Theme/vendor/chart.js/Chart.min.js"></script>
+    @* <script src="~/Theme/vendor/chart.js/Chart.min.js"></script> *@
 
     <!-- Page level custom scripts -->
-    <script src="~/Theme/js/demo/chart-area-demo.js"></script>
-    <script src="~/Theme/js/demo/chart-pie-demo.js"></script> 
-
+    @* <script src="~/Theme/js/demo/chart-area-demo.js"></script> *@
+    @* <script src="~/Theme/js/demo/chart-pie-demo.js"></script>  *@
+    
     <!-- Include jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
      @RenderSection("scripts", required: false) 
     <!-- Include DataTables JS -->
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
-
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.19.3/jquery.validate.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate.unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js"></script>
     <!-- Initialize DataTable -->
 
   

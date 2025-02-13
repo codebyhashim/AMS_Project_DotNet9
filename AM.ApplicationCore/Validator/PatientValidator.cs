@@ -18,7 +18,8 @@ namespace AM.ApplicationCore.Validator
 
 
             RuleFor(x => x.DateOfBirth)
-            .NotEmpty().WithMessage("DateOfBirth is required");
+            .NotEmpty().WithMessage("DateOfBirth is required")
+            .LessThanOrEqualTo(x=>DateTime.Now).WithMessage("select valid date");
             
 
 

@@ -25,16 +25,16 @@ namespace AM.Controllers
        
         private readonly IMediator _mediator;
         private readonly IValidator<PatientModel> _validator;
-        private readonly IValidator<AppointmentModel> appoinmentvalidator;
+      
 
         //private readonly IValidator<AppointmentModel> _appoinmentvalidator;
 
-        public PatientController(IMediator mediator , IValidator<PatientModel> validator, IValidator<AppointmentModel> appoinmentvalidator )
+        public PatientController(IMediator mediator , IValidator<PatientModel> validator )
         {
 
             this._mediator = mediator;
             this._validator = validator;
-            this.appoinmentvalidator = appoinmentvalidator;
+            
         }
 
 
@@ -111,6 +111,7 @@ namespace AM.Controllers
             var logInId =await _mediator.Send(new GetLoginUserIdRequest());
             //var patient = _patientRepository.GetPatient(logInId).Result;
             var patient =await _mediator.Send(new GetPatientRequest() { Id=logInId});
+            ViewBag.CurrentDate = DateTime.Now.ToString("yyyy-MM-dd");
             return View(patient);
 
         }
@@ -179,7 +180,7 @@ namespace AM.Controllers
             //{
                 await _mediator.Send(new BookAppointmentsRequest(appointment));
 
-                return RedirectToAction("ViewAppoinment", "Patient");
+            return RedirectToAction("ViewAppoinment", "Patient");
             //}
             //else
             //{
@@ -190,13 +191,13 @@ namespace AM.Controllers
             //    return View();
             //}
         }
-            
-            //return View();
-            //await _patientRepository.GetAppointments(appoinment);
-            //await _mediator.Send(new BookAppointmentsRequest(appointment));
 
-            //return RedirectToAction("ViewAppoinment", "Patient");
-        
+        //return View();
+        //await _patientRepository.GetAppointments(appoinment);
+        //await _mediator.Send(new BookAppointmentsRequest(appointment));
+
+        //return RedirectToAction("ViewAppoinment", "Patient");
+
 
 
 

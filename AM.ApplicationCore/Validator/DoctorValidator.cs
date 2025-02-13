@@ -38,9 +38,7 @@ namespace AM.ApplicationCore.Validator
             .NotEmpty().WithMessage("City  is required")
             .MaximumLength(100).WithMessage("City can't be longer than 100 characters.");
 
-            //RuleFor(x => x.Address)
-            // .MaximumLength(200).WithMessage("Address can't be longer than 200 characters.")
-            //.NotEmpty().WithMessage("Address  is required");
+            
 
             RuleFor(x => x.Degree)
             .NotEmpty().WithMessage("Degree is required")

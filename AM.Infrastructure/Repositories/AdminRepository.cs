@@ -34,10 +34,19 @@ namespace AM.Repositories
         }
         public async Task<DoctorModel> InviteDoctor(DoctorModel Doctor)
         {
-            var doctor =await _context.Doctors.FindAsync(Doctor.Id);
+
+   
+            
+                var doctor =await _context.Doctors.FindAsync(Doctor.Id);
             if (doctor != null)
             {
-
+                //var emailExist = await userManager.FindByEmailAsync(Doctor.Email);
+                //if (emailExist != null)
+                //{
+                //    // Return an error response or handle accordingly if email already exists
+                //    // For example, you can throw an exception or return a custom error message.
+                //    return null;
+                //}
 
 
                 var user = new IdentityUser
@@ -237,9 +246,12 @@ namespace AM.Repositories
             //{
             //    throw new ValidationException(validateResult.Errors);
             //}
-            await _context.Doctors.AddAsync(doctor);
-            await _context.SaveChangesAsync();
-            return true;
+           
+                await _context.Doctors.AddAsync(doctor);
+                await _context.SaveChangesAsync();
+                return true;
+            //}
+            
         }
 
       

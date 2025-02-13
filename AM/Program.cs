@@ -70,11 +70,11 @@ namespace AM
             // add extension method
             builder.Services.AddInfrastructure(builder.Configuration);
             builder.Services.AddApplication(builder.Configuration);
-
+            builder.Services.AddFluentValidationClientsideAdapters();
             //Registere validator
             builder.Services.AddValidatorsFromAssemblyContaining<DoctorValidator>();
-            builder.Services.AddValidatorsFromAssemblyContaining<PatientRepository>();
-            builder.Services.AddValidatorsFromAssemblyContaining<BookAppointmentValidator>();
+            //builder.Services.AddValidatorsFromAssemblyContaining<PatientRepository>();
+            //builder.Services.AddValidatorsFromAssemblyContaining<BookAppointmentValidator>();
             //builder.Services.AddValidatorsFromAssemblyContaining<UpdateDoctorValidator>();
 
 

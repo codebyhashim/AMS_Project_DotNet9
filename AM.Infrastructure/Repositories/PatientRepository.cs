@@ -13,13 +13,13 @@ namespace AM.Repositories
     {
         private readonly ApplicationDbContext _context;
         private readonly IHttpContextAccessor _httpContextAccessor;
-        private readonly IValidator<AppointmentModel> validator;
+        
 
-        public PatientRepository(ApplicationDbContext _context, IHttpContextAccessor _HttpContextAccessor, IValidator<AppointmentModel> validator)
+        public PatientRepository(ApplicationDbContext _context, IHttpContextAccessor _HttpContextAccessor)
         {
             this._context = _context;
             _httpContextAccessor = _HttpContextAccessor;
-            this.validator = validator;
+           
         }
 
         public string GetLoginPatient()
