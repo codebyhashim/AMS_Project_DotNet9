@@ -14,6 +14,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Serilog;
 using Serilog.Sinks.MSSqlServer;
+using BundlerMinifier;
 
 namespace AM
 {
@@ -27,8 +28,15 @@ namespace AM
               .Enrich.FromLogContext()
               .CreateLogger();
 
+
+
             var builder = WebApplication.CreateBuilder(args);
-            
+            builder.Services.AddAuthentication()
+.AddGoogle(options =>
+{
+options.ClientId = "213390042590-2avfghd2bpckfff3a49itpu0unfim5il.apps.googleusercontent.com";
+    options.ClientSecret = "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";
+});
             builder.Services.AddValidatorsFromAssemblyContaining<DoctorValidator>();
             // Add services to the container.
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
@@ -36,6 +44,9 @@ namespace AM
                 options.UseSqlServer(connectionString));
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
             builder.Services.AddHttpContextAccessor();
+
+
+            
 
             //builder.Services.AddInfrastructure(builder.Configuration);
 
@@ -77,7 +88,7 @@ namespace AM
             //builder.Services.AddValidatorsFromAssemblyContaining<BookAppointmentValidator>();
             //builder.Services.AddValidatorsFromAssemblyContaining<UpdateDoctorValidator>();
 
-
+           
             //Creating log table in sqldatabase
             Log.Logger = new LoggerConfiguration()
            .WriteTo.MSSqlServer(
@@ -105,7 +116,12 @@ namespace AM
             builder.Host.UseSerilog();
             var app = builder.Build();
 
-          
+            if (app.Environment.IsProduction())
+            {
+                // Enable BundlingMinifier only in production
+               // app.UseBundlingMinifier();
+            }
+
             app.UseSerilogRequestLogging();
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
@@ -118,9 +134,24 @@ namespace AM
                 app.UseHsts();
             }
 
+            //            builder.Services.AddAuthentication()
+            //.AddGoogle(options =>
+            //{
+            //    options.ClientId = "[Your Google Client ID]";
+            //    options.ClientSecret = "[Your Google Client Secret]";
+            //    // Configure Other Options 
+            //});
+
+
+
+
+
+       
+
             app.UseHttpsRedirection();
             app.UseRouting();
 
+            app.UseAuthentication(); // Enable Authentication
             app.UseAuthorization();
             //app.UseSession();
             app.MapStaticAssets();
@@ -131,6 +162,7 @@ namespace AM
             app.MapRazorPages()
                .WithStaticAssets();
             app.UseSerilogRequestLogging();
+           
 
             //using Identity for rols
             // create roll

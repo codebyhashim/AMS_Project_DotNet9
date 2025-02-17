@@ -66,7 +66,7 @@ namespace AM.Repositories
 
         }
 
-        public async Task<AppointmentModel> ShowAppointmetForm(PatientModel patient)
+        public Task<AppointmentModel> ShowAppointmetForm(PatientModel patient)
         {
             var appointment = new AppointmentModel
             {
@@ -74,7 +74,7 @@ namespace AM.Repositories
                 Patient = patient,
 
             };
-            return appointment;
+            return Task.FromResult(appointment);
         }
 
         public async Task<bool> GetAppointments(AppointmentModel appointments)

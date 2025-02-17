@@ -43,7 +43,7 @@ namespace AM.Controllers
 
 
         [HttpGet("Patient/PatientRegister")]
-        public async Task<IActionResult> PatientRegister()
+        public Task<IActionResult> PatientRegister()
         {
             //var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             //var userId = _patientRepository.GetLoginPatient();
@@ -52,7 +52,7 @@ namespace AM.Controllers
 
             if (string.IsNullOrEmpty(userId))
             {
-                return RedirectToAction("Login", "Account");
+                return Task.FromResult<IActionResult>(RedirectToAction("Login", "Account"));
             }
             //var user = context.Patients.Where(x => x.UserId == userId).Count();
             //var user = _patientRepository.GetPatient(userId).Result;
@@ -60,14 +60,14 @@ namespace AM.Controllers
 
             if (user != null)
             {
-                return RedirectToAction("MakeAppoinment", "patient");
+                return Task.FromResult<IActionResult>(RedirectToAction("MakeAppoinment", "patient"));
 
 
             }
             else
             {
                 ViewBag.CurrentDate = DateTime.Now.ToString("yyyy-MM-dd");
-                return View();
+                return Task.FromResult<IActionResult>(View());
             }
 
         }

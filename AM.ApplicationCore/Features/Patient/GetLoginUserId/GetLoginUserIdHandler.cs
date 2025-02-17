@@ -17,9 +17,9 @@ namespace AM.ApplicationCore.Features.Patient.GetLoginUserId
             this._patientRepository = patientRepository;
         }
 
-        public async Task<string> Handle(GetLoginUserIdRequest request, CancellationToken cancellationToken)
+        public Task<string> Handle(GetLoginUserIdRequest request, CancellationToken cancellationToken)
         {
-            return _patientRepository.GetLoginPatient();
+            return Task.FromResult(_patientRepository.GetLoginPatient());
         }
     }
 }
