@@ -1,4 +1,4 @@
-﻿using AM.Interfaces;
+﻿using AM.ApplicationCore.Interfaces;
 using AM.Models;
 using MediatR;
 
@@ -29,10 +29,11 @@ namespace AM.ApplicationCore.Features.Admin.CreateDoctor
                 WaitTime = request._doctor.WaitTime,
                 Email = request._doctor.Email,
                 UserId = request._doctor.UserId,
-                AvailabilityDays = request._doctor.AvailabilityDays,
+               
+                 AvailabilityDays = request._doctor.AvailabilityDays,
                 AvailabilityHours = request._doctor.AvailabilityHours
             };
-            return await _adminRepository.CreateDoctor(doctor);
+            return await _adminRepository.CreateDoctor(doctor, request.availabilityDays);
         }
     }
 

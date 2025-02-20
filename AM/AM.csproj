@@ -53,6 +53,10 @@
     <ProjectReference Include="..\AM.ApplicationCore\AM.ApplicationCore.csproj" />
     <ProjectReference Include="..\AM.Infrastructure\AM.Infrastructure.csproj" />
   </ItemGroup>
+	<!--<ItemGroup>
+		<None Include="wwwroot\css\site.min.css" CopyToOutputDirectory="PreserveNewest" />
+		<None Include="wwwroot\js\site.min.js" CopyToOutputDirectory="PreserveNewest" />
 
+	</ItemGroup>-->
 	
 </Project>

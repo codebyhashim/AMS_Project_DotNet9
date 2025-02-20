@@ -1,4 +1,4 @@
-﻿using AM.Interfaces;
+﻿using AM.ApplicationCore.Interfaces;
 using AM.Models;
 using MediatR;
 

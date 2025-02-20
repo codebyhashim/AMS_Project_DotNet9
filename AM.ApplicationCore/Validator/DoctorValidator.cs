@@ -28,8 +28,12 @@ namespace AM.ApplicationCore.Validator
             RuleFor(x => x.Speciality).NotEmpty().WithMessage("Speciality  is required")
              .MaximumLength(20).WithMessage("PhoneNumber must not exceed 50 characters.");
 
+            //RuleFor(x => x.AvailabilityDays)
+            //.NotEmpty().WithMessage("AvailabilityDays  is required");
+
             RuleFor(x => x.AvailabilityDays)
-            .NotEmpty().WithMessage("AvailabilityDays  is required");
+             .NotEmpty().WithMessage("Please select at least one day.")  // Ensure that at least one day is selected
+             .Must(days => days != null && days.Any()).WithMessage("At least one day must be selected."); // Checks if there are any selected days
 
             RuleFor(x => x.AvailabilityHours)
             .NotEmpty().WithMessage("AvailabilityHours  is required");

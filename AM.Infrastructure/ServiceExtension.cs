@@ -13,19 +13,19 @@ namespace AM.Infrastructure
 {
     public static class ServiceExtension
     {
-        public static IServiceCollection AddInfrastructure(this IServiceCollection Services, IConfiguration configuration)
+        public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
 
             var connectionString = configuration.GetConnectionString("DefaultConnection");
-            Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
-            Services.AddScoped<IDoctorRepository, DoctorRepository>();
-            Services.AddScoped<IPatientRepository, PatientRepository>();
-            Services.AddScoped<IAdminRepository, AdminRepository>();
-            Services.AddScoped<IEmailService, EmailServie>();
+            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
+            services.AddScoped<IDoctorRepository, DoctorRepository>();
+            services.AddScoped<IPatientRepository, PatientRepository>();
+            services.AddScoped<IAdminRepository, AdminRepository>();
+            services.AddScoped<IEmailService, EmailServie>();
             //Services.AddHttpContextAccessor();
           
 
-            return Services;
+            return services;
         }
     }
 }

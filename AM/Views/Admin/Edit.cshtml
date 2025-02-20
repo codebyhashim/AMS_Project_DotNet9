@@ -2,7 +2,11 @@
 
 @{
 	ViewData["Title"] = "Edit Doctor";
+	var selectedDays = Model.AvailabilityDays?.Split(',') ?? new string[0];
+
+
 }
+
 
 <div class="row justify-content-center card shadow">
 	<h4 class="text-center p-4">Update Doctor</h4>
@@ -89,10 +93,58 @@
 			@* third row *@
 			<div class="row mb-4">
 
-				<div class="col-md-3">
+				 <div class="col-md-3">
 					<div class="form-group">
 						<label asp-for="AvailabilityDays" class="control-label"></label>
 						<input asp-for="AvailabilityDays" class="form-control input-lg custom-input-width" />
+						<span asp-validation-for="AvailabilityDays" class="text-danger"></span>
+					</div>
+				</div> 
+
+
+
+				@* <div class="col-md-3">
+					<div class="form-group">
+						<label asp-for="AvailabilityDays" class="control-label"></label>
+						<div>
+							<select class="js-example-basic-multiple" name="AvailabilityDays" multiple="multiple">
+								<option value="Monday">Monday</option>
+								<option value="Tuesday">Tuesday</option>
+								<option value="Wednesday">Wednesday</option>
+								<option value="Thursday">Thursday</option>
+								<option value="Friday">Friday</option>
+								<option value="Saturday">Saturday</option>
+								<option value="Sunday">Sunday</option>
+							</select>
+
+						</div>
+						<span asp-validation-for="AvailabilityDays" class="text-danger"></span>
+					</div>
+				</div> *@
+ 
+
+
+
+      
+
+ 
+
+
+
+				
+				<div class="col-md-3">
+					<div class="form-group">
+						<label asp-for="AvailabilityDays" class="control-label"></label>
+						<div>
+
+							
+
+
+
+
+							@* <input asp-for="AvailabilityDays" class="form-control input-lg custom-input-width" /> *@
+
+						</div>
 						<span asp-validation-for="AvailabilityDays" class="text-danger"></span>
 					</div>
 				</div>
@@ -152,6 +204,12 @@
 
 
 
+<script>
+
+		   $(document).ready(function() {
+		$('.js-example-basic-multiple').select2();
+	});
+</script>
 
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

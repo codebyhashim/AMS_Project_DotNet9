@@ -1,15 +1,15 @@
 ﻿using AM.Data;
-using AM.Interfaces;
 using AM.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using AM.Interfaces;
 using System.Net.Mail;
 using System.Net;
 using AM.ApplicationCore.Interfaces;
 using Microsoft.AspNetCore.Http;
 using System.Numerics;
 using FluentValidation;
+using Azure.Core;
+using MediatR;
 
 namespace AM.Repositories
 {
@@ -200,14 +200,18 @@ namespace AM.Repositories
             doctor.Email = doctorModel.Email;
             doctor.Name = doctorModel.Name;
             doctor.Speciality = doctorModel.Speciality;
+
             doctor.AvailabilityDays = doctorModel.AvailabilityDays;
+            //doctor.AvailabilityDays = string.Join(",", AvailabilityDays);
+
             doctor.Experience = doctorModel.Experience;
             doctor.City = doctorModel.City;
             doctor.IsActive = doctorModel.IsActive;
             doctor.WaitTime = doctorModel.WaitTime;
             doctor.PhoneNumber = doctorModel.PhoneNumber;
             doctor.Degree = doctorModel.Degree;
-
+             
+            
 
             //doctor = data;
             _context.Doctors.Update(doctor);
@@ -234,27 +238,58 @@ namespace AM.Repositories
 
         public async Task<List<DoctorModel>> ViewDoctors()
         {
+           
+            //var doctr=await _context.Doctors.ToListAsync();
+            
+
             var doctors = await _context.Doctors.ToListAsync();
+
+           
             return doctors;
         }
 
        
-        public async Task<bool> CreateDoctor(DoctorModel doctor)
+        public async Task<bool> CreateDoctor(DoctorModel doctor, List<string> AvailabilityDays)
         {
-            //var validateResult=await validator.ValidateAsync(doctor);
-            //if (!validateResult.IsValid)
-            //{
-            //    throw new ValidationException(validateResult.Errors);
-            //}
-           
-                await _context.Doctors.AddAsync(doctor);
+
+
+            doctor.AvailabilityDays = string.Join(',', AvailabilityDays);
+            await _context.Doctors.AddAsync(doctor);
                 await _context.SaveChangesAsync();
                 return true;
-            //}
+            
             
         }
 
-      
+        public async Task<bool> UpdateLockDoctor(DoctorModel doctors, List<string> AvailabilityDays)
+        {
+
+
+            //var doctor = await _adminRepository.GetDoctorById(request._doctor.Id);
+            
+            var doctor=await _context.Doctors.FirstOrDefaultAsync(x => x.Id==doctors.Id);
+
+            doctor.Name = doctors.Name;
+            doctor.Speciality = doctors.Speciality;
+            doctor.Degree = doctors.Degree;
+            doctor.City = doctors.City;
+            doctor.PhoneNumber = doctors.PhoneNumber;
+            doctor.Experience = doctors.Experience;
+            doctor.IsActive = doctors.IsActive;
+            doctor.Description = doctors.Description;
+            doctor.Address = doctors.Address;
+            doctor.WaitTime = doctors.WaitTime;
+            doctor.Email = doctors.Email;
+            doctor.UserId = doctors.UserId;
+            //doctor.AvailabilityDays = request._doctor.AvailabilityDays;
+            doctor.AvailabilityDays = string.Join(',', AvailabilityDays);
+
+            
+            _context.Doctors.Update(doctor);
+            //_context.Doctors.Update(doctor);
+            await _context.SaveChangesAsync();
+            return true;
+        }
     }
 }
 

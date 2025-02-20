@@ -36,7 +36,7 @@ namespace AM.Infrastructure.Services
 
 
                     await smtpClient.SendMailAsync(mailMessage);
-                    var df = "ldkfnakldfnkalerfnlkaerjfnlkarejfklaer";
+                   
                     return true;// Send the email asynchronously
                 }
                 catch (Exception ex)

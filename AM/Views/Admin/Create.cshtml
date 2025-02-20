@@ -7,11 +7,11 @@
 }
 @model DoctorModel
 
-@{
+@* @{
     ViewData["Title"] = "Create";
    
-}
-
+}  
+ *@
 <div class="row justify-content-center card shadow">
     <h4 class="text-center p-4">Create Doctor</h4>
     <div class="col-md-12 card-body">
@@ -116,13 +116,57 @@
                         <span asp-validation-for="WaitTime" class="text-danger"></span>
                     </div>
                 </div>
-                <div class="col-md-3">
+                @*  <div class="col-md-3">
                     <div class="form-group">
                         <label asp-for="AvailabilityDays" class="control-label"></label>
                         <input asp-for="AvailabilityDays" class="form-control input-lg custom-input-width" />
                         <span asp-validation-for="AvailabilityDays" class="text-danger"></span>
                     </div>
+                </div>  *@
+
+                 @* <div class="col-md-3">
+                    <div class="form-group">
+                        <label asp-for="AvailabilityDays" class="control-label"></label>
+                        <div>
+
+                             @foreach (DayOfWeek day in Enum.GetValues(typeof(DayOfWeek)))
+                            {
+                                <input type="checkbox" name="AvailabilityDays" value="@day" /> @day
+
+                                <br />
+                            } 
+                            
+                           
+
+
+                       
+
+                        </div>
+                        <span asp-validation-for="AvailabilityDays" class="text-danger"></span>
+                    </div>
+                </div> 
+ *@
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label asp-for="AvailabilityDays" class="control-label"></label>
+                        <div>
+                            <select class="js-example-basic-multiple" name="AvailabilityDays" multiple="multiple">
+                                <option value="Monday">Monday</option>
+                                <option value="Tuesday">Tuesday</option>
+                                <option value="Wednesday">Wednesday</option>
+                                <option value="Thursday">Thursday</option>
+                                <option value="Friday">Friday</option>
+                                <option value="Saturday">Saturday</option>
+                                <option value="Sunday">Sunday</option>
+                            </select>
+
+                        </div>
+                        <span asp-validation-for="AvailabilityDays" class="text-danger"></span>
+                    </div>
                 </div>
+
+
 
 
 
@@ -147,7 +191,7 @@
                 </div>
 
 
-
+                
 
 
             <!-- Fourth Row of Input Fields -->
@@ -187,11 +231,24 @@
 
 
 
+<script>
+
+           $(document).ready(function() {
+        $('.js-example-basic-multiple').select2();
+    });
+</script>
+
+
+
+
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
 
 
 
 <!-- jQuery, jQuery Validation, and Unobtrusive scripts -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+ <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery-validation-unobtrusive@3.2.11/dist/jquery.validate.unobtrusive.min.js"></script>
-
+ 

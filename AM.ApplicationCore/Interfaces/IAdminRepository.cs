@@ -1,7 +1,6 @@
-﻿
-using AM.Models;
+﻿using AM.Models;
 
-namespace AM.Interfaces
+namespace AM.ApplicationCore.Interfaces
 {
     public interface IAdminRepository
     {
@@ -12,11 +11,14 @@ namespace AM.Interfaces
         Task<AppointmentModel> GetAppointmentById(int Id);
         //Task<bool> InviteDoctor(DoctorModel Doctor);
 
-        Task<bool> CreateDoctor(DoctorModel doctor);
+        Task<bool> CreateDoctor(DoctorModel doctor, List<string> AvailabilityDays);
         Task<bool> DeleteDoctor(DoctorModel doctor);
 
 
         Task<bool> DoctorUpdate(DoctorModel doctor);
+
+        Task<bool> UpdateLockDoctor(DoctorModel doctor, List<string> AvailabilityDays);
+
         Task<bool> BookAppointment(AppointmentModel appoinment);
         Task<bool> CancelAppointment(AppointmentModel appoinment);
 

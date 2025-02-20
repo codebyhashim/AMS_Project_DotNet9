@@ -22,7 +22,100 @@ namespace AM.Data.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("AM.Models.AppoinmentModel", b =>
+            modelBuilder.Entity("AM.ApplicationCore.Models.SlotsModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<TimeOnly>("EndTime")
+                        .HasColumnType("time");
+
+                    b.Property<TimeOnly>("StartTime")
+                        .HasColumnType("time");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Slots");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            EndTime = new TimeOnly(9, 15, 0),
+                            StartTime = new TimeOnly(9, 0, 0)
+                        },
+                        new
+                        {
+                            Id = 2,
+                            EndTime = new TimeOnly(9, 35, 0),
+                            StartTime = new TimeOnly(9, 20, 0)
+                        },
+                        new
+                        {
+                            Id = 3,
+                            EndTime = new TimeOnly(9, 55, 0),
+                            StartTime = new TimeOnly(9, 40, 0)
+                        },
+                        new
+                        {
+                            Id = 4,
+                            EndTime = new TimeOnly(10, 15, 0),
+                            StartTime = new TimeOnly(10, 0, 0)
+                        },
+                        new
+                        {
+                            Id = 5,
+                            EndTime = new TimeOnly(10, 35, 0),
+                            StartTime = new TimeOnly(10, 20, 0)
+                        },
+                        new
+                        {
+                            Id = 6,
+                            EndTime = new TimeOnly(10, 55, 0),
+                            StartTime = new TimeOnly(10, 40, 0)
+                        },
+                        new
+                        {
+                            Id = 7,
+                            EndTime = new TimeOnly(11, 15, 0),
+                            StartTime = new TimeOnly(11, 0, 0)
+                        },
+                        new
+                        {
+                            Id = 8,
+                            EndTime = new TimeOnly(11, 35, 0),
+                            StartTime = new TimeOnly(11, 20, 0)
+                        },
+                        new
+                        {
+                            Id = 9,
+                            EndTime = new TimeOnly(11, 55, 0),
+                            StartTime = new TimeOnly(11, 40, 0)
+                        },
+                        new
+                        {
+                            Id = 10,
+                            EndTime = new TimeOnly(12, 15, 0),
+                            StartTime = new TimeOnly(12, 0, 0)
+                        },
+                        new
+                        {
+                            Id = 11,
+                            EndTime = new TimeOnly(12, 35, 0),
+                            StartTime = new TimeOnly(12, 20, 0)
+                        },
+                        new
+                        {
+                            Id = 12,
+                            EndTime = new TimeOnly(12, 55, 0),
+                            StartTime = new TimeOnly(12, 40, 0)
+                        });
+                });
+
+            modelBuilder.Entity("AM.Models.AppointmentModel", b =>
                 {
                     b.Property<int>("AppointmentId")
                         .ValueGeneratedOnAdd()
@@ -341,7 +434,7 @@ namespace AM.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("AM.Models.AppoinmentModel", b =>
+            modelBuilder.Entity("AM.Models.AppointmentModel", b =>
                 {
                     b.HasOne("AM.Models.DoctorModel", "Doctor")
                         .WithMany("Appoinment")

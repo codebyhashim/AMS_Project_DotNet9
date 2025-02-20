@@ -7,6 +7,8 @@ using AM.ApplicationCore.Features.Patient.GetPateint;
 using AM.ApplicationCore.Features.Patient.RegisterPatient;
 using AM.ApplicationCore.Features.Patient.UpdatePatient;
 using AM.ApplicationCore.Features.Patient.ViewAppoinments;
+using AM.ApplicationCore.Models;
+using AM.Data;
 using AM.Interfaces;
 using AM.Models;
 using AM.Views.Patient;
@@ -25,16 +27,17 @@ namespace AM.Controllers
        
         private readonly IMediator _mediator;
         private readonly IValidator<PatientModel> _validator;
-      
+        private readonly ApplicationDbContext applicationDb;
+
 
         //private readonly IValidator<AppointmentModel> _appoinmentvalidator;
 
-        public PatientController(IMediator mediator , IValidator<PatientModel> validator )
+        public PatientController(IMediator mediator , IValidator<PatientModel> validator , ApplicationDbContext applicationDb)
         {
 
             this._mediator = mediator;
             this._validator = validator;
-            
+            this.applicationDb = applicationDb;
         }
 
 
@@ -158,6 +161,13 @@ namespace AM.Controllers
                 var doctors = _mediator.Send(new GetActiveDoctorsRequest());
 
                 ViewBag.doctors = doctors.Result;
+
+                var time=applicationDb.Slots.ToList();
+
+                    ViewBag.timeSlot = time;
+                
+                
+               
                 //var appointmentModel = _patientRepository.ShowAppointmetForm(patient);
                 var appointmentModel = _mediator.Send(new DisplayAppointmentFormRequest() {Patients=patient });
 

@@ -14,6 +14,7 @@ using AM.ApplicationCore.Features.Admin.GetAppointmentById;
 using AM.ApplicationCore.Features.Admin.GetDoctorById;
 using AM.ApplicationCore.Features.Admin.InviteDoctor;
 using AM.ApplicationCore.Features.Admin.UpdateDoctor;
+using AM.ApplicationCore.Features.Admin.UpdateLockDoctor;
 using AM.ApplicationCore.Validator;
 
 
@@ -73,10 +74,11 @@ namespace AM.Controllers
         [HttpGet("Admin/ViewDoctors")]
         public async Task<IActionResult> ViewDoctors()
         {
-            logger.LogInformation("kjjjjjjjjjjjjjjjjjjjj");
-            logger.LogError("error is when view the doctor list");
+            
             //var listOfDoctors = adminRepository.ViewDoctors().Result;
             var listOfDoctors = await _mediator.Send(new GetAllDoctorsRequest());
+            
+           
             return View(listOfDoctors);
           
         }
@@ -84,19 +86,21 @@ namespace AM.Controllers
         [HttpGet("Doctor/Create")]
         public IActionResult Create()
         {
+
+            // creating object and pass to the view
             return View();
         }
 
 
         [HttpPost("Doctor/Create")]
-        public async Task<IActionResult> Create(DoctorModel doctor)
+        public async Task<IActionResult> Create(DoctorModel doctor , List<string> AvailabilityDays)
         {
 
             //var validator = await _validator.ValidateAsync(doctor);
             var validation = await _validator.ValidateAsync(doctor);
             if (validation.IsValid)
             {
-                await _mediator.Send(new CreateDoctorRequest(doctor));
+                await _mediator.Send(new CreateDoctorRequest(doctor,AvailabilityDays));
 
                 return RedirectToAction("ViewDoctors", "Admin");
             }
@@ -185,14 +189,16 @@ namespace AM.Controllers
             return View(doctor);
         }
         [HttpPost("Doctor/Edit")]
-        public async Task<IActionResult> Edit(DoctorModel doctorModel)
+        public async Task<IActionResult> Edit(DoctorModel doctorModel, List<string> AvailabilityDays)
         {
             var validation =await _validator.ValidateAsync(doctorModel);
 
             if (validation.IsValid)
             {
                 //await adminRepository.DoctorUpdate(doctorModel);
-                await _mediator.Send(new UpdateDoctorRequest(doctorModel));
+                //await _mediator.Send(new UpdateDoctorRequest(doctorModel));
+
+                await _mediator.Send(new UpdateDoctorLockRequest(doctorModel,AvailabilityDays));
 
                 TempData["UpdatedMessage"] = "Updated Successfully";
                 return RedirectToAction("ViewDoctors", "Admin");

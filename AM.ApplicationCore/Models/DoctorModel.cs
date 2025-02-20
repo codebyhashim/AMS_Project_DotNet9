@@ -30,7 +30,8 @@ namespace AM.Models
         [ForeignKey("UserId")]
         public IdentityUser? User { get; set; }
 
-        public string? AvailabilityDays { get; set; }
+        public string? AvailabilityDays { get; set; } 
+        
         public string? AvailabilityHours { get; set; }
 
         //Navigation Property to Appointments

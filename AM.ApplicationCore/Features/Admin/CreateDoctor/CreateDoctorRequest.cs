@@ -9,11 +9,12 @@ namespace AM.ApplicationCore.Features.Admin.CreateDoctor
     public class CreateDoctorRequest : IRequest<bool>
     {
         public readonly DoctorModel _doctor;
-       
-        public CreateDoctorRequest(DoctorModel doctor)
+        public readonly List<string> availabilityDays;
+
+        public CreateDoctorRequest(DoctorModel doctor, List<string> AvailabilityDays)
         {
             _doctor = doctor;
-
+            availabilityDays = AvailabilityDays;
         }
     }
 }
