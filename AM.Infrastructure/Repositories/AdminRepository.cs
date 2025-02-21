@@ -224,6 +224,7 @@ namespace AM.Repositories
         public async Task<DoctorModel> GetDoctorById(int id)
         {
             var doctor = await _context.Doctors.FindAsync(id);
+            
             return doctor;
         }
 
@@ -249,11 +250,13 @@ namespace AM.Repositories
         }
 
        
-        public async Task<bool> CreateDoctor(DoctorModel doctor, List<string> AvailabilityDays)
+        public async Task<bool> CreateDoctor(DoctorModel doctor, List<string> AvailabilityDays, List<string> AvailabilityTimeSlot)
         {
 
 
             doctor.AvailabilityDays = string.Join(',', AvailabilityDays);
+            doctor.AvailabilityTimeSlot = string.Join(',', AvailabilityTimeSlot);
+
             await _context.Doctors.AddAsync(doctor);
                 await _context.SaveChangesAsync();
                 return true;
@@ -261,7 +264,7 @@ namespace AM.Repositories
             
         }
 
-        public async Task<bool> UpdateLockDoctor(DoctorModel doctors, List<string> AvailabilityDays)
+        public async Task<bool> UpdateLockDoctor(DoctorModel doctors, List<string> AvailabilityDays, List<string> AvailabilityTimeSlot)
         {
 
 
@@ -284,7 +287,7 @@ namespace AM.Repositories
             //doctor.AvailabilityDays = request._doctor.AvailabilityDays;
             doctor.AvailabilityDays = string.Join(',', AvailabilityDays);
 
-            
+            doctor.AvailabilityTimeSlot = string.Join(',', AvailabilityTimeSlot);
             _context.Doctors.Update(doctor);
             //_context.Doctors.Update(doctor);
             await _context.SaveChangesAsync();

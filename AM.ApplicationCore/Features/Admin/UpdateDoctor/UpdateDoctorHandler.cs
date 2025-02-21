@@ -29,7 +29,7 @@ namespace AM.ApplicationCore.Features.Admin.UpdateDoctor
             doctor.Email = request._doctor.Email;
             doctor.UserId = request._doctor.UserId;
             doctor.AvailabilityDays = request._doctor.AvailabilityDays;
-            doctor.AvailabilityHours = request._doctor.AvailabilityHours;
+            doctor.AvailabilityTimeSlot = request._doctor.AvailabilityTimeSlot;
 
             return await _adminRepository.DoctorUpdate(doctor);
 

@@ -34,7 +34,7 @@
             <thead>
                 <tr>
                     <th>Contact Information</th>
-                   
+
                     <th>Availability Information</th>
                     <th>Experience</th>
                     <th>Speciality</th>
@@ -62,7 +62,7 @@
                                         </form>
                             }
                             </td>
-                          
+
                             <td>
                                 <a class="btn btn-sm text-white" style="background-color: #4e73df" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
                             </td>
@@ -87,154 +87,140 @@
       rel="stylesheet">
 <link href="/css/sb-admin-2.min.css" rel="stylesheet">
 <link href="/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet"> *@
- @{
-    ViewData["Title"] = "Index";
+@{
+	ViewData["Title"] = "Index";
 }
 
 
 @if (TempData["SuccessMessage"] != null)
 {
-    <div class="alert alert-success UpdatedMessage" role="alert">
-        @TempData["SuccessMessage"]
-    </div>
+	<div class="alert alert-success UpdatedMessage" role="alert">
+		@TempData["SuccessMessage"]
+	</div>
 }
 @if (TempData["deleteMessage"] != null)
 {
-    <div class="alert alert-success UpdatedMessage" role="alert">
-        @TempData["deleteMessage"]
-    </div>
+	<div class="alert alert-success UpdatedMessage" role="alert">
+		@TempData["deleteMessage"]
+	</div>
 }
 @if (TempData["UpdatedMessage"] != null)
 {
-    <div  class="alert alert-success UpdatedMessage" role="alert">
-        @TempData["UpdatedMessage"]
-    </div>
+	<div class="alert alert-success UpdatedMessage" role="alert">
+		@TempData["UpdatedMessage"]
+	</div>
 }
 @if (TempData["Lock"] != null)
 {
-    <div class="alert alert-success LockMessage" role="alert">
-        @TempData["Lock"]
-    </div>
+	<div class="alert alert-success LockMessage" role="alert">
+		@TempData["Lock"]
+	</div>
 }
-<div class="card shadow mb-4" >
-    <div class="card-header py-3" style="display:flex;justify-content:end">
-       
-        <a asp-action="Create" asp-controller="Doctor" class="btn btn-primary btn-sm">Add Doctor</a>
+<div class="card shadow mb-4">
+	<div class="card-header py-3" style="display:flex;justify-content:end">
 
-    </div>
+		<a asp-action="Create" asp-controller="Doctor" class="btn btn-primary btn-sm">Add Doctor</a>
 
-    <div class="card-body">
-        <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable" width="100%">
-                <thead>
-                    <tr>
-                        <th>Contact Information</th>
-                        <th>Availability Information</th>
-                        <th>Qualification</th>
-                        <th>Experience</th>
-                        @* <th>Speciality</th>
+	</div>
+
+	<div class="card-body">
+		<div class="table-responsive">
+			<table class="table table-bordered" id="dataTable" width="100%">
+				<thead>
+					<tr>
+						<th>Contact Information</th>
+						<th>Availability Information</th>
+						<th>Qualification</th>
+						<th>Experience</th>
+						@* <th>Speciality</th>
                         <th>Degree</th> *@
-                        <th>About Details</th>
+						<th>About Details</th>
 
-                        <th>IsActive</th>
-                        <th >Actions</th>
-                    </tr>
+						<th>IsActive</th>
+						<th>Actions</th>
+					</tr>
 
-                </thead>
-                <tbody>
-                    @foreach (var item in Model)
-                    {
-                        <tr>
-                       
+				</thead>
+				<tbody>
+					@foreach (var item in Model)
+					{
+						<tr>
+							<td>Name: @item.Name  <br /> Email : @item.Email   <br /> PhoneNumber: @item.PhoneNumber <br /> City: @item.City </td>
+							<td>WaitTime: @item.WaitTime  <br />AvailabilityDays: @item.AvailabilityDays  <br />AvailabilityTimeSlot: @item.AvailabilityTimeSlot</td>
+							<td>Speciality :@item.Speciality  <br />   Degree: @item.Degree</td>
+							<td>@item.Experience</td>
+							<td>@item.Description</td>
+							<form asp-controller="Admin" asp-route-id="@item.Id" asp-action="ShowDoctor" method="post">
+							<td class="text-center pt-5">
+									@if (@item.IsActive)
+									{
+									<button type="submit" style="border: none;background: transparent; cursor: pointer;">
+										<i class="fa-solid fa-lock-open " style="color: green; font-size: 25px; "></i>
+									</button>
+									}
+									else
+									{
+									<button style="border: none;background: transparent; cursor: pointer;" type="submit"><i class="fa-solid fa-lock fa-2x" style="color: red; font-size: 25px"></i></button>
+									}
+							</td>
 
-                            <td>Name: @item.Name  <br /> Email : @item.Email   <br /> PhoneNumber: @item.PhoneNumber <br /> City: @item.City </td>
-                            <td>WaitTime: @item.WaitTime  <br />AvailabilityDays: @item.AvailabilityDays  <br />AvailabilityHours: @item.AvailabilityHours</td>
-                            <td>Speciality :@item.Speciality  <br />   Degree: @item.Degree</td>
-                            <td>@item.Experience</td>
-                            <td>@item.Description</td>
-
-                            @* <td>@item.Degree</td> *@
-                            <form asp-controller="Admin" asp-route-id="@item.Id" asp-action="ShowDoctor" method="post">
-                            <td class="text-center pt-5">
-                                    @if (@item.IsActive)
-                                    {
-                                    <button type="submit" style="border: none;background: transparent; cursor: pointer;">
-                                        <i class="fa-solid fa-lock-open " style="color: green; font-size: 25px; "></i>
-                                    </button>
-                                    }
-                                    else
-                                    {
-                                    <button style="border: none;background: transparent; cursor: pointer;" type="submit"><i class="fa-solid fa-lock fa-2x" style="color: red; font-size: 25px"></i></button>
-
-                                    
+							</form>
 
 
-                                    }
-                            </td>
+							<td style="display:flex;justify-content:space-around;  " class="pt-5">
+								@if (item.UserId == null)
+								{
+									<form asp-controller="Admin" asp-route-id="@item.Id" asp-action="DoctorUser" method="post">
+										@* <button type="submit" class="btn btn-sm text-white" style="background-color: #4e73df">Invite</button>  *@
 
-                            </form>
-                            
-                                
-                            <td style="display:flex;justify-content:space-around;  " class="pt-5">
-                                @if (item.UserId == null)
-                                {
-                                    <form asp-controller="Admin" asp-route-id="@item.Id" asp-action="DoctorUser" method="post">
-                                         @* <button type="submit" class="btn btn-sm text-white" style="background-color: #4e73df">Invite</button>  *@
+										<button type="submit" style="font-size: 20px; color: #4CAF50; background-color: transparent; border: none; padding: 0; "> <i class="fas fa-paper-plane fa-1x"></i></button>
 
-                                        <button type="submit" style="font-size: 20px; color: #4CAF50; background-color: transparent; border: none; padding: 0; "> <i class="fas fa-paper-plane fa-1x"></i></button>
-
-                                    </form>
-                                }
-
-                            
-                                @* <a class="btn btn-sm text-white" style="background-color: #4e73df" asp-action="Edit" asp-route-id="@item.Id">Edit</a> *@
-
-                                <a asp-action="Edit" asp-controller="Admin" asp-route-id="@item.Id" style="font-size: 20px;color: color: #2196F3;">
-                                    <i class="fas fa-edit fa-1x"></i>
-                                </a>
-
-                       
+									</form>
+								}
 
 
+								@* <a class="btn btn-sm text-white" style="background-color: #4e73df" asp-action="Edit" asp-route-id="@item.Id">Edit</a> *@
 
-                               
+								<a asp-action="Edit" asp-controller="Admin" asp-route-id="@item.Id" style="font-size: 20px;color: color: #2196F3;">
+									<i class="fas fa-edit fa-1x"></i>
+								</a>
 
-                                @* <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.Id">Delete<i class="fa-solid fa-trash"></i></a> *@
-                                <a asp-action="Delete" asp-controller="Admin" asp-route-id="@item.Id" style="font-size: 20px;color: #FF5733"><i class="fa-solid fa-trash fa-1x"></i></a>
+								@* <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.Id">Delete<i class="fa-solid fa-trash"></i></a> *@
+								<a asp-action="Delete" asp-controller="Admin" asp-route-id="@item.Id" style="font-size: 20px;color: #FF5733"><i class="fa-solid fa-trash fa-1x"></i></a>
 
 
-                            </td>
-                        </tr>
-                    }
-                    </tbody>
+							</td>
+						</tr>
+					}
+				</tbody>
 
-                 
 
-           
-            </table>
 
-        </div>
-    </div>
+
+			</table>
+
+		</div>
+	</div>
 
 </div>
- @section scripts { 
-    <script src="~/Theme/vendor/jquery/jquery.min.js"></script>
-    <script src="~/Theme/vendor/jquery-easing/jquery.easing.min.js"></script>
-    <script src="~/Theme/js/sb-admin-2.min.js"></script>
-    <script src="~/Theme/vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="~/Theme/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-    <script src="~/Theme/js/demo/datatables-demo.js"></script>
-}  
+@section scripts {
+	<script src="~/Theme/vendor/jquery/jquery.min.js"></script>
+	<script src="~/Theme/vendor/jquery-easing/jquery.easing.min.js"></script>
+	<script src="~/Theme/js/sb-admin-2.min.js"></script>
+	<script src="~/Theme/vendor/datatables/jquery.dataTables.min.js"></script>
+	<script src="~/Theme/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+	<script src="~/Theme/js/demo/datatables-demo.js"></script>
+}
 <script>
 
-    setTimeout(function(){
-        var msg=document.querySelector(".UpdatedMessage");
-        msg.remove();
-    },1000)
+	setTimeout(function(){
+		var msg=document.querySelector(".UpdatedMessage");
+		msg.remove();
+	},1000)
 
-      setTimeout(function(){
-        var msges=document.querySelector(".LockMessage");
-        msges.remove();
-    },1000)
-     
+	  setTimeout(function(){
+		var msges=document.querySelector(".LockMessage");
+		msges.remove();
+	},1000)
+
 </script>

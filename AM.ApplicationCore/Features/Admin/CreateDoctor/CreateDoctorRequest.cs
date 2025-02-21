@@ -10,11 +10,13 @@ namespace AM.ApplicationCore.Features.Admin.CreateDoctor
     {
         public readonly DoctorModel _doctor;
         public readonly List<string> availabilityDays;
+        public readonly List<string> availabilityTimeSlot;
 
-        public CreateDoctorRequest(DoctorModel doctor, List<string> AvailabilityDays)
+        public CreateDoctorRequest(DoctorModel doctor, List<string> AvailabilityDays,List<string> AvailabilityTimeSlot)
         {
             _doctor = doctor;
             availabilityDays = AvailabilityDays;
+            availabilityTimeSlot = AvailabilityTimeSlot;
         }
     }
 }

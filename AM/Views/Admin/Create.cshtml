@@ -1,4 +1,5 @@
-﻿
+﻿@using AM.ApplicationCore.Models
+
 
 @*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -7,9 +8,10 @@
 }
 @model DoctorModel
 
+
 @* @{
     ViewData["Title"] = "Create";
-   
+
 }  
  *@
 <div class="row justify-content-center card shadow">
@@ -34,7 +36,7 @@
                     <div class="form-group">
                         <label asp-for="Email" class="control-label"></label>
                         <input asp-for="Email" class="form-control input-lg custom-input-width" />
-                           <span asp-validation-for="Email" class="text-danger"></span>
+                        <span asp-validation-for="Email" class="text-danger"></span>
                     </div>
                 </div>
 
@@ -54,12 +56,12 @@
                     </div>
                 </div>
 
-                
+
             </div>
 
             <!-- Second Row of Input Fields -->
             <div class="row mb-4">
-             
+
                 <div class="col-md-3">
                     <div class="form-group">
                         <label asp-for="City" class="control-label"></label>
@@ -91,7 +93,7 @@
                     </div>
                 </div>
 
-               
+
 
 
 
@@ -99,7 +101,7 @@
 
             <!-- Third Row of Input Fields -->
             <div class="row mb-4">
-              @*   <div class="col-md-3">
+                @*   <div class="col-md-3">
                     <div class="form-group">
                         <label asp-for="Address" class="control-label"></label>
                         <input asp-for="Address" class="form-control input-lg custom-input-width" />
@@ -107,9 +109,9 @@
                     </div>
                 </div> *@
 
-              
 
-   <div class="col-md-3">
+
+                <div class="col-md-3">
                     <div class="form-group">
                         <label asp-for="WaitTime" class="control-label"></label>
                         <input asp-for="WaitTime" class="form-control input-lg custom-input-width" />
@@ -124,7 +126,7 @@
                     </div>
                 </div>  *@
 
-                 @* <div class="col-md-3">
+                @* <div class="col-md-3">
                     <div class="form-group">
                         <label asp-for="AvailabilityDays" class="control-label"></label>
                         <div>
@@ -135,11 +137,11 @@
 
                                 <br />
                             } 
-                            
-                           
 
 
-                       
+
+
+
 
                         </div>
                         <span asp-validation-for="AvailabilityDays" class="text-danger"></span>
@@ -169,15 +171,39 @@
 
 
 
-
-                <div class="col-md-3">
+                @*   <div class="col-md-3">
                     <div class="form-group">
-                        <label asp-for="AvailabilityHours" class="control-label"></label>
-                        <input asp-for="AvailabilityHours" class="form-control input-lg custom-input-width" />
-                        <span asp-validation-for="AvailabilityHours" class="text-danger"></span>
+                        <label asp-for="AvailabilityTimeSlot" class="control-label"></label>
+                        <input asp-for="AvailabilityTimeSlot" class="form-control input-lg custom-input-width" />
+                        <span asp-validation-for="AvailabilityTimeSlot" class="text-danger"></span>
                     </div>
 
-                </div>
+                </div>  *@
+                @* ViewBag.Slots *@
+
+                 <div class="col-md-5">
+                    <div class="form-group">
+                        <label asp-for="AvailabilityTimeSlot" class="control-label"></label>
+                        <div>
+
+
+
+                            <select class="js-example-basic-multiple" name="AvailabilityTimeSlot" multiple="multiple">
+
+                                @foreach (var slot in ViewBag.Slots as List<TimeSlotsModel>)
+                                {
+
+                                      <option value="@slot.StartTime-@slot.EndTime">@slot.StartTime.ToString("hh:mm tt")-@slot.EndTime.ToString("hh-mm tt")</option>
+                                }) ;
+
+
+                            
+                        </select>
+                        </div>
+                        <span asp-validation-for="AvailabilityTimeSlot" class="text-danger"></span>
+                    </div>
+
+                </div> 
 
 
                 <div class="col-md-3">

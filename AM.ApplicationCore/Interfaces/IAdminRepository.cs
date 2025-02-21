@@ -11,13 +11,13 @@ namespace AM.ApplicationCore.Interfaces
         Task<AppointmentModel> GetAppointmentById(int Id);
         //Task<bool> InviteDoctor(DoctorModel Doctor);
 
-        Task<bool> CreateDoctor(DoctorModel doctor, List<string> AvailabilityDays);
+        Task<bool> CreateDoctor(DoctorModel doctor, List<string> AvailabilityDays,List<string> AvailabilityTimeSlot);
         Task<bool> DeleteDoctor(DoctorModel doctor);
 
 
         Task<bool> DoctorUpdate(DoctorModel doctor);
 
-        Task<bool> UpdateLockDoctor(DoctorModel doctor, List<string> AvailabilityDays);
+        Task<bool> UpdateLockDoctor(DoctorModel doctor, List<string> AvailabilityDays, List<string> AvailabilityTimeSlot);
 
         Task<bool> BookAppointment(AppointmentModel appoinment);
         Task<bool> CancelAppointment(AppointmentModel appoinment);

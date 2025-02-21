@@ -31,9 +31,9 @@ namespace AM.ApplicationCore.Features.Admin.CreateDoctor
                 UserId = request._doctor.UserId,
                
                  AvailabilityDays = request._doctor.AvailabilityDays,
-                AvailabilityHours = request._doctor.AvailabilityHours
+                AvailabilityTimeSlot = request._doctor.AvailabilityTimeSlot
             };
-            return await _adminRepository.CreateDoctor(doctor, request.availabilityDays);
+            return await _adminRepository.CreateDoctor(doctor, request.availabilityDays,request.availabilityTimeSlot);
         }
     }
 

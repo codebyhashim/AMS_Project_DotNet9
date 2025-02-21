@@ -22,7 +22,7 @@ namespace AM.ApplicationCore.Features.Admin.UpdateLockDoctor
         public async Task<bool> Handle(UpdateDoctorLockRequest request, CancellationToken cancellationToken)
         {
             
-            return await _adminRepository.UpdateLockDoctor(request._doctor, request.availabilityDays);
+            return await _adminRepository.UpdateLockDoctor(request._doctor, request.availabilityDays, request.availabilityTimeSlot);
         }
     }
 }

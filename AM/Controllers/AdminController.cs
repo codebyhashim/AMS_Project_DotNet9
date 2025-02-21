@@ -22,6 +22,7 @@ using AM.ApplicationCore.Validator;
 using AM.Data;
 using AM.Interfaces;
 using AM.Models;
+using AM.Repositories;
 using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -44,8 +45,9 @@ namespace AM.Controllers
         private readonly IMediator _mediator;
         private readonly ILogger logger;
         private readonly IValidator<DoctorModel> _validator;
+        private readonly ApplicationDbContext applicationDbContext;
 
-        public AdminController(ApplicationDbContext _Context, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager, IMediator _mediator, ILogger<AdminController> logger, IValidator<DoctorModel> validator )
+        public AdminController(ApplicationDbContext _Context, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager, IMediator _mediator, ILogger<AdminController> logger, IValidator<DoctorModel> validator, ApplicationDbContext applicationDbContext )
         {
             context = _Context;
             this.userManager = userManager;
@@ -54,6 +56,7 @@ namespace AM.Controllers
             this._mediator = _mediator;
             this.logger = logger;
             this._validator = validator;
+            this.applicationDbContext = applicationDbContext;
 
 
             //this.validator = this.validator;
@@ -87,20 +90,23 @@ namespace AM.Controllers
         public IActionResult Create()
         {
 
+            var slots = context.Slots.ToList();
+           
+            ViewBag.Slots = slots;
             // creating object and pass to the view
             return View();
         }
 
 
         [HttpPost("Doctor/Create")]
-        public async Task<IActionResult> Create(DoctorModel doctor , List<string> AvailabilityDays)
+        public async Task<IActionResult> Create(DoctorModel doctor , List<string> AvailabilityDays, List<string> AvailabilityTimeSlot)
         {
 
             //var validator = await _validator.ValidateAsync(doctor);
             var validation = await _validator.ValidateAsync(doctor);
             if (validation.IsValid)
             {
-                await _mediator.Send(new CreateDoctorRequest(doctor,AvailabilityDays));
+                await _mediator.Send(new CreateDoctorRequest(doctor,AvailabilityDays, AvailabilityTimeSlot));
 
                 return RedirectToAction("ViewDoctors", "Admin");
             }
@@ -185,11 +191,11 @@ namespace AM.Controllers
         {
             //var doctor = await adminRepository.GetDoctorById(id);
             var doctor = await _mediator.Send(new GetDoctorByIdRequest() { id = id });
-
+          
             return View(doctor);
         }
         [HttpPost("Doctor/Edit")]
-        public async Task<IActionResult> Edit(DoctorModel doctorModel, List<string> AvailabilityDays)
+        public async Task<IActionResult> Edit(DoctorModel doctorModel, List<string> AvailabilityDays, List<string> AvailabilityTimeSlot)
         {
             var validation =await _validator.ValidateAsync(doctorModel);
 
@@ -198,7 +204,7 @@ namespace AM.Controllers
                 //await adminRepository.DoctorUpdate(doctorModel);
                 //await _mediator.Send(new UpdateDoctorRequest(doctorModel));
 
-                await _mediator.Send(new UpdateDoctorLockRequest(doctorModel,AvailabilityDays));
+                await _mediator.Send(new UpdateDoctorLockRequest(doctorModel,AvailabilityDays, AvailabilityTimeSlot));
 
                 TempData["UpdatedMessage"] = "Updated Successfully";
                 return RedirectToAction("ViewDoctors", "Admin");

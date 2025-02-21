@@ -2,7 +2,7 @@
 
 @{
 	ViewData["Title"] = "Edit Doctor";
-	var selectedDays = Model.AvailabilityDays?.Split(',') ?? new string[0];
+
 
 
 }
@@ -93,69 +93,71 @@
 			@* third row *@
 			<div class="row mb-4">
 
-				 <div class="col-md-3">
+				@*   <div class="col-md-3">
 					<div class="form-group">
 						<label asp-for="AvailabilityDays" class="control-label"></label>
 						<input asp-for="AvailabilityDays" class="form-control input-lg custom-input-width" />
 						<span asp-validation-for="AvailabilityDays" class="text-danger"></span>
 					</div>
-				</div> 
+				</div>   *@
 
 
 
+				<div class="col-md-3">
+					<div class="form-group">
+							<select class="js-example-basic-multiple" asp-for="AvailabilityDays" multiple="multiple">
+								@{
+									var allDays = new[] { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
+								}
+								@foreach (var day in allDays)
+								{
+									if (Model.AvailabilityDays.Contains(day))
+									{
+										<option value="@day" selected>@day</option>
+									}
+									else
+									{
+										<option value="@day">@day</option>
+									}
+								}
+
+							</select>
+						<span asp-validation-for="AvailabilityDays" class="text-danger"></span>
+					</div>
+				</div>
 				@* <div class="col-md-3">
 					<div class="form-group">
-						<label asp-for="AvailabilityDays" class="control-label"></label>
-						<div>
-							<select class="js-example-basic-multiple" name="AvailabilityDays" multiple="multiple">
-								<option value="Monday">Monday</option>
-								<option value="Tuesday">Tuesday</option>
-								<option value="Wednesday">Wednesday</option>
-								<option value="Thursday">Thursday</option>
-								<option value="Friday">Friday</option>
-								<option value="Saturday">Saturday</option>
-								<option value="Sunday">Sunday</option>
-							</select>
-
-						</div>
-						<span asp-validation-for="AvailabilityDays" class="text-danger"></span>
+						<label asp-for="AvailabilityTimeSlot" class="control-label"></label>
+						<input asp-for="AvailabilityTimeSlot" class="form-control input-lg custom-input-width" />
+						<span asp-validation-for="AvailabilityTimeSlot" class="text-danger"></span>
 					</div>
 				</div> *@
- 
-
-
-
-      
-
- 
-
-
-
-				
 				<div class="col-md-3">
 					<div class="form-group">
-						<label asp-for="AvailabilityDays" class="control-label"></label>
-						<div>
+						<select class="js-example-basic-multiple" asp-for="AvailabilityTimeSlot" multiple="multiple">
+							@{
+								var slots = new[] { "9:00AM-9:30AM", "10:00AM-10:30AM", "11:00AM-11:30AM", "12:00AM-12:30AM", "1:00AM-2:30AM", "3:00AM-3:30AM", "4:00AM-4:30AM" };
+							}
+							@foreach (var slot in slots)
+							{
+								if (Model.AvailabilityTimeSlot.Contains(slot))
+								{
+									<option value="@slot" selected>@slot</option>
+								}
+								else
+								{
+									<option value="@slot">@slot</option>
+								}
+							}
 
-							
-
-
-
-
-							@* <input asp-for="AvailabilityDays" class="form-control input-lg custom-input-width" /> *@
-
-						</div>
+						</select>
 						<span asp-validation-for="AvailabilityDays" class="text-danger"></span>
 					</div>
 				</div>
 
-				<div class="col-md-3">
-					<div class="form-group">
-						<label asp-for="AvailabilityHours" class="control-label"></label>
-						<input asp-for="AvailabilityHours" class="form-control input-lg custom-input-width" />
-						<span asp-validation-for="AvailabilityHours" class="text-danger"></span>
-					</div>
-				</div>
+
+
+
 
 				<div class="col-md-3">
 					<div class="form-group">

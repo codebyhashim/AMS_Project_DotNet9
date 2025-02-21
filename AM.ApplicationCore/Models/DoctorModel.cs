@@ -32,7 +32,7 @@ namespace AM.Models
 
         public string? AvailabilityDays { get; set; } 
         
-        public string? AvailabilityHours { get; set; }
+        public string? AvailabilityTimeSlot { get; set; }
 
         //Navigation Property to Appointments
         public ICollection<AppointmentModel>? Appoinment { get; set; }

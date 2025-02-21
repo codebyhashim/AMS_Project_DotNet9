@@ -159,12 +159,15 @@ namespace AM.Controllers
             {
                 //var doctors = _patientRepository.GetActiveDoctors();
                 var doctors = _mediator.Send(new GetActiveDoctorsRequest());
-
+                if (doctors == null)
+                {
+                    return BadRequest("doctor not registered");
+                }
                 ViewBag.doctors = doctors.Result;
 
-                var time=applicationDb.Slots.ToList();
+                //var time=applicationDb.Slots.ToList();
 
-                    ViewBag.timeSlot = time;
+                //    ViewBag.timeSlot = time;
                 
                 
                

@@ -35,7 +35,7 @@ namespace AM.ApplicationCore.Validator
              .NotEmpty().WithMessage("Please select at least one day.")  // Ensure that at least one day is selected
              .Must(days => days != null && days.Any()).WithMessage("At least one day must be selected."); // Checks if there are any selected days
 
-            RuleFor(x => x.AvailabilityHours)
+            RuleFor(x => x.AvailabilityTimeSlot)
             .NotEmpty().WithMessage("AvailabilityHours  is required");
 
             RuleFor(x => x.City)
