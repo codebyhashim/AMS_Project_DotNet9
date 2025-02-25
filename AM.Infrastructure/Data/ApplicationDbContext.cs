@@ -20,7 +20,7 @@ namespace AM.Data
             builder.Entity<TimeSlotsModel>().HasData(
 
          new TimeSlotsModel { Id = 1, StartTime = new TimeOnly(9,0 ), EndTime = new TimeOnly(9,30) },
-        new TimeSlotsModel { Id = 2, StartTime = new TimeOnly(9,30 ), EndTime = new TimeOnly(10,30) },
+        new TimeSlotsModel { Id = 2, StartTime = new TimeOnly(10,0 ), EndTime = new TimeOnly(10,30) },
         new TimeSlotsModel { Id = 3, StartTime = new TimeOnly(11,0 ), EndTime = new TimeOnly(11,30) },
         new TimeSlotsModel { Id = 4, StartTime = new TimeOnly(12,0 ), EndTime = new TimeOnly(12,30) },
         new TimeSlotsModel { Id = 5, StartTime = new TimeOnly(13,0), EndTime = new TimeOnly(13,30) },

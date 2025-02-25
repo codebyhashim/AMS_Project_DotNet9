@@ -135,6 +135,8 @@
 						@* <th>Speciality</th>
                         <th>Degree</th> *@
 						<th>About Details</th>
+						@* <th>avalabilies days</th> *@
+
 
 						<th>IsActive</th>
 						<th>Actions</th>
@@ -146,10 +148,49 @@
 					{
 						<tr>
 							<td>Name: @item.Name  <br /> Email : @item.Email   <br /> PhoneNumber: @item.PhoneNumber <br /> City: @item.City </td>
-							<td>WaitTime: @item.WaitTime  <br />AvailabilityDays: @item.AvailabilityDays  <br />AvailabilityTimeSlot: @item.AvailabilityTimeSlot</td>
-							<td>Speciality :@item.Speciality  <br />   Degree: @item.Degree</td>
+							<td>
+								WaitTime: @item.WaitTime
+								<br />
+								AvailabilityTimeSlot:
+								<br />
+								@item.AvailabilityTimeSlot
+								<br />
+								AvailabilityDays:
+								<br />
+								@foreach (var dayString in item.AvailabilityDays.Split(','))
+								{
+									// Try to parse the string as an integer
+									if (int.TryParse(dayString, out int dayInt) && Enum.IsDefined(typeof(DayOfWeek), dayInt))
+									{
+
+										// Convert the integer to DayOfWeek enum and display the day name
+										DayOfWeek day = (DayOfWeek)dayInt;
+										@day  <!-- This will display the name like Sunday, Monday, etc. -->
+									}
+								}
+							</td>
+							<td>
+								Speciality :@item.Speciality  <br />   Degree: @item.Degree
+
+
+
+							</td>
 							<td>@item.Experience</td>
 							<td>@item.Description</td>
+							@* <td>
+								AvailabilityDays: <br />
+								@foreach (var dayString in item.AvailabilityDays.Split(','))
+								{
+									// Try to parse the string as an integer
+									if (int.TryParse(dayString, out int dayInt) && Enum.IsDefined(typeof(DayOfWeek), dayInt))
+									{
+
+										// Convert the integer to DayOfWeek enum and display the day name
+										DayOfWeek day = (DayOfWeek)dayInt;
+										@day  <!-- This will display the name like Sunday, Monday, etc. -->
+									}
+								}
+								 </td> *@
 							<form asp-controller="Admin" asp-route-id="@item.Id" asp-action="ShowDoctor" method="post">
 							<td class="text-center pt-5">
 									@if (@item.IsActive)

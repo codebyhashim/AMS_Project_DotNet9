@@ -29,7 +29,10 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
+using Serilog;
+using static System.Reflection.Metadata.BlobBuilder;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Model;
 
 
@@ -43,7 +46,7 @@ namespace AM.Controllers
         private readonly RoleManager<IdentityRole> roleManager;
        
         private readonly IMediator _mediator;
-        private readonly ILogger logger;
+        //private readonly ILogger logger;
         private readonly IValidator<DoctorModel> _validator;
         private readonly ApplicationDbContext applicationDbContext;
 
@@ -54,7 +57,7 @@ namespace AM.Controllers
             this.roleManager = roleManager;
           
             this._mediator = _mediator;
-            this.logger = logger;
+            //this.logger = logger;
             this._validator = validator;
             this.applicationDbContext = applicationDbContext;
 
@@ -79,6 +82,7 @@ namespace AM.Controllers
         {
             
             //var listOfDoctors = adminRepository.ViewDoctors().Result;
+            
             var listOfDoctors = await _mediator.Send(new GetAllDoctorsRequest());
             
            
@@ -186,12 +190,78 @@ namespace AM.Controllers
             }
             return RedirectToAction("ViewDoctors", "Admin");
         }
+       
+
         [HttpGet("Doctor/Edit")]
+        //public async Task<IActionResult> Edit(int id)
+        //{
+        //    // Fetch the doctor details
+        //    var doctor = await _mediator.Send(new GetDoctorByIdRequest() { id = id });
+
+        //    // Get the selected slot IDs from the doctor's AvailabilityTimeSlot
+        //    var selectedSlotIds = doctor.AvailabilityTimeSlot?.Split(','); // Split the comma-separated string into an array
+
+        //    // Get all available slots from the database
+        //    var slots = context.Slots.ToList();
+
+        //    // Create a list of SelectListItem with the selected slots marked as selected
+        //    var selectedSlotList = slots.Select(x => new SelectListItem
+        //    {
+        //        Text = $"{x.StartTime} - {x.EndTime}", // Format the display text
+        //        Value = x.Id.ToString(),
+        //        Selected = selectedSlotIds?.Contains(x.Id.ToString()) ?? false // Mark as selected if the slot ID is in the selectedSlotIds array
+        //    }).ToList();
+
+        //    // Assign the list to ViewBag.SlotList
+        //    ViewBag.SlotList = selectedSlotList;
+
+        //    return View(doctor);
+        //}
+
+
+
+
+
         public async Task<IActionResult> Edit(int id)
         {
             //var doctor = await adminRepository.GetDoctorById(id);
+            // Fetch the doctor details
             var doctor = await _mediator.Send(new GetDoctorByIdRequest() { id = id });
-          
+
+            // Get all available slots from the database
+            var slots = context.Slots.ToList();
+            // Get the selected slot IDs from the doctor's AvailabilityTimeSlot
+            var selectedSlots = doctor.AvailabilityTimeSlot.Split(',');
+
+            // Get the selected slot IDs from the doctor's AvailabilityTimeSlot
+
+            var selecetedDays = doctor.AvailabilityDays.Split(',');
+
+            var daysOfWeek = Enum.GetValues(typeof(DayOfWeek)).Cast<DayOfWeek>()
+                .Select(day => new SelectListItem
+                {
+                    Text=day.ToString(),
+                    Value= ((int)day).ToString(),
+                    Selected=selecetedDays.Contains(((int)day).ToString())
+
+                }).ToList();
+
+            ViewBag.Days = daysOfWeek;
+            // Create a list of SelectListItem with the selected slots marked as selected
+            var selectedSlotList = slots.Select(x => new SelectListItem
+            {
+                Text = x.StartTime + "-" + x.EndTime,
+                Value = x.Id.ToString(),
+                Selected = selectedSlots.Any(y => y.Equals(x.Id.ToString())) // Mark as selected if the slot ID is in the selectedSlotIds array
+                //Selected = selectedSlots?.Contains(x.Id.ToString()) ?? false
+
+            }).ToList();
+            //ViewBag.SlotList = new MultiSelectList(selectedSlotList, "Value", "Text", selectedSlots);
+
+            // Assign the list to ViewBag.SlotList
+            ViewBag.SlotList = selectedSlotList;
+
+            //Console.WriteLine(totalTimeslot);
             return View(doctor);
         }
         [HttpPost("Doctor/Edit")]

@@ -51,7 +51,7 @@ namespace AM.Data.Migrations
                         {
                             Id = 2,
                             EndTime = new TimeOnly(10, 30, 0),
-                            StartTime = new TimeOnly(9, 30, 0)
+                            StartTime = new TimeOnly(10, 0, 0)
                         },
                         new
                         {
@@ -134,7 +134,7 @@ namespace AM.Data.Migrations
                     b.Property<string>("AvailabilityDays")
                         .HasColumnType("nvarchar(max)");
 
-                    b.PrimitiveCollection<string>("AvailabilityTimeSlot")
+                    b.Property<string>("AvailabilityTimeSlot")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("City")

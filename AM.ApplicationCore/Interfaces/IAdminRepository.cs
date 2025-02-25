@@ -1,4 +1,5 @@
-﻿using AM.Models;
+﻿using AM.ApplicationCore.Models;
+using AM.Models;
 
 namespace AM.ApplicationCore.Interfaces
 {
@@ -29,6 +30,7 @@ namespace AM.ApplicationCore.Interfaces
 
         //Task<bool> InviteDoctor(DoctorModel doctor);
 
+        //Task<TimeSlotsModel> GetDoctorSlots(DoctorModel doctor);
 
     }
 }

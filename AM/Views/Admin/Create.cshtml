@@ -154,13 +154,19 @@
                         <label asp-for="AvailabilityDays" class="control-label"></label>
                         <div>
                             <select class="js-example-basic-multiple" name="AvailabilityDays" multiple="multiple">
-                                <option value="Monday">Monday</option>
+
+                                @foreach (DayOfWeek day in Enum.GetValues(typeof(DayOfWeek)))
+                                {
+                                    <option value="@((int)day)">@day</option>
+                                }
+
+                               @*  <option value="Monday">Monday</option>
                                 <option value="Tuesday">Tuesday</option>
                                 <option value="Wednesday">Wednesday</option>
                                 <option value="Thursday">Thursday</option>
                                 <option value="Friday">Friday</option>
                                 <option value="Saturday">Saturday</option>
-                                <option value="Sunday">Sunday</option>
+                                <option value="Sunday">Sunday</option> *@
                             </select>
 
                         </div>
@@ -193,7 +199,7 @@
                                 @foreach (var slot in ViewBag.Slots as List<TimeSlotsModel>)
                                 {
 
-                                      <option value="@slot.StartTime-@slot.EndTime">@slot.StartTime.ToString("hh:mm tt")-@slot.EndTime.ToString("hh-mm tt")</option>
+                                      <option value="@slot.Id">@slot.StartTime.ToString("hh:mm tt")-@slot.EndTime.ToString("hh-mm tt")</option>
                                 }) ;
 
 

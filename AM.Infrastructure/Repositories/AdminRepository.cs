@@ -10,6 +10,8 @@ using System.Numerics;
 using FluentValidation;
 using Azure.Core;
 using MediatR;
+using AM.ApplicationCore.Models;
+using static System.Reflection.Metadata.BlobBuilder;
 
 namespace AM.Repositories
 {
@@ -20,7 +22,7 @@ namespace AM.Repositories
         private readonly RoleManager<IdentityRole> roleManager;
         private readonly IEmailService emailService;
         private readonly IHttpContextAccessor _httpContextAccessor;
-        
+
 
         public AdminRepository(ApplicationDbContext _context, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager, IEmailService emailService, IHttpContextAccessor httpContextAccessor
             )
@@ -30,14 +32,14 @@ namespace AM.Repositories
             this.roleManager = roleManager;
             this.emailService = emailService;
             this._httpContextAccessor = httpContextAccessor;
-            
+
         }
         public async Task<DoctorModel> InviteDoctor(DoctorModel Doctor)
         {
 
-   
-            
-                var doctor =await _context.Doctors.FindAsync(Doctor.Id);
+
+
+            var doctor = await _context.Doctors.FindAsync(Doctor.Id);
             if (doctor != null)
             {
                 //var emailExist = await userManager.FindByEmailAsync(Doctor.Email);
@@ -72,7 +74,7 @@ namespace AM.Repositories
                     doctor.UserId = user.Id;
 
                     _context.Doctors.Update(doctor);
-                  await _context.SaveChangesAsync();
+                    await _context.SaveChangesAsync();
 
 
                     var loginUrl = "https://localhost:7251/Identity/Account/login";  // Replace with your actual login URL
@@ -97,8 +99,8 @@ namespace AM.Repositories
         public async Task<bool> BookAppointment(AppointmentModel appointment)
         {
             appointment.Status = AppoinmentStatus.Booked;
-             _context.Appoinments.Update(appointment);
-           await  _context.SaveChangesAsync();
+            _context.Appoinments.Update(appointment);
+            await _context.SaveChangesAsync();
             return true;
 
         }
@@ -117,30 +119,30 @@ namespace AM.Repositories
         public async Task<DashboardCountsModel> Counts()
         {
 
-            var totalRegisterdDoctor = await  _context.Doctors.CountAsync();
-            var totalRegisterdPatients =await _context.Patients.CountAsync();
-            var totalApprovedAppointments =await _context.Appoinments.CountAsync(x => x.Status == AppoinmentStatus.Booked);
+            var totalRegisterdDoctor = await _context.Doctors.CountAsync();
+            var totalRegisterdPatients = await _context.Patients.CountAsync();
+            var totalApprovedAppointments = await _context.Appoinments.CountAsync(x => x.Status == AppoinmentStatus.Booked);
             var totalPendingAppointments = await _context.Appoinments.CountAsync(x => x.Status == AppoinmentStatus.Pending);
             var totalCanceleAppointments = await _context.Appoinments.CountAsync(x => x.Status == AppoinmentStatus.Cancelled);
 
             var counts = new DashboardCountsModel
             {
-                 TotalRegisterdDoctor = totalRegisterdDoctor,
+                TotalRegisterdDoctor = totalRegisterdDoctor,
                 TotalRegisterdPatients = totalRegisterdPatients,
                 TotalApprovedAppointments = totalApprovedAppointments,
                 TotalPendingAppointments = totalPendingAppointments,
                 TotalCanceleAppointments = totalCanceleAppointments,
             };
 
-            return  counts;
+            return counts;
 
         }
 
-     
+
         public async Task<bool> DeleteDoctor(DoctorModel doctor)
         {
             //var user = await userManager.FindByEmailAsync(doctor.Email);
-            var user = await userManager.Users.FirstOrDefaultAsync(x=>x.Id==doctor.UserId);
+            var user = await userManager.Users.FirstOrDefaultAsync(x => x.Id == doctor.UserId);
 
             //var user = _httpContextAccessor.HttpContext?.User;
             // var user = await userManager.fin
@@ -210,21 +212,21 @@ namespace AM.Repositories
             doctor.WaitTime = doctorModel.WaitTime;
             doctor.PhoneNumber = doctorModel.PhoneNumber;
             doctor.Degree = doctorModel.Degree;
-             
-            
+
+
 
             //doctor = data;
             _context.Doctors.Update(doctor);
             // Step 4: Save changes to the database (both the doctor and the user)
             await _context.SaveChangesAsync();
-            
+
             return true;
         }
 
         public async Task<DoctorModel> GetDoctorById(int id)
         {
             var doctor = await _context.Doctors.FindAsync(id);
-            
+
             return doctor;
         }
 
@@ -239,17 +241,52 @@ namespace AM.Repositories
 
         public async Task<List<DoctorModel>> ViewDoctors()
         {
-           
+
             //var doctr=await _context.Doctors.ToListAsync();
-            
+
 
             var doctors = await _context.Doctors.ToListAsync();
 
+            var doctorModels = new List<DoctorModel>();
+
+            foreach (var item in doctors)
+            {
+                var slotId = item.AvailabilityTimeSlot.Split(',').Select(int.Parse).ToList();
+
+                var slot = await _context.Slots.Where(x => slotId.Contains(x.Id)).ToListAsync();
+                var availabilitySlotString = string.Join(", ", slot.Select(s => $"{s.StartTime:hh:mm tt} - {s.EndTime:hh:mm tt}"));
+                var doctor = new DoctorModel
+                {
+                    Id = item.Id,
+                    AvailabilityTimeSlot = availabilitySlotString,
+                    Email = item.Email,
+                    Name = item.Name,
+                    Speciality = item.Speciality,
+
+                    AvailabilityDays = item.AvailabilityDays,
+                    //doctor.AvailabilityDays = string.Join(",", AvailabilityDays);
+
+
+                    Experience = item.Experience,
+                    City = item.City,
+                    IsActive = item.IsActive,
+                    WaitTime = item.WaitTime,
+                    PhoneNumber = item.PhoneNumber,
+                    Degree = item.Degree,
+
+
+
+                };
+                doctorModels.Add(doctor);
+            }
+            return doctorModels;
+
+
+
            
-            return doctors;
         }
 
-       
+
         public async Task<bool> CreateDoctor(DoctorModel doctor, List<string> AvailabilityDays, List<string> AvailabilityTimeSlot)
         {
 
@@ -258,10 +295,10 @@ namespace AM.Repositories
             doctor.AvailabilityTimeSlot = string.Join(',', AvailabilityTimeSlot);
 
             await _context.Doctors.AddAsync(doctor);
-                await _context.SaveChangesAsync();
-                return true;
-            
-            
+            await _context.SaveChangesAsync();
+            return true;
+
+
         }
 
         public async Task<bool> UpdateLockDoctor(DoctorModel doctors, List<string> AvailabilityDays, List<string> AvailabilityTimeSlot)
@@ -269,8 +306,8 @@ namespace AM.Repositories
 
 
             //var doctor = await _adminRepository.GetDoctorById(request._doctor.Id);
-            
-            var doctor=await _context.Doctors.FirstOrDefaultAsync(x => x.Id==doctors.Id);
+
+            var doctor = await _context.Doctors.FirstOrDefaultAsync(x => x.Id == doctors.Id);
 
             doctor.Name = doctors.Name;
             doctor.Speciality = doctors.Speciality;
@@ -293,6 +330,8 @@ namespace AM.Repositories
             await _context.SaveChangesAsync();
             return true;
         }
+
+
     }
 }
 

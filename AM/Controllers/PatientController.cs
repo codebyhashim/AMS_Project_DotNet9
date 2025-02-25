@@ -165,12 +165,12 @@ namespace AM.Controllers
                 }
                 ViewBag.doctors = doctors.Result;
 
-                //var time=applicationDb.Slots.ToList();
+                var time = applicationDb.Slots.ToList();
 
-                //    ViewBag.timeSlot = time;
-                
-                
-               
+                ViewBag.timeSlot = time;
+
+
+
                 //var appointmentModel = _patientRepository.ShowAppointmetForm(patient);
                 var appointmentModel = _mediator.Send(new DisplayAppointmentFormRequest() {Patients=patient });
 
