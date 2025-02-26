@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AM.Interfaces;
+﻿using AM.Interfaces;
 using AM.Models;
 using MediatR;
 
@@ -13,7 +8,7 @@ namespace AM.ApplicationCore.Features.Patient.GetPateint
     {
         private readonly IPatientRepository _patientRepository;
 
-        public GetPatientHandler(IPatientRepository patientRepository )
+        public GetPatientHandler(IPatientRepository patientRepository)
         {
             this._patientRepository = patientRepository;
         }

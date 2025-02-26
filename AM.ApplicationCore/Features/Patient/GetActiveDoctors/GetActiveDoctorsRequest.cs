@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AM.ApplicationCore.Features.Patient.GetActiveDoctors;
-using AM.Models;
-using FluentValidation;
+﻿using AM.Models;
 using MediatR;
 
 namespace AM.ApplicationCore.Features.Patient.GetActiveDoctors
@@ -19,6 +12,6 @@ namespace AM.ApplicationCore.Features.Patient.GetActiveDoctors
 //{
 //    public DoctorListValidators()
 //    {
-        
+
 //    }
 //}

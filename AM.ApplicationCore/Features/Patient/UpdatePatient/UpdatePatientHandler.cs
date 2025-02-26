@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AM.Interfaces;
+﻿using AM.Interfaces;
 using MediatR;
 
 namespace AM.ApplicationCore.Features.Patient.UpdatePatient
-{ 
+{
     public class UpdatePatientHandler : IRequestHandler<UpdatePatientRequest, bool>
     {
         private readonly IPatientRepository _patientRepository;
@@ -16,7 +11,7 @@ namespace AM.ApplicationCore.Features.Patient.UpdatePatient
         {
             this._patientRepository = patientRepository;
         }
-         
+
         public async Task<bool> Handle(UpdatePatientRequest request, CancellationToken cancellationToken)
         {
             return await _patientRepository.UpdatePatient(request.patient);

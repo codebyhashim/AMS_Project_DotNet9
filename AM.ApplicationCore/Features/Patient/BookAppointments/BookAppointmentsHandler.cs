@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AM.Interfaces;
+﻿using AM.Interfaces;
 using MediatR;
 
 namespace AM.ApplicationCore.Features.Patient.BookAppoinments
@@ -16,7 +11,7 @@ namespace AM.ApplicationCore.Features.Patient.BookAppoinments
         {
             this._patientRepository = patientRepository;
         }
-         
+
         public async Task<bool> Handle(BookAppointmentsRequest request, CancellationToken cancellationToken)
         {
             return await _patientRepository.GetAppointments(request.appointment);

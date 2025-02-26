@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using AM.ApplicationCore.Features.Admin.CreateDoctor;
-using AM.Models;
+﻿using AM.Models;
 using FluentValidation;
 
 namespace AM.ApplicationCore.Validator
@@ -42,12 +35,12 @@ namespace AM.ApplicationCore.Validator
             .NotEmpty().WithMessage("City  is required")
             .MaximumLength(100).WithMessage("City can't be longer than 100 characters.");
 
-            
+
 
             RuleFor(x => x.Degree)
             .NotEmpty().WithMessage("Degree is required")
             .MaximumLength(20).WithMessage("PhoneNumber must not exceed 50 characters.");
-            
+
             RuleFor(x => x.Experience)
            .NotEmpty().WithMessage("Experience is required");
 

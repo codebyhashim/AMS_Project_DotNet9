@@ -21,7 +21,7 @@ namespace AM.Models
         public int DoctorId { get; set; }
 
         //Navigation Property
-
+        public string? BookedSlots { get; set; }
         public DoctorModel? Doctor { get; set; }
         public PatientModel? Patient { get; set; }
 

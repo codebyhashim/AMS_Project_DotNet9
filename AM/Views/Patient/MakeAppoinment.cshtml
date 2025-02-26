@@ -10,66 +10,41 @@
 
 <div class="row  ">
 
-    <div class="col-md-4 m-auto card shadow   " style="border-radius:10px">
-        <form asp-action="MakeAppoinment" asp-controller="Patient" method="post" class="card-body ">
-            <h4 class="text-center">Book Appoimdent</h4>
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group" hidden>
-                <label asp-for="AppointmentId" class="control-label"></label>
-                <input asp-for="AppointmentId" class="form-control" />
-            </div>
-            <div class="form-group" hidden>
-                <label asp-for="PatientId" class="control-label" hidden></label>
-                <input asp-for="PatientId" class="form-control" />
-            </div>
-            <div class="form-group">
-                <label asp-for="@Model.Patient">Patient Name</label>
-                <!-- Pre-fill patient's name from the model -->
-                <input asp-for="@Model.Patient" type="text" id="PatientName" class="form-control" value="@Model.Patient.Name" readonly />
-            </div>
+	<div class="col-md-4 m-auto card shadow   " style="border-radius:10px">
+		<form asp-action="MakeAppoinment" asp-controller="Patient" method="post" class="card-body ">
+			<h4 class="text-center">Book Appoimdent</h4>
+			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+			<div class="form-group" hidden>
+				<label asp-for="AppointmentId" class="control-label"></label>
+				<input asp-for="AppointmentId" class="form-control" />
+			</div>
+			<div class="form-group" hidden>
+				<label asp-for="PatientId" class="control-label" hidden></label>
+				<input asp-for="PatientId" class="form-control" />
+			</div>
+			<div class="form-group">
+				<label asp-for="@Model.Patient">Patient Name</label>
+				<!-- Pre-fill patient's name from the model -->
+				<input asp-for="@Model.Patient" type="text" id="PatientName" class="form-control" value="@Model.Patient.Name" readonly />
+			</div>
 
 
 
-            <div class="form-group">
-                <label asp-for="AppointmentDate" class="control-label"></label>
-                <input asp-for="AppointmentDate" type="date" value="@ViewBag.CurrentDate" min="@ViewBag.CurrentDate" class="form-control" />
-                <span asp-validation-for="AppointmentDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DoctorId">Select Doctor</label>
-                <select asp-for="DoctorId" class="form-control" id="DoctorId" name="DoctorId">
-                    @* <option value="0" disabled>select Doctor</option> *@
+			<div class="form-group">
+				<label asp-for="AppointmentDate" class="control-label"></label>
+				<input asp-for="AppointmentDate" id="AppointmentDate" type="date" value="@ViewBag.CurrentDate" min="@ViewBag.CurrentDate" class="form-control" />
+				<span asp-validation-for="AppointmentDate" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="DoctorId">Select Doctor</label>
+				<select asp-for="DoctorId" onchange="updateTimeSlot()" class="form-control" id="DoctorId" name="DoctorId">
+					<option value="0" disabled>select Doctor</option>
 
 
-                    @foreach (var doctor in ViewBag.Doctors as List<DoctorModel>)
-                    {
-                        <option value="@doctor.Id">@doctor.Name ( @doctor.Speciality)</option>
-                    }
-
-                    }
-
-
-                </select>
-                <span asp-validation-for="DoctorId" class="text-danger"></span>
-
-            </div>
-
-
-
-            <div class="form-group">
-                <label >Select slot</label>
-                <select  class="form-control" id="" name="">
-
-                    @* <option value="0" disabled>9.00 - 10.00</option>  *@
-
-                    @foreach (var doctor in ViewBag.timeSlot as List<TimeSlotsModel>)
-                    {
-                        <option value="@doctor.Id">@doctor.StartTime.ToString("hh:mm tt") - @doctor.EndTime.ToString("hh:mm tt")</option>
+					@foreach (var doctor in ViewBag.Doctors as List<DoctorModel>)
+					{
+						<option value="@doctor.Id">@doctor.Name ( @doctor.Speciality)</option>
 					}
-
-					
-
-					
 
 					}
 
@@ -79,13 +54,45 @@
 
 			</div>
 
+			<div class="form-group">
+				<label>Select Time Slot</label>
+				<select asp-for="BookedSlots" name="BookedSlots" class="form-control" id="SlotId">
+					@* <option value="" disabled selected>Select Time Slot</option> *@
+				</select>
+				<span id="slotErrorMessage" class="text-danger"></span>
+			</div>
+
+			@*  <div class="form-group">
+                <label >Select slot</label>
+                <select  class="form-control" id="" name="">
 
 
 
-			 <div class="form-group" hidden>
-                <label asp-for="DoctorId" class="control-label"></label>
-                <select asp-for="DoctorId" class ="form-control" asp-items="ViewBag.DoctorId"></select>
-            </div> 
+                    @foreach (var doctor in ViewBag.timeSlot as List<TimeSlotsModel>)
+                    {
+                        <option value="@doctor.Id">@doctor.StartTime.ToString("hh:mm tt") - @doctor.EndTime.ToString("hh:mm tt")</option>
+					}
+
+
+
+
+
+					}
+
+
+				</select>
+				<span asp-validation-for="DoctorId" class="text-danger"></span>
+
+			</div>
+ *@
+
+
+
+
+			<div class="form-group" hidden>
+				<label asp-for="DoctorId" class="control-label"></label>
+				<select asp-for="DoctorId" class="form-control" asp-items="ViewBag.DoctorId"></select>
+			</div>
 			<div class="form-group d-flex justify-content-center">
 				<input type="submit" value="Get Appoinment" class="btn btn-primary" />
 			</div>
@@ -104,3 +111,110 @@
     <a asp-action="Index">Back to List</a>
 </div> *@
 
+@* <script type="text/javascript">
+
+       function updateTimeSlot() {
+        var doctorId = $('#DoctorId').val();  // Get the selected doctor ID
+        var AppointmentDate = $('#AppointmentDate').val();  // Get the selected date of user
+
+        var date =$('')
+        if (doctorId) {
+            // Make an AJAX request to get the available slots for the selected doctor
+            $.ajax({
+                url: '@Url.Action("SelectedSlots", "Patient")', // Controller action URL
+                type: 'GET',
+                data: { doctorId: doctorId, date:AppointmentDate }, // Pass the selected doctor ID as a parameter
+                success: function (data) {
+					debugger
+                       $('#slotErrorMessage').text('');
+                    
+                    if (data.message){
+                        $('#slotErrorMessage').text(data.message);
+                        $('#SlotId').empty().prop('disabled', true);
+                    }else{
+
+
+						 $('#SlotId').empty();
+					$('#SlotId').append('<option value="0" disabled selected>Select Time Slot</option>');
+
+					// Loop through the received slots and append them to the Slot dropdown
+					$.each(data, function (index, slot) {
+						console.log("index is " + index + " " + "slot is: " + slot.text);
+						// Corrected log statement
+						// console.log(slot.Value);
+
+						$('#SlotId').append('<option value="' + slot.value + '">' + slot.text + '</option>');
+					});
+
+					}
+                   
+                    // Clear the Slot dropdown before appending new options
+                },
+                error: function (xhr, status, error) {
+                    // $('#slotErrorMessage').text('An error occurred while fetching available slots.');
+                    alert("An error occurred while fetching available slots.");
+                }
+            });
+        } else {
+            // Clear the Slot dropdown if no doctor is selected
+            $('#SlotId').empty();
+            $('#SlotId').append('<option value="0" disabled selected>Select Time Slot</option>');
+        }
+    }
+
+
+
+
+
+</script> 
+ *@
+ <script type="text/javascript">
+
+				  function updateTimeSlot() {
+		var doctorId = $('#DoctorId').val();  // Get the selected doctor ID
+		var appointmentDate = $('#AppointmentDate').val();  // Get the selected date of user
+
+		// Only proceed if a doctor is selected
+		if (doctorId) {
+			// Make an AJAX request to get the available slots for the selected doctor and date
+			$.ajax({
+				url: '@Url.Action("SelectedSlots", "Patient")', // Controller action URL
+				type: 'GET',
+				data: { doctorId: doctorId, date: appointmentDate }, // Pass the selected doctor ID and date as parameters
+				success: function (data) {
+					// debugger
+					// Clear previous error message
+					$('#slotErrorMessage').text('');
+
+					// **Key Change:** Check if the response contains a message
+					if (data.message) {
+						// If a message is returned (like "Doctor is not available on this day.")
+						$('#slotErrorMessage').text(data.message); // Display the error message
+						$('#SlotId').empty().prop('disabled', true); // Disable the slot dropdown
+					} else {
+						// If slots are available, populate the dropdown
+						var slotDropdown = $('#SlotId');
+						slotDropdown.empty().prop('disabled', false); // Enable the dropdown
+
+						// Add a default "Select Time Slot" option
+						slotDropdown.append('<option value="0" disabled selected>Select Time Slot</option>');
+
+						// Populate the dropdown with available slots
+						$.each(data, function (index, slot) {
+							slotDropdown.append('<option value="' + slot.value + '">' + slot.text + '</option>');
+						});
+					}
+				},
+				error: function (xhr, status, error) {
+					// **Key Change:** Error handling for AJAX request
+					$('#slotErrorMessage').text('An error occurred while fetching available slots.');
+				}
+			});
+		} else {
+			// If no doctor is selected, clear the slot dropdown and disable it
+			$('#SlotId').empty().prop('disabled', true);
+		}
+	}
+
+
+</script> 

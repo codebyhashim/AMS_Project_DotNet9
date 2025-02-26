@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AM.ApplicationCore.Features.Patient.BookAppoinments;
+﻿using AM.ApplicationCore.Features.Patient.BookAppoinments;
 using AM.Models;
 using FluentValidation;
 using MediatR;
@@ -31,8 +26,8 @@ public class BookAppointmentsRequestValidator : AbstractValidator<BookAppointmen
             GreaterThan(DateTime.Now).WithMessage("Appointment date must in future")
             .LessThan(DateTime.Now.AddYears(1)).
             WithMessage("Appointment date must be with in the next year");
-            
-            
-       
+
+
+
     }
 }

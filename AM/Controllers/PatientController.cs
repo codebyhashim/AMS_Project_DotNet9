@@ -16,6 +16,8 @@ using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.CodeAnalysis.Scripting;
 
 namespace AM.Controllers
 {
@@ -191,7 +193,19 @@ namespace AM.Controllers
             //var validation = await appoinmentvalidator.ValidateAsync(appointment);
             //if (validation.IsValid)
             //{
-                await _mediator.Send(new BookAppointmentsRequest(appointment));
+
+            //var doctor = applicationDb.Doctors.Where(x => x.Id == doctorId).FirstOrDefault();
+            //var doctorSlots = doctor.AvailabilityTimeSlot.Split(',').Select(s => int.Parse(s))
+            //                                   .ToArray();
+
+            //var selectSlot = applicationDb.Slots.Where(x => doctorSlots.Contains(x.Id)).ToList();
+            //if (selectSlot != null)
+            //{
+
+            //  return selectSlot;
+            //}
+
+            await _mediator.Send(new BookAppointmentsRequest(appointment));
 
             return RedirectToAction("ViewAppoinment", "Patient");
             //}
@@ -248,6 +262,108 @@ namespace AM.Controllers
             }
             return View();
         }
+
+
+
+        //public IActionResult SelectedSlots(int doctorId, string date)
+        //{
+
+        //    DateTime dat = DateTime.Parse(date);
+        //    //string userSelectedday = dat.DayOfWeek.ToString();
+
+        //    DayOfWeek userSelecteDay = dat.DayOfWeek;
+
+
+
+        //    //select doctor from db
+        //    var doctor = applicationDb.Doctors.Where(x => x.Id == doctorId).FirstOrDefault();
+        //    if (doctor == null)
+        //    {
+        //        return Json(new { message = "Doctor not found." });
+        //    }
+        //    // get selected doctor slots to convert  array using split and  then converto into int
+        //    var doctorSlots = doctor.AvailabilityTimeSlot.Split(',').Select(s => int.Parse(s))
+        //                                       .ToArray();
+
+        //    // get doctor day from db
+        //    //var doctorDay = doctor.AvailabilityDays.Split(",").Select(s => int.Parse(s)).ToList();
+
+        //    //select day 
+        //    var doctorAvailabilityDays = doctor.AvailabilityDays.Split(",").Select(s => int.Parse(s)).Select(day => (DayOfWeek)day).ToList();
+        //    if (!doctorAvailabilityDays.Contains(userSelecteDay))
+        //    {
+        //        return Json(new { message = "Doctor is not available on this day." });
+        //    }
+
+
+        //    // get doctor slots from slot table  
+        //    var selectSlot = applicationDb.Slots.Where(x => doctorSlots.Contains(x.Id))
+        //        .Select(x => new SelectListItem
+        //        {
+        //            Value = x.Id.ToString(),
+        //            Text = $"{x.StartTime:hh:mm tt} - {x.EndTime:hh:mm tt}"
+        //        }
+        //        ).ToList();
+
+
+
+        //    return Json(selectSlot);
+
+        //}
+
+
+
+        public IActionResult SelectedSlots(int doctorId, string date)
+        {
+            DateTime dat = DateTime.Parse(date);
+            DayOfWeek userSelecteDay = dat.DayOfWeek;
+
+            // Select doctor from db
+            var doctor = applicationDb.Doctors.Where(x => x.Id == doctorId).FirstOrDefault();
+            if (doctor == null)
+            {
+                return Json(new { message = "Doctor not found." });
+            }
+
+            // Get selected doctor slots and convert to array of int
+            var doctorSlots = doctor.AvailabilityTimeSlot.Split(',').Select(s => int.Parse(s)).ToArray();
+
+            // Get doctor availability days
+            var doctorAvailabilityDays = doctor.AvailabilityDays.Split(",")
+                .Select(s => int.Parse(s))
+                .Select(day => (DayOfWeek)day)
+                .ToList();
+
+            // Check if the doctor is available on the selected day
+            if (!doctorAvailabilityDays.Contains(userSelecteDay))
+            {
+                return Json(new { message = "Doctor is not available on this day." });
+            }
+
+            // Get all slots for the doctor
+            var allSlots = applicationDb.Slots
+                .Where(x => doctorSlots.Contains(x.Id))
+                .Select(x => new SelectListItem
+                {
+                    Value = x.Id.ToString(),
+                    Text = $"{x.StartTime:hh:mm tt} - {x.EndTime:hh:mm tt}"
+                })
+                .ToList();
+
+            // Get booked slots for the given doctor and date
+            var bookedSlotIds = applicationDb.Appoinments
+                .Where(a => a.DoctorId == doctorId && a.AppointmentDate == dat)
+                .Select(a => a.BookedSlots)
+                .ToList();
+
+            // Filter out the booked slots
+            var unbookedSlots = allSlots
+                .Where(slot => !bookedSlotIds.Contains((slot.Value)))
+                .ToList();
+
+            return Json(unbookedSlots);
+        }
+
 
 
         // patient Regiter actions method
@@ -363,3 +479,4 @@ namespace AM.Controllers
 
     }
 }
+

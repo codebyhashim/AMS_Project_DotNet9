@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AM.Interfaces;
+﻿using AM.Interfaces;
 using AM.Models;
 using MediatR;
 
@@ -25,7 +20,7 @@ namespace AM.ApplicationCore.Features.Doctor.GetDoctorAppointments
 
         async Task<List<AppointmentModel>> IRequestHandler<GetDoctorAllAppoinmentsRequest, List<AppointmentModel>>.Handle(GetDoctorAllAppoinmentsRequest request, CancellationToken cancellationToken)
         {
-            var appointment= await _doctorRepository.GetDoctorAppoinments(request.Id);
+            var appointment = await _doctorRepository.GetDoctorAppoinments(request.Id);
             return appointment;
         }
     }

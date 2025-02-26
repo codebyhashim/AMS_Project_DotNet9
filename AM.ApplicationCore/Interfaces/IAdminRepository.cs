@@ -1,5 +1,4 @@
-﻿using AM.ApplicationCore.Models;
-using AM.Models;
+﻿using AM.Models;
 
 namespace AM.ApplicationCore.Interfaces
 {
@@ -12,7 +11,7 @@ namespace AM.ApplicationCore.Interfaces
         Task<AppointmentModel> GetAppointmentById(int Id);
         //Task<bool> InviteDoctor(DoctorModel Doctor);
 
-        Task<bool> CreateDoctor(DoctorModel doctor, List<string> AvailabilityDays,List<string> AvailabilityTimeSlot);
+        Task<bool> CreateDoctor(DoctorModel doctor, List<string> AvailabilityDays, List<string> AvailabilityTimeSlot);
         Task<bool> DeleteDoctor(DoctorModel doctor);
 
 

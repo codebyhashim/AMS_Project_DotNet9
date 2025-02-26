@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AM.Interfaces;
+﻿using AM.Interfaces;
 using MediatR;
 
 namespace AM.ApplicationCore.Features.Patient.RegisterPatient
@@ -19,7 +14,7 @@ namespace AM.ApplicationCore.Features.Patient.RegisterPatient
 
         public async Task<bool> Handle(RegisterPatientRequest request, CancellationToken cancellationToken)
         {
-            return await _patientRepository.RegisterPatient(request.patient );
+            return await _patientRepository.RegisterPatient(request.patient);
         }
     }
 }

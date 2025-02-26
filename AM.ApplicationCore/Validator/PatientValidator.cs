@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AM.Models;
+﻿using AM.Models;
 using FluentValidation;
 
 namespace AM.ApplicationCore.Validator
@@ -12,15 +7,15 @@ namespace AM.ApplicationCore.Validator
     {
         public PatientValidator()
         {
-            RuleFor(x=>x.Name)
+            RuleFor(x => x.Name)
             .NotEmpty().WithMessage("Name is required")
             .MaximumLength(20).WithMessage("Name must not exceed 20 characters");
 
 
             RuleFor(x => x.DateOfBirth)
             .NotEmpty().WithMessage("DateOfBirth is required")
-            .LessThanOrEqualTo(x=>DateTime.Now).WithMessage("select valid date");
-            
+            .LessThanOrEqualTo(x => DateTime.Now).WithMessage("select valid date");
+
 
 
             RuleFor(x => x.City)
@@ -31,7 +26,7 @@ namespace AM.ApplicationCore.Validator
             .NotNull().WithMessage("please select one option")
                 .NotEmpty().WithMessage("Gender field is required ")
             .IsInEnum();
-            
+
         }
 
         //public string Name { get; set; } = string.Empty;

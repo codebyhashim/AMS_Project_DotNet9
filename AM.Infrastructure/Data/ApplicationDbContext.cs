@@ -1,4 +1,5 @@
 ﻿
+using System.Reflection.Emit;
 using AM.ApplicationCore.Models;
 using AM.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -17,6 +18,16 @@ namespace AM.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+
+        //    builder.Entity<TimeSlotsModel>()
+        //.HasOne(ts => ts.Doctor)
+        //.WithMany(d => d.TimeSlots)
+        //.HasForeignKey(ts => ts.DoctorId)
+        //.OnDelete(DeleteBehavior.Restrict);
+
+
+
+
             builder.Entity<TimeSlotsModel>().HasData(
 
          new TimeSlotsModel { Id = 1, StartTime = new TimeOnly(9,0 ), EndTime = new TimeOnly(9,30) },

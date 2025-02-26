@@ -1,13 +1,7 @@
 ﻿using System.Reflection;
 //using AM.ApplicationCore.Behaviour;
-using Azure.Core;
-using Azure;
-using FluentValidation;
-using MediatR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using AM.Models;
 
 namespace AM.Infrastructure
 {
@@ -19,8 +13,8 @@ namespace AM.Infrastructure
             Services.AddMediatR(config => config.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
             // register fluent validation
             //Services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
-           
-                return Services;
+
+            return Services;
         }
     }
 }

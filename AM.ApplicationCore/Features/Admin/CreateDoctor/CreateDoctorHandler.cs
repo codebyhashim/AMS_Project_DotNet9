@@ -29,11 +29,11 @@ namespace AM.ApplicationCore.Features.Admin.CreateDoctor
                 WaitTime = request._doctor.WaitTime,
                 Email = request._doctor.Email,
                 UserId = request._doctor.UserId,
-               
-                 AvailabilityDays = request._doctor.AvailabilityDays,
+
+                AvailabilityDays = request._doctor.AvailabilityDays,
                 AvailabilityTimeSlot = request._doctor.AvailabilityTimeSlot
             };
-            return await _adminRepository.CreateDoctor(doctor, request.availabilityDays,request.availabilityTimeSlot);
+            return await _adminRepository.CreateDoctor(doctor, request.availabilityDays, request.availabilityTimeSlot);
         }
     }
 

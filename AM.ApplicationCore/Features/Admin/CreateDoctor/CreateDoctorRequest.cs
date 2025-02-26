@@ -1,8 +1,5 @@
-﻿using AM.ApplicationCore.Features.Admin.CreateDoctor;
-using AM.Models;
-using FluentValidation;
+﻿using AM.Models;
 using MediatR;
-using Microsoft.Identity.Client;
 
 namespace AM.ApplicationCore.Features.Admin.CreateDoctor
 {
@@ -12,7 +9,7 @@ namespace AM.ApplicationCore.Features.Admin.CreateDoctor
         public readonly List<string> availabilityDays;
         public readonly List<string> availabilityTimeSlot;
 
-        public CreateDoctorRequest(DoctorModel doctor, List<string> AvailabilityDays,List<string> AvailabilityTimeSlot)
+        public CreateDoctorRequest(DoctorModel doctor, List<string> AvailabilityDays, List<string> AvailabilityTimeSlot)
         {
             _doctor = doctor;
             availabilityDays = AvailabilityDays;

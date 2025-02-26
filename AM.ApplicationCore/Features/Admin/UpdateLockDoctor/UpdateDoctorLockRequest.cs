@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AM.Models;
+﻿using AM.Models;
 using MediatR;
 
 namespace AM.ApplicationCore.Features.Admin.UpdateLockDoctor
@@ -14,7 +9,7 @@ namespace AM.ApplicationCore.Features.Admin.UpdateLockDoctor
         public readonly List<string> availabilityDays;
         public readonly List<string> availabilityTimeSlot;
 
-        public UpdateDoctorLockRequest(DoctorModel doctor,  List<string> AvailabilityDays, List<string> AvailabilityTimeSlot)
+        public UpdateDoctorLockRequest(DoctorModel doctor, List<string> AvailabilityDays, List<string> AvailabilityTimeSlot)
         {
             this._doctor = doctor;
             availabilityDays = AvailabilityDays;

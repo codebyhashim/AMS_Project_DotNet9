@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using AM.ApplicationCore.Models;
 using Microsoft.AspNetCore.Identity;
 
 namespace AM.Models
@@ -39,6 +40,8 @@ namespace AM.Models
 
         //Navigation Property to Appointments
         public ICollection<AppointmentModel>? Appoinment { get; set; }
+
+      
     }
 
 }

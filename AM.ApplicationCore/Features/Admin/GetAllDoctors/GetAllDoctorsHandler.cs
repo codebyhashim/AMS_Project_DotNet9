@@ -1,5 +1,4 @@
-﻿using System.Numerics;
-using AM.ApplicationCore.Interfaces;
+﻿using AM.ApplicationCore.Interfaces;
 using AM.Models;
 using MediatR;
 
@@ -16,7 +15,7 @@ namespace AM.ApplicationCore.Features.Admin.GetAllDoctors
 
         public async Task<List<DoctorModel>> Handle(GetAllDoctorsRequest request, CancellationToken cancellationToken)
         {
-            
+
             return await _adminRepository.ViewDoctors();
         }
     }

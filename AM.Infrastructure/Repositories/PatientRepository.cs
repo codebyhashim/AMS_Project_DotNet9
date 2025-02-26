@@ -1,5 +1,6 @@
 ﻿
 using System.Security.Claims;
+using AM.ApplicationCore.Models;
 using AM.Data;
 using AM.Interfaces;
 using AM.Models;
@@ -88,8 +89,24 @@ namespace AM.Repositories
 
         public async Task<List<AppointmentModel>> ViewAppoinments(PatientModel patient)
         {
+            var slot = _context.Slots.ToList();
+           
+                
             var appointments = await _context.Appoinments.Where(x => x.PatientId == patient.Id).Include(x => x.Doctor).Include(x => x.Patient).ToListAsync();
+                foreach (var appointment in appointments)
+                {
+                var matchingSlots = slot.FirstOrDefault(x => x.Id.ToString() == appointment.BookedSlots);
+                    if (matchingSlots!=null)
+                    {
+                    string slotTime = $"{matchingSlots.StartTime:hh:mm tt} - {matchingSlots.EndTime:hh:mm tt}";
+                  
+                    appointment.BookedSlots = slotTime;
+                }
+                };
             return appointments;
+            
+            
+
         }
 
 
