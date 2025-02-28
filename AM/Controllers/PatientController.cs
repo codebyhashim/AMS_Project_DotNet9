@@ -364,15 +364,21 @@ namespace AM.Controllers
 
             // Get booked slots for the given doctor and date
             var bookedSlotIds = applicationDb.Appoinments
-                .Where(a => a.DoctorId == doctorId && a.AppointmentDate == dat)
+                .Where(a => a.DoctorId == doctorId )
                 .Select(a => int.Parse(a.BookedSlots))
                 .ToList();
 
 
-
+            //&& a.AppointmentDate == dat && a.Status == AppoinmentStatus.Cancelled                         
             // get booked slots of doctor
             var bookedSlot = applicationDb.Slots.Where(s => bookedSlotIds.Contains(s.Id)).ToList();
 
+            //Disabled = bookedSlot.Contains(x)
+            // Get canecled slots for the given doctor and date
+            //var canecledSlot = applicationDb.Appoinments
+            //    .Where(a => a.DoctorId == doctorId && a.AppointmentDate == dat && a.Status == AppoinmentStatus.Cancelled)
+            //    .Select(a => int.Parse(a.BookedSlots))
+            //    .ToList();
 
             // Get all slots for the doctor
             var allSlots = applicationDb.Slots
@@ -381,7 +387,8 @@ namespace AM.Controllers
                 {
                     Value = x.Id.ToString(),
                     Text = $"{x.StartTime:hh:mm tt} - {x.EndTime:hh:mm tt}",
-                    Selected= bookedSlot.Contains(x)
+                    Selected = bookedSlot.Contains(x),
+                    //Disabled = bookedSlot.Contains(x)
                 })
                 .ToList();
             
