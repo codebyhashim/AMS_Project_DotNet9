@@ -128,6 +128,7 @@
 			<table class="table table-bordered" id="dataTable" width="100%">
 				<thead>
 					<tr>
+
 						<th>Contact Information</th>
 						<th>Availability Information</th>
 						<th>Qualification</th>
@@ -218,6 +219,8 @@
 
 									</form>
 								}
+							
+							
 
 
 								@* <a class="btn btn-sm text-white" style="background-color: #4e73df" asp-action="Edit" asp-route-id="@item.Id">Edit</a> *@
@@ -252,16 +255,21 @@
 	<script src="~/Theme/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 	<script src="~/Theme/js/demo/datatables-demo.js"></script>
 }
+
 <script>
 
+
+		setTimeout(function(){
+		var msg = document.querySelector(".UpdatedMessage");
+		if (msg) {
+			msg.remove();
+		}
+	}, 1000);
+
 	setTimeout(function(){
-		var msg=document.querySelector(".UpdatedMessage");
-		msg.remove();
-	},1000)
-
-	  setTimeout(function(){
-		var msges=document.querySelector(".LockMessage");
-		msges.remove();
-	},1000)
-
+		var msges = document.querySelector(".LockMessage");
+		if (msges) {
+			msges.remove();
+		}
+	}, 1000);
 </script>

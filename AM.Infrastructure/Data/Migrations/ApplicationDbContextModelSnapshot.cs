@@ -44,50 +44,578 @@ namespace AM.Data.Migrations
                         new
                         {
                             Id = 1,
-                            EndTime = new TimeOnly(9, 30, 0),
-                            StartTime = new TimeOnly(9, 0, 0)
+                            EndTime = new TimeOnly(0, 15, 0),
+                            StartTime = new TimeOnly(0, 0, 0)
                         },
                         new
                         {
                             Id = 2,
-                            EndTime = new TimeOnly(10, 30, 0),
-                            StartTime = new TimeOnly(10, 0, 0)
+                            EndTime = new TimeOnly(0, 30, 0),
+                            StartTime = new TimeOnly(0, 15, 0)
                         },
                         new
                         {
                             Id = 3,
-                            EndTime = new TimeOnly(11, 30, 0),
-                            StartTime = new TimeOnly(11, 0, 0)
+                            EndTime = new TimeOnly(0, 45, 0),
+                            StartTime = new TimeOnly(0, 30, 0)
                         },
                         new
                         {
                             Id = 4,
-                            EndTime = new TimeOnly(12, 30, 0),
-                            StartTime = new TimeOnly(12, 0, 0)
+                            EndTime = new TimeOnly(1, 0, 0),
+                            StartTime = new TimeOnly(0, 45, 0)
                         },
                         new
                         {
                             Id = 5,
-                            EndTime = new TimeOnly(13, 30, 0),
-                            StartTime = new TimeOnly(13, 0, 0)
+                            EndTime = new TimeOnly(1, 15, 0),
+                            StartTime = new TimeOnly(1, 0, 0)
                         },
                         new
                         {
                             Id = 6,
-                            EndTime = new TimeOnly(14, 30, 0),
-                            StartTime = new TimeOnly(14, 0, 0)
+                            EndTime = new TimeOnly(1, 30, 0),
+                            StartTime = new TimeOnly(1, 15, 0)
                         },
                         new
                         {
                             Id = 7,
-                            EndTime = new TimeOnly(15, 30, 0),
-                            StartTime = new TimeOnly(15, 0, 0)
+                            EndTime = new TimeOnly(1, 45, 0),
+                            StartTime = new TimeOnly(1, 30, 0)
                         },
                         new
                         {
                             Id = 8,
-                            EndTime = new TimeOnly(16, 30, 0),
+                            EndTime = new TimeOnly(2, 0, 0),
+                            StartTime = new TimeOnly(1, 45, 0)
+                        },
+                        new
+                        {
+                            Id = 9,
+                            EndTime = new TimeOnly(2, 15, 0),
+                            StartTime = new TimeOnly(2, 0, 0)
+                        },
+                        new
+                        {
+                            Id = 10,
+                            EndTime = new TimeOnly(2, 30, 0),
+                            StartTime = new TimeOnly(2, 15, 0)
+                        },
+                        new
+                        {
+                            Id = 11,
+                            EndTime = new TimeOnly(2, 45, 0),
+                            StartTime = new TimeOnly(2, 30, 0)
+                        },
+                        new
+                        {
+                            Id = 12,
+                            EndTime = new TimeOnly(3, 0, 0),
+                            StartTime = new TimeOnly(2, 45, 0)
+                        },
+                        new
+                        {
+                            Id = 13,
+                            EndTime = new TimeOnly(3, 15, 0),
+                            StartTime = new TimeOnly(3, 0, 0)
+                        },
+                        new
+                        {
+                            Id = 14,
+                            EndTime = new TimeOnly(3, 30, 0),
+                            StartTime = new TimeOnly(3, 15, 0)
+                        },
+                        new
+                        {
+                            Id = 15,
+                            EndTime = new TimeOnly(3, 45, 0),
+                            StartTime = new TimeOnly(3, 30, 0)
+                        },
+                        new
+                        {
+                            Id = 16,
+                            EndTime = new TimeOnly(4, 0, 0),
+                            StartTime = new TimeOnly(3, 45, 0)
+                        },
+                        new
+                        {
+                            Id = 17,
+                            EndTime = new TimeOnly(4, 15, 0),
+                            StartTime = new TimeOnly(4, 0, 0)
+                        },
+                        new
+                        {
+                            Id = 18,
+                            EndTime = new TimeOnly(4, 30, 0),
+                            StartTime = new TimeOnly(4, 15, 0)
+                        },
+                        new
+                        {
+                            Id = 19,
+                            EndTime = new TimeOnly(4, 45, 0),
+                            StartTime = new TimeOnly(4, 30, 0)
+                        },
+                        new
+                        {
+                            Id = 20,
+                            EndTime = new TimeOnly(5, 0, 0),
+                            StartTime = new TimeOnly(4, 45, 0)
+                        },
+                        new
+                        {
+                            Id = 21,
+                            EndTime = new TimeOnly(5, 15, 0),
+                            StartTime = new TimeOnly(5, 0, 0)
+                        },
+                        new
+                        {
+                            Id = 22,
+                            EndTime = new TimeOnly(5, 30, 0),
+                            StartTime = new TimeOnly(5, 15, 0)
+                        },
+                        new
+                        {
+                            Id = 23,
+                            EndTime = new TimeOnly(5, 45, 0),
+                            StartTime = new TimeOnly(5, 30, 0)
+                        },
+                        new
+                        {
+                            Id = 24,
+                            EndTime = new TimeOnly(6, 0, 0),
+                            StartTime = new TimeOnly(5, 45, 0)
+                        },
+                        new
+                        {
+                            Id = 25,
+                            EndTime = new TimeOnly(6, 15, 0),
+                            StartTime = new TimeOnly(6, 0, 0)
+                        },
+                        new
+                        {
+                            Id = 26,
+                            EndTime = new TimeOnly(6, 30, 0),
+                            StartTime = new TimeOnly(6, 15, 0)
+                        },
+                        new
+                        {
+                            Id = 27,
+                            EndTime = new TimeOnly(6, 45, 0),
+                            StartTime = new TimeOnly(6, 30, 0)
+                        },
+                        new
+                        {
+                            Id = 28,
+                            EndTime = new TimeOnly(7, 0, 0),
+                            StartTime = new TimeOnly(6, 45, 0)
+                        },
+                        new
+                        {
+                            Id = 29,
+                            EndTime = new TimeOnly(7, 15, 0),
+                            StartTime = new TimeOnly(7, 0, 0)
+                        },
+                        new
+                        {
+                            Id = 30,
+                            EndTime = new TimeOnly(7, 30, 0),
+                            StartTime = new TimeOnly(7, 15, 0)
+                        },
+                        new
+                        {
+                            Id = 31,
+                            EndTime = new TimeOnly(7, 45, 0),
+                            StartTime = new TimeOnly(7, 30, 0)
+                        },
+                        new
+                        {
+                            Id = 32,
+                            EndTime = new TimeOnly(8, 0, 0),
+                            StartTime = new TimeOnly(7, 45, 0)
+                        },
+                        new
+                        {
+                            Id = 33,
+                            EndTime = new TimeOnly(8, 15, 0),
+                            StartTime = new TimeOnly(8, 0, 0)
+                        },
+                        new
+                        {
+                            Id = 34,
+                            EndTime = new TimeOnly(8, 30, 0),
+                            StartTime = new TimeOnly(8, 15, 0)
+                        },
+                        new
+                        {
+                            Id = 35,
+                            EndTime = new TimeOnly(8, 45, 0),
+                            StartTime = new TimeOnly(8, 30, 0)
+                        },
+                        new
+                        {
+                            Id = 36,
+                            EndTime = new TimeOnly(9, 0, 0),
+                            StartTime = new TimeOnly(8, 45, 0)
+                        },
+                        new
+                        {
+                            Id = 37,
+                            EndTime = new TimeOnly(9, 15, 0),
+                            StartTime = new TimeOnly(9, 0, 0)
+                        },
+                        new
+                        {
+                            Id = 38,
+                            EndTime = new TimeOnly(9, 30, 0),
+                            StartTime = new TimeOnly(9, 15, 0)
+                        },
+                        new
+                        {
+                            Id = 39,
+                            EndTime = new TimeOnly(9, 45, 0),
+                            StartTime = new TimeOnly(9, 30, 0)
+                        },
+                        new
+                        {
+                            Id = 40,
+                            EndTime = new TimeOnly(10, 0, 0),
+                            StartTime = new TimeOnly(9, 45, 0)
+                        },
+                        new
+                        {
+                            Id = 41,
+                            EndTime = new TimeOnly(10, 15, 0),
+                            StartTime = new TimeOnly(10, 0, 0)
+                        },
+                        new
+                        {
+                            Id = 42,
+                            EndTime = new TimeOnly(10, 30, 0),
+                            StartTime = new TimeOnly(10, 15, 0)
+                        },
+                        new
+                        {
+                            Id = 43,
+                            EndTime = new TimeOnly(10, 45, 0),
+                            StartTime = new TimeOnly(10, 30, 0)
+                        },
+                        new
+                        {
+                            Id = 44,
+                            EndTime = new TimeOnly(11, 0, 0),
+                            StartTime = new TimeOnly(10, 45, 0)
+                        },
+                        new
+                        {
+                            Id = 45,
+                            EndTime = new TimeOnly(11, 15, 0),
+                            StartTime = new TimeOnly(11, 0, 0)
+                        },
+                        new
+                        {
+                            Id = 46,
+                            EndTime = new TimeOnly(11, 30, 0),
+                            StartTime = new TimeOnly(11, 15, 0)
+                        },
+                        new
+                        {
+                            Id = 47,
+                            EndTime = new TimeOnly(11, 45, 0),
+                            StartTime = new TimeOnly(11, 30, 0)
+                        },
+                        new
+                        {
+                            Id = 48,
+                            EndTime = new TimeOnly(12, 0, 0),
+                            StartTime = new TimeOnly(11, 45, 0)
+                        },
+                        new
+                        {
+                            Id = 49,
+                            EndTime = new TimeOnly(12, 15, 0),
+                            StartTime = new TimeOnly(12, 0, 0)
+                        },
+                        new
+                        {
+                            Id = 50,
+                            EndTime = new TimeOnly(12, 30, 0),
+                            StartTime = new TimeOnly(12, 15, 0)
+                        },
+                        new
+                        {
+                            Id = 51,
+                            EndTime = new TimeOnly(12, 45, 0),
+                            StartTime = new TimeOnly(12, 30, 0)
+                        },
+                        new
+                        {
+                            Id = 52,
+                            EndTime = new TimeOnly(13, 0, 0),
+                            StartTime = new TimeOnly(12, 45, 0)
+                        },
+                        new
+                        {
+                            Id = 53,
+                            EndTime = new TimeOnly(13, 15, 0),
+                            StartTime = new TimeOnly(13, 0, 0)
+                        },
+                        new
+                        {
+                            Id = 54,
+                            EndTime = new TimeOnly(13, 30, 0),
+                            StartTime = new TimeOnly(13, 15, 0)
+                        },
+                        new
+                        {
+                            Id = 55,
+                            EndTime = new TimeOnly(13, 45, 0),
+                            StartTime = new TimeOnly(13, 30, 0)
+                        },
+                        new
+                        {
+                            Id = 56,
+                            EndTime = new TimeOnly(14, 0, 0),
+                            StartTime = new TimeOnly(13, 45, 0)
+                        },
+                        new
+                        {
+                            Id = 57,
+                            EndTime = new TimeOnly(14, 15, 0),
+                            StartTime = new TimeOnly(14, 0, 0)
+                        },
+                        new
+                        {
+                            Id = 58,
+                            EndTime = new TimeOnly(14, 30, 0),
+                            StartTime = new TimeOnly(14, 15, 0)
+                        },
+                        new
+                        {
+                            Id = 59,
+                            EndTime = new TimeOnly(14, 45, 0),
+                            StartTime = new TimeOnly(14, 30, 0)
+                        },
+                        new
+                        {
+                            Id = 60,
+                            EndTime = new TimeOnly(15, 0, 0),
+                            StartTime = new TimeOnly(14, 45, 0)
+                        },
+                        new
+                        {
+                            Id = 61,
+                            EndTime = new TimeOnly(15, 15, 0),
+                            StartTime = new TimeOnly(15, 0, 0)
+                        },
+                        new
+                        {
+                            Id = 62,
+                            EndTime = new TimeOnly(15, 30, 0),
+                            StartTime = new TimeOnly(15, 15, 0)
+                        },
+                        new
+                        {
+                            Id = 63,
+                            EndTime = new TimeOnly(15, 45, 0),
+                            StartTime = new TimeOnly(15, 30, 0)
+                        },
+                        new
+                        {
+                            Id = 64,
+                            EndTime = new TimeOnly(16, 0, 0),
+                            StartTime = new TimeOnly(15, 45, 0)
+                        },
+                        new
+                        {
+                            Id = 65,
+                            EndTime = new TimeOnly(16, 15, 0),
                             StartTime = new TimeOnly(16, 0, 0)
+                        },
+                        new
+                        {
+                            Id = 66,
+                            EndTime = new TimeOnly(16, 30, 0),
+                            StartTime = new TimeOnly(16, 15, 0)
+                        },
+                        new
+                        {
+                            Id = 67,
+                            EndTime = new TimeOnly(16, 45, 0),
+                            StartTime = new TimeOnly(16, 30, 0)
+                        },
+                        new
+                        {
+                            Id = 68,
+                            EndTime = new TimeOnly(17, 0, 0),
+                            StartTime = new TimeOnly(16, 45, 0)
+                        },
+                        new
+                        {
+                            Id = 69,
+                            EndTime = new TimeOnly(17, 15, 0),
+                            StartTime = new TimeOnly(17, 0, 0)
+                        },
+                        new
+                        {
+                            Id = 70,
+                            EndTime = new TimeOnly(17, 30, 0),
+                            StartTime = new TimeOnly(17, 15, 0)
+                        },
+                        new
+                        {
+                            Id = 71,
+                            EndTime = new TimeOnly(17, 45, 0),
+                            StartTime = new TimeOnly(17, 30, 0)
+                        },
+                        new
+                        {
+                            Id = 72,
+                            EndTime = new TimeOnly(18, 0, 0),
+                            StartTime = new TimeOnly(17, 45, 0)
+                        },
+                        new
+                        {
+                            Id = 73,
+                            EndTime = new TimeOnly(18, 15, 0),
+                            StartTime = new TimeOnly(18, 0, 0)
+                        },
+                        new
+                        {
+                            Id = 74,
+                            EndTime = new TimeOnly(18, 30, 0),
+                            StartTime = new TimeOnly(18, 15, 0)
+                        },
+                        new
+                        {
+                            Id = 75,
+                            EndTime = new TimeOnly(18, 45, 0),
+                            StartTime = new TimeOnly(18, 30, 0)
+                        },
+                        new
+                        {
+                            Id = 76,
+                            EndTime = new TimeOnly(19, 0, 0),
+                            StartTime = new TimeOnly(18, 45, 0)
+                        },
+                        new
+                        {
+                            Id = 77,
+                            EndTime = new TimeOnly(19, 15, 0),
+                            StartTime = new TimeOnly(19, 0, 0)
+                        },
+                        new
+                        {
+                            Id = 78,
+                            EndTime = new TimeOnly(19, 30, 0),
+                            StartTime = new TimeOnly(19, 15, 0)
+                        },
+                        new
+                        {
+                            Id = 79,
+                            EndTime = new TimeOnly(19, 45, 0),
+                            StartTime = new TimeOnly(19, 30, 0)
+                        },
+                        new
+                        {
+                            Id = 80,
+                            EndTime = new TimeOnly(20, 0, 0),
+                            StartTime = new TimeOnly(19, 45, 0)
+                        },
+                        new
+                        {
+                            Id = 81,
+                            EndTime = new TimeOnly(20, 15, 0),
+                            StartTime = new TimeOnly(20, 0, 0)
+                        },
+                        new
+                        {
+                            Id = 82,
+                            EndTime = new TimeOnly(20, 30, 0),
+                            StartTime = new TimeOnly(20, 15, 0)
+                        },
+                        new
+                        {
+                            Id = 83,
+                            EndTime = new TimeOnly(20, 45, 0),
+                            StartTime = new TimeOnly(20, 30, 0)
+                        },
+                        new
+                        {
+                            Id = 84,
+                            EndTime = new TimeOnly(21, 0, 0),
+                            StartTime = new TimeOnly(20, 45, 0)
+                        },
+                        new
+                        {
+                            Id = 85,
+                            EndTime = new TimeOnly(21, 15, 0),
+                            StartTime = new TimeOnly(21, 0, 0)
+                        },
+                        new
+                        {
+                            Id = 86,
+                            EndTime = new TimeOnly(21, 30, 0),
+                            StartTime = new TimeOnly(21, 15, 0)
+                        },
+                        new
+                        {
+                            Id = 87,
+                            EndTime = new TimeOnly(21, 45, 0),
+                            StartTime = new TimeOnly(21, 30, 0)
+                        },
+                        new
+                        {
+                            Id = 88,
+                            EndTime = new TimeOnly(22, 0, 0),
+                            StartTime = new TimeOnly(21, 45, 0)
+                        },
+                        new
+                        {
+                            Id = 89,
+                            EndTime = new TimeOnly(22, 15, 0),
+                            StartTime = new TimeOnly(22, 0, 0)
+                        },
+                        new
+                        {
+                            Id = 90,
+                            EndTime = new TimeOnly(22, 30, 0),
+                            StartTime = new TimeOnly(22, 15, 0)
+                        },
+                        new
+                        {
+                            Id = 91,
+                            EndTime = new TimeOnly(22, 45, 0),
+                            StartTime = new TimeOnly(22, 30, 0)
+                        },
+                        new
+                        {
+                            Id = 92,
+                            EndTime = new TimeOnly(23, 0, 0),
+                            StartTime = new TimeOnly(22, 45, 0)
+                        },
+                        new
+                        {
+                            Id = 93,
+                            EndTime = new TimeOnly(23, 15, 0),
+                            StartTime = new TimeOnly(23, 0, 0)
+                        },
+                        new
+                        {
+                            Id = 94,
+                            EndTime = new TimeOnly(23, 30, 0),
+                            StartTime = new TimeOnly(23, 15, 0)
+                        },
+                        new
+                        {
+                            Id = 95,
+                            EndTime = new TimeOnly(23, 45, 0),
+                            StartTime = new TimeOnly(23, 30, 0)
+                        },
+                        new
+                        {
+                            Id = 96,
+                            EndTime = new TimeOnly(23, 59, 0),
+                            StartTime = new TimeOnly(23, 45, 0)
                         });
                 });
 

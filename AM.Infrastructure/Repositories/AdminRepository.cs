@@ -273,7 +273,7 @@ namespace AM.Repositories
                     WaitTime = item.WaitTime,
                     PhoneNumber = item.PhoneNumber,
                     Degree = item.Degree,
-
+                    UserId=item.UserId
 
 
                 };

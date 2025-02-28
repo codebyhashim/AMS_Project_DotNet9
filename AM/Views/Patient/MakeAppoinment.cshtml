@@ -6,7 +6,14 @@
 @* } *@
 
 
+<style>
+	/* Style for booked slots */
+	.booked-slot {
+		color: green; /* Green color for booked slots */
+	}
 
+
+</style>
 
 <div class="row  ">
 
@@ -29,12 +36,6 @@
 			</div>
 
 
-
-			<div class="form-group">
-				<label asp-for="AppointmentDate" class="control-label"></label>
-				<input asp-for="AppointmentDate" id="AppointmentDate" type="date" value="@ViewBag.CurrentDate" min="@ViewBag.CurrentDate" class="form-control" />
-				<span asp-validation-for="AppointmentDate" class="text-danger"></span>
-			</div>
 			<div class="form-group">
 				<label asp-for="DoctorId">Select Doctor</label>
 				<select asp-for="DoctorId" onchange="updateTimeSlot()" class="form-control" id="DoctorId" name="DoctorId">
@@ -46,12 +47,26 @@
 						<option value="@doctor.Id">@doctor.Name ( @doctor.Speciality)</option>
 					}
 
-					}
+
 
 
 				</select>
 				<span asp-validation-for="DoctorId" class="text-danger"></span>
 
+			</div>
+
+
+		@* 	<div class="form-group">
+				<label asp-for="AppointmentDate" class="control-label"></label>
+				<input asp-for="AppointmentDate" id="AppointmentDate"  type="date" value="@ViewBag.CurrentDate" min="@ViewBag.CurrentDate" class="form-control" />
+				<span asp-validation-for="AppointmentDate" class="text-danger"></span>
+			</div> *@
+
+
+			<div class="form-group">
+				<label asp-for="AppointmentDate" class="control-label"></label>
+				<input onchange="updateTimeSlot()" asp-for="AppointmentDate" id="AppointmentDate" type="text" value="@ViewBag.CurrentDate" min="@ViewBag.CurrentDate" class="form-control" />
+				<span asp-validation-for="AppointmentDate" class="text-danger"></span>
 			</div>
 
 			<div class="form-group">
@@ -127,7 +142,7 @@
                 success: function (data) {
 					debugger
                        $('#slotErrorMessage').text('');
-                    
+
                     if (data.message){
                         $('#slotErrorMessage').text(data.message);
                         $('#SlotId').empty().prop('disabled', true);
@@ -147,7 +162,7 @@
 					});
 
 					}
-                   
+
                     // Clear the Slot dropdown before appending new options
                 },
                 error: function (xhr, status, error) {
@@ -168,9 +183,20 @@
 
 </script> 
  *@
- <script type="text/javascript">
 
-				  function updateTimeSlot() {
+
+
+<script type="text/javascript">
+
+		 function updateTimeSlot() {
+		var doctorId = $('#DoctorId').val(); // Get the selected doctor ID
+
+		// Call updateTimeSlot and getAvailableDate functions after selecting the doctor
+		updateSlot(doctorId);
+		getAvailableDate(doctorId);
+	}
+
+				  function updateSlot() {
 		var doctorId = $('#DoctorId').val();  // Get the selected doctor ID
 		var appointmentDate = $('#AppointmentDate').val();  // Get the selected date of user
 
@@ -182,16 +208,20 @@
 				type: 'GET',
 				data: { doctorId: doctorId, date: appointmentDate }, // Pass the selected doctor ID and date as parameters
 				success: function (data) {
-					// debugger
+					debugger
 					// Clear previous error message
 					$('#slotErrorMessage').text('');
 
+
+
+
 					// **Key Change:** Check if the response contains a message
-					if (data.message) {
-						// If a message is returned (like "Doctor is not available on this day.")
-						$('#slotErrorMessage').text(data.message); // Display the error message
-						$('#SlotId').empty().prop('disabled', true); // Disable the slot dropdown
-					} else {
+					// if (data.message) {
+					// 	If a message is returned (like "Doctor is not available on this day.")
+					// 	$('#slotErrorMessage').text(data.message); Display the error message
+					// 	$('#SlotId').empty().prop('disabled', true); Disable the slot dropdown
+					// } else 
+					// {
 						// If slots are available, populate the dropdown
 						var slotDropdown = $('#SlotId');
 						slotDropdown.empty().prop('disabled', false); // Enable the dropdown
@@ -201,9 +231,19 @@
 
 						// Populate the dropdown with available slots
 						$.each(data, function (index, slot) {
-							slotDropdown.append('<option value="' + slot.value + '">' + slot.text + '</option>');
+
+							// slotDropdown.append('<option value="' + slot.value + '">' + slot.text + '</option>');
+						var option = $('<option>')
+								.val(slot.value)
+								.text(slot.text)
+								.prop('disabled', slot.selected); // Disable the option if booked
+							   if (slot.selected) {
+								option.text(option.text() + ' Booked').addClass('booked-slot');;
+							}
+							// Add the option to the dropdown
+							slotDropdown.append(option);
 						});
-					}
+					// }
 				},
 				error: function (xhr, status, error) {
 					// **Key Change:** Error handling for AJAX request
@@ -217,4 +257,155 @@
 	}
 
 
-</script> 
+	function getAvailableDate(doctorId) {
+		// Fetch availability days from API
+		$.ajax({
+			url: '@Url.Action("GetDays", "Patient")',  // Your API endpoint
+			type: 'GET',
+			data: { doctorId: doctorId },
+			success: function (response) {
+				debugger
+				// Assuming response is an array of day names like ["Monday", "Tuesday"]
+				var availableDays = response; // Example: ["Monday", "Tuesday"]
+
+				// Map the available days to their respective day indexes (0 = Sunday, 1 = Monday, ..., 6 = Saturday)
+				var dayIndexes = availableDays.map(function(day) {
+					switch(day.trim().toLowerCase()) {
+						case 'monday': return 1;
+						case 'tuesday': return 2;
+						case 'wednesday': return 3;
+						case 'thursday': return 4;
+						case 'friday': return 5;
+						case 'saturday': return 6;
+						case 'sunday': return 0;
+						default: return -1; // Invalid day
+					}
+				});
+
+				// Initialize Flatpickr on the input field
+				flatpickr("#AppointmentDate", {
+					disable: [
+						function(date) {
+							// Disable all days except available days
+							return !dayIndexes.includes(date.getDay());
+						}
+					],
+					minDate: "today", // Restrict selection to today and future dates
+					dateFormat: "Y-m-d", // Set the date format to match your backend
+					// defaultDate: "@ViewBag.CurrentDate", Set the default date (optional)
+					onReady: function(selectedDates, dateStr, instance) {
+						// Optional: Custom logic when the datepicker is ready
+					},
+					onChange: function(selectedDates, dateStr, instance) {
+						// Optional: Custom logic when the date is changed
+					}
+				});
+			},
+			error: function (xhr, status, error) {
+				console.log('Error fetching available days:', error);
+			}
+		});
+	}
+
+	
+
+
+
+
+	// 	function getAvailableDate(doctorId) {
+	// 	// Fetch availability days from API
+	// 	$.ajax({
+	// 		url: '@Url.Action("GetDays", "Patient")',  // Your API endpoint
+	// 		type: 'GET',
+	// 		data: { doctorId: doctorId },
+	// 		success: function (response) {
+	// 			// Assuming response is an array of day names like ["Monday", "Tuesday"]
+	// 			var availableDays = response; // Example: ["Monday", "Tuesday"]
+
+	// 			// Map the available days to their respective day indexes (0 = Sunday, 1 = Monday, ..., 6 = Saturday)
+	// 			var dayIndexes = availableDays.map(function(day) {
+	// 				switch(day.trim().toLowerCase()) {
+	// 					case 'monday': return 1;
+	// 					case 'tuesday': return 2;
+	// 					case 'wednesday': return 3;
+	// 					case 'thursday': return 4;
+	// 					case 'friday': return 5;
+	// 					case 'saturday': return 6;
+	// 					case 'sunday': return 0;
+	// 					default: return -1; // Invalid day
+	// 				}
+	// 			});
+
+	// 			// Set min and max date based on available days
+	// 			var today = new Date();
+	// 			var currentDate = today.toISOString().split('T')[0]; // Get today's date in YYYY-MM-DD format
+	// 			$("#AppointmentDate").attr("min", currentDate); // Set today's date as the minimum allowed date
+
+	// 			// Function to check if a day is available
+	// 			function isAvailableDay(date) {
+	// 				var selectedDay = date.getDay(); // Get the day of the week (0 = Sunday, 1 = Monday, ..., 6 = Saturday)
+	// 				return dayIndexes.includes(selectedDay); // Return true if the day is available
+	// 			}
+
+	// 			// Bind the input's change event
+	// 			$("#AppointmentDate").on('change', function() {
+	// 				var selectedDate = new Date($(this).val());
+
+	// 				// If the selected day is not available, clear the value
+	// 				if (!isAvailableDay(selectedDate)) {
+	// 					$(this).val(''); // Clear the selected date
+	// 				}
+	// 			});
+	// 		},
+	// 		error: function (xhr, status, error) {
+	// 			console.log('Error fetching available days:', error);
+	// 		}
+	// 	});
+	// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+@* <script>
+
+	function getAvailableDate(){
+			$(document).ready(function () {
+			 // Set the doctor ID dynamically
+			var doctorId = $('#DoctorId').val();
+
+			// Fetch availability days from API
+			$.ajax({
+				url: '@Url.Action("GetDays", "Patient")',  // Your API endpoint
+				type: 'GET',
+				data: { doctorId: doctorId },
+				dataType: 'json',
+				success: function (response) {
+					debugger
+					availableDays = response; // Expecting an array like [1, 3, 5] (Mon, Wed, Fri)
+					$("#AppointmentDate").datepicker("refresh");
+				}
+			});
+
+			// Initialize Datepicker
+			$("#AppointmentDate").datepicker({
+				beforeShowDay: function (date) {
+					var day = date.getDay(); // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
+					return [availableDays.includes(day)]; // Enable only available days
+				}
+			});
+		});
+
+
+		}
+</script> *@
