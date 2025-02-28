@@ -18,6 +18,9 @@
                     <th>
                         @Html.DisplayNameFor(model => model.AppointmentDate)
                     </th>
+                   @*  <th>
+                        AppointmentDay
+                    </th> *@
                     <th>
                         @Html.DisplayNameFor(model => model.Status)
                     </th>
@@ -27,6 +30,7 @@
                     <th>
                         @Html.DisplayNameFor(model => model.Patient)
                     </th>
+                    @* <th>@Html.DisplayNameFor(model=>model.BookedSlots)</th> *@
                     <th colspan="2">Actions</th>
                 </tr>
             </thead>
@@ -35,8 +39,14 @@
                 {
                     <tr>
                         <td>
-                            @Html.DisplayFor(modelItem => item.AppointmentDate)
+                            @* @Html.DisplayFor(modelItem => item.AppointmentDate) *@
+                            @item.AppointmentDate.ToString("dd MMM,yyyy")
+                            @item.AppointmentDate.ToString("dddd")
+                            @item.BookedSlots
                         </td>
+                       @*  <td>
+                            @item.AppointmentDate.ToString("dddd")s
+                        </td> *@
                         <td>
                             @Html.DisplayFor(modelItem => item.Status)
                         </td>
@@ -46,7 +56,7 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.Patient.Name)
                         </td>
-
+                        @* <td>@Html.DisplayFor(modelItem => item.BookedSlots)</td> *@
                         <td style="width:80px">
 
                             <form asp-action="Approve" asp-controller="Doctor" asp-route-id="@item.AppointmentId" method="post">

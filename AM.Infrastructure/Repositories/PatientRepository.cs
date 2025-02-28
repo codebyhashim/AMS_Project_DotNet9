@@ -80,7 +80,11 @@ namespace AM.Repositories
 
         public async Task<bool> GetAppointments(AppointmentModel appointments)
         {
+            //var slot = int.Parse(appointments.BookedSlots);
+            //var getSlot = _context.Slots.FirstOrDefault(x=>x.Id==slot);
+            //Console.WriteLine(getSlot);
 
+            //appointments.BookedSlots = $"{ getSlot.StartTime} - {getSlot.EndTime}";
             await _context.Appoinments.AddAsync(appointments);
             await _context.SaveChangesAsync();
             return true;
