@@ -321,13 +321,16 @@ namespace AM.Controllers
                 return Json(new { message = "Doctor not found." });
             }
 
-            // Get selected doctor slots and convert to array of int
-            var doctorSlots = doctor.AvailabilityTimeSlot.Split(',').Select(s => int.Parse(s)).ToArray();
+            //Get selected doctor slots and convert to array of int
+            //var doctorSlots = doctor.AvailabilityTimeSlot.Split(',').Select(s => int.Parse(s)).ToArray();
             var doctorAvailabilityDay = doctor.AvailabilityDays.Split(",")
        .Select(s => int.Parse(s))
        .Select(day => (DayOfWeek)day)
-       .Select(day => day.ToString()) // Convert DayOfWeek enum to string (e.g., "Sunday", "Monday")
+       .Select(day => day.ToString()).Select(s => s.Trim()) // Convert DayOfWeek enum to string (e.g., "Sunday", "Monday")
        .ToList();
+            //var doctorAvailabilityDay = doctor.AvailabilityDays.Split(",")
+            // .Select(s => s.Trim())  // Ensure any spaces are removed
+            // .ToList();
 
             return Json(doctorAvailabilityDay);
         }
@@ -371,14 +374,14 @@ namespace AM.Controllers
 
             //&& a.AppointmentDate == dat && a.Status == AppoinmentStatus.Cancelled                         
             // get booked slots of doctor
-            var bookedSlot = applicationDb.Slots.Where(s => bookedSlotIds.Contains(s.Id)).ToList();
+            //var bookedSlot = applicationDb.Slots.Where(s => bookedSlotIds.Contains(s.Id)).ToList();
 
             //Disabled = bookedSlot.Contains(x)
             // Get canecled slots for the given doctor and date
-            //var canecledSlot = applicationDb.Appoinments
-            //    .Where(a => a.DoctorId == doctorId && a.AppointmentDate == dat && a.Status == AppoinmentStatus.Cancelled)
-            //    .Select(a => int.Parse(a.BookedSlots))
-            //    .ToList();
+            var bookedSlot = applicationDb.Appoinments
+                .Where(a => a.DoctorId == doctorId && a.AppointmentDate == dat )
+                .Select(a => int.Parse(a.BookedSlots))
+                .ToList();
 
             // Get all slots for the doctor
             var allSlots = applicationDb.Slots
@@ -387,18 +390,18 @@ namespace AM.Controllers
                 {
                     Value = x.Id.ToString(),
                     Text = $"{x.StartTime:hh:mm tt} - {x.EndTime:hh:mm tt}",
-                    Selected = bookedSlot.Contains(x),
+                    Selected = bookedSlot.Contains(x.Id),
                     //Disabled = bookedSlot.Contains(x)
-                })
-                .ToList();
-            
+                });
 
 
-       //     var doctorAvailabilityDayInString = doctor.AvailabilityDays.Split(",")
-       //.Select(s => int.Parse(s))
-       //.Select(day => (DayOfWeek)day)
-       //.Select(day => day.ToString()) // Convert DayOfWeek enum to string (e.g., "Sunday", "Monday")
-       //.ToList();
+
+
+            //     var doctorAvailabilityDayInString = doctor.AvailabilityDays.Split(",")
+            //.Select(s => int.Parse(s))
+            //.Select(day => (DayOfWeek)day)
+            //.Select(day => day.ToString()) // Convert DayOfWeek enum to string (e.g., "Sunday", "Monday")
+            //.ToList();
             //return Json(allSlots,doctorAvailabilityDays);
             return Json(allSlots);
 
