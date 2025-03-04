@@ -113,13 +113,21 @@
                                     </a>
 
 
+                                   @{
+                                       if(item.Status==AppoinmentStatus.Cancelled){
+                                            <a style="display: none" asp-action="Cancel" asp-route-id="@item.AppointmentId" asp-controller="Admin" style="font-size: 23px;color: #FF5733"><i class="  fas fa-times-circle"></i></a>
+                                       }
+                                       else{
+                                            <a  asp-action="Cancel" asp-route-id="@item.AppointmentId" asp-controller="Admin" style="font-size: 23px;color: #FF5733"><i class="  fas fa-times-circle"></i></a>
 
+                                       }
+                                   }
 
 
 
 
                                     @* <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.Id">Delete<i class="fa-solid fa-trash"></i></a> *@
-                                    <a asp-action="Cancel" asp-route-id="@item.AppointmentId" asp-controller="Admin" style="font-size: 23px;color: #FF5733"><i class="  fas fa-times-circle"></i></a>
+                                    @* <a asp-action="Cancel" asp-route-id="@item.AppointmentId" asp-controller="Admin" style="font-size: 23px;color: #FF5733"><i class="  fas fa-times-circle"></i></a> *@
                                 </td>
 
                                 @* <td>

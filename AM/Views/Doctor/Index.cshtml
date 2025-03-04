@@ -41,6 +41,7 @@
                         <td>
                             @* @Html.DisplayFor(modelItem => item.AppointmentDate) *@
                             @item.AppointmentDate.ToString("dd MMM,yyyy")
+                            <br />
                             @item.AppointmentDate.ToString("dddd")
                             @item.BookedSlots
                         </td>
@@ -71,12 +72,26 @@
 
 
                         <td>
+                            @{
+                                if(item.Status==AppoinmentStatus.Cancelled){
+                                    <form asp-action="Cancel" asp-controller="Doctor" asp-route-id="@item.AppointmentId" method="post">
 
-                            <form asp-action="Cancel" asp-controller="Doctor" asp-route-id="@item.AppointmentId" method="post">
+                                        <button style="display:none" type="submit" class="btn btn-danger">Cancel</button>
+
+                                    </form>
+                                }else {
+                                    <form asp-action="Cancel" asp-controller="Doctor" asp-route-id="@item.AppointmentId" method="post">
+
+                                        <button  type="submit" class="btn btn-danger">Cancel</button>
+
+                                    </form>
+                                }
+                            }
+                            @* <form asp-action="Cancel" asp-controller="Doctor" asp-route-id="@item.AppointmentId" method="post">
 
                                 <button type="submit" class="btn btn-danger">Cancel</button>
 
-                            </form>
+                            </form> *@
 
 
 

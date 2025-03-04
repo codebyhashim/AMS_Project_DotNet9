@@ -28,7 +28,7 @@ namespace AM.Models
     }
     public enum AppoinmentStatus
     {
-        Pending,
+        //Pending,
         Booked,
         Cancelled,
 

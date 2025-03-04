@@ -122,7 +122,7 @@ namespace AM.Repositories
             var totalRegisterdDoctor = await _context.Doctors.CountAsync();
             var totalRegisterdPatients = await _context.Patients.CountAsync();
             var totalApprovedAppointments = await _context.Appoinments.CountAsync(x => x.Status == AppoinmentStatus.Booked);
-            var totalPendingAppointments = await _context.Appoinments.CountAsync(x => x.Status == AppoinmentStatus.Pending);
+            //var totalPendingAppointments = await _context.Appoinments.CountAsync(x => x.Status == AppoinmentStatus.Pending);
             var totalCanceleAppointments = await _context.Appoinments.CountAsync(x => x.Status == AppoinmentStatus.Cancelled);
 
             var counts = new DashboardCountsModel
@@ -130,7 +130,7 @@ namespace AM.Repositories
                 TotalRegisterdDoctor = totalRegisterdDoctor,
                 TotalRegisterdPatients = totalRegisterdPatients,
                 TotalApprovedAppointments = totalApprovedAppointments,
-                TotalPendingAppointments = totalPendingAppointments,
+                //TotalPendingAppointments = totalPendingAppointments,
                 TotalCanceleAppointments = totalCanceleAppointments,
             };
 

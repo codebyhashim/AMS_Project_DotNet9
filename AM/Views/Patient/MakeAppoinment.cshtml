@@ -12,6 +12,9 @@
 		color: yellow; /* Green color for booked slots */
 	}
 
+	.canceled-slot {
+		color: red; /* Canceled slots in orange */
+	}
 
 </style>
 
@@ -66,7 +69,7 @@
 
 			<div class="form-group">
 				<label>Select Time Slot</label>
-				<select  asp-for="BookedSlots" name="BookedSlots" class="form-control" id="SlotId">
+				<select asp-for="BookedSlots" name="BookedSlots" class="form-control" id="SlotId">
 					@* <option value="" disabled selected>Select Time Slot</option> *@
 				</select>
 				<span id="slotErrorMessage" class="text-danger"></span>
@@ -203,7 +206,7 @@
 				type: 'GET',
 				data: { doctorId: doctorId, date: appointmentDate }, // Pass the selected doctor ID and date as parameters
 				success: function (data) {
-					// debugger
+					debugger
 					// Clear previous error message
 					$('#slotErrorMessage').text('');
 					$('#SlotId').empty();
@@ -215,7 +218,7 @@
 					// 	If a message is returned (like "Doctor is not available on this day.")
 					// 	$('#slotErrorMessage').text(data.message); Display the error message
 					// 	$('#SlotId').empty().prop('disabled', true); Disable the slot dropdown
-					// } else 
+					// } else
 					// {
 						// If slots are available, populate the dropdown
 						var slotDropdown = $('#SlotId');
@@ -227,14 +230,31 @@
 						// Populate the dropdown with available slots
 						$.each(data, function (index, slot) {
 
-							// slotDropdown.append('<option value="' + slot.value + '">' + slot.text + '</option>');
+						// 	// slotDropdown.append('<option value="' + slot.value + '">' + slot.text + '</option>');
 						var option = $('<option>')
 								.val(slot.value)
 								.text(slot.text)
-								.prop('disabled', slot.selected); // Disable the option if booked
-							   if (slot.selected) {
-								option.text(option.text() + ' Booked').addClass('booked-slot');;
+								.prop('disabled', slot.disabled); // Disable the option if booked
+							   if (slot.disabled ) {
+								option.text(option.text() + ' Booked').addClass('booked-slot');
 							}
+							
+
+					// if (slot.disabled){
+					// 	   option.removeClass('booked-slot');
+
+	    //                  // Remove the '(Booked)' text
+	    //                  option.text(option.text().replace('Booked', ''));
+
+	    //                 // Reset the color (remove yellow or any custom color)
+	    //                 option.css('color', '');
+
+	    //                // If the slot is a DOM element, remove the disabled property
+	    //                 option.prop('disabled', false);  // This will disable the DOM element if it's a form element
+
+	    //                 // Optionally, update the slot object property if needed
+	    //                 slot.disabled = false;
+					// }
 							// Add the option to the dropdown
 							slotDropdown.append(option);
 						});
@@ -259,7 +279,7 @@
 			type: 'GET',
 			data: { doctorId: doctorId },
 			success: function (response) {
-				// debuggersx	
+				// debuggersx
 				// Assuming response is an array of day names like ["Monday", "Tuesday"]
 				var availableDays = response; // Example: ["Monday", "Tuesday"]
 

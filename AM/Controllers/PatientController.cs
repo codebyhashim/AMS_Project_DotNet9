@@ -366,22 +366,26 @@ namespace AM.Controllers
 
 
             // Get booked slots for the given doctor and date
-            var bookedSlotIds = applicationDb.Appoinments
-                .Where(a => a.DoctorId == doctorId )
-                .Select(a => int.Parse(a.BookedSlots))
-                .ToList();
+            //var bookedSlotIds = applicationDb.Appoinments
+            //    .Where(a => a.DoctorId == doctorId )
+            //    .Select(a => int.Parse(a.BookedSlots))
+            //    .ToList();
 
 
-            //&& a.AppointmentDate == dat && a.Status == AppoinmentStatus.Cancelled                         
-            // get booked slots of doctor
-            //var bookedSlot = applicationDb.Slots.Where(s => bookedSlotIds.Contains(s.Id)).ToList();
-
-            //Disabled = bookedSlot.Contains(x)
-            // Get canecled slots for the given doctor and date
+            // Get  slots for the given doctor and date
             var bookedSlot = applicationDb.Appoinments
-                .Where(a => a.DoctorId == doctorId && a.AppointmentDate == dat )
+                .Where(a => a.DoctorId == doctorId && a.AppointmentDate == dat && a.Status == AppoinmentStatus.Booked)
                 .Select(a => int.Parse(a.BookedSlots))
                 .ToList();
+
+            // Get  slots for the given doctor and date
+            var cancelAppointments = applicationDb.Appoinments
+                .Where(a => a.DoctorId == doctorId && a.AppointmentDate == dat && a.Status == AppoinmentStatus.Cancelled)
+                .Select(a=>int.Parse(a.BookedSlots))
+                .ToList();
+
+            //var selectCancelSlot = applicationDb.Slots.Where(x => cancelAppointments.Contains(x.Id)).ToArray();
+            
 
             // Get all slots for the doctor
             var allSlots = applicationDb.Slots
@@ -390,9 +394,13 @@ namespace AM.Controllers
                 {
                     Value = x.Id.ToString(),
                     Text = $"{x.StartTime:hh:mm tt} - {x.EndTime:hh:mm tt}",
-                    Selected = bookedSlot.Contains(x.Id),
+                    //Selected = bookedSlot.Contains(x.Id),
+                    Disabled = bookedSlot.Contains(x.Id),
+
+                    //Disabled = cancelAppointments.Contains(x.Id) && bookedSlot.Contains(x.Id)
+                    //Disabled =cancelAppoinment.Any(c=>c.AppointmentId==x.Id)
                     //Disabled = bookedSlot.Contains(x)
-                });
+                }).ToList();
 
 
 
