@@ -12,9 +12,7 @@
 		color: yellow; /* Green color for booked slots */
 	}
 
-	.canceled-slot {
-		color: red; /* Canceled slots in orange */
-	}
+
 
 </style>
 
@@ -55,6 +53,7 @@
 
 				</select>
 				<span asp-validation-for="DoctorId" class="text-danger"></span>
+				@* <span asp-validation-for="DoctorId" class="text-danger"></span> *@
 
 			</div>
 
@@ -73,6 +72,8 @@
 					@* <option value="" disabled selected>Select Time Slot</option> *@
 				</select>
 				<span id="slotErrorMessage" class="text-danger"></span>
+				<span asp-validation-for="BookedSlots" class="text-danger"></span>
+
 			</div>
 
 			@*  <div class="form-group">
@@ -206,7 +207,7 @@
 				type: 'GET',
 				data: { doctorId: doctorId, date: appointmentDate }, // Pass the selected doctor ID and date as parameters
 				success: function (data) {
-					debugger
+					
 					// Clear previous error message
 					$('#slotErrorMessage').text('');
 					$('#SlotId').empty();

@@ -91,7 +91,11 @@
                         {
                             <tr>
                                 <td>
-                                    @item.AppointmentDate.ToString("MM-dd-yyyy")
+                                     @* @item.AppointmentDate.ToString("MM-dd-yyyy")  *@
+                                     @item.AppointmentDate.ToString("dd MMM,yyyy")
+                                    <br />
+                                    @item.AppointmentDate.ToString("dddd")
+                                    @item.BookedSlots 
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Status)

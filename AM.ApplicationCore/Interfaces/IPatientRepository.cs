@@ -1,4 +1,8 @@
-﻿using AM.Models;
+﻿using System.Text.Json.Nodes;
+using AM.ApplicationCore.Models;
+using AM.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace AM.Interfaces
 {
@@ -20,6 +24,11 @@ namespace AM.Interfaces
         Task<List<AppointmentModel>> ViewAppoinments(PatientModel patient);
 
 
+        Task<List<string>> GetDays(int doctorId);
+
+        Task<List<SelectListItem>>  DisplaySlots(int doctorId, string date);
+
+        Task<List<TimeSlotsModel>> GetAllSlots();
         //DoctorModel GetActiveDoctor();
 
     }

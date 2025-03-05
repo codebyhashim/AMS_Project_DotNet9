@@ -1,7 +1,10 @@
 ﻿using AM.ApplicationCore.Features.Doctor.GetDoctor;
 using AM.ApplicationCore.Features.Patient.BookAppoinments;
 using AM.ApplicationCore.Features.Patient.DisplayAppointmentForm;
+using AM.ApplicationCore.Features.Patient.DisplayDoctorSlots;
 using AM.ApplicationCore.Features.Patient.GetActiveDoctors;
+using AM.ApplicationCore.Features.Patient.GetAllSlots;
+using AM.ApplicationCore.Features.Patient.GetDoctorDays;
 using AM.ApplicationCore.Features.Patient.GetLoginUserId;
 using AM.ApplicationCore.Features.Patient.GetPateint;
 using AM.ApplicationCore.Features.Patient.RegisterPatient;
@@ -30,17 +33,24 @@ namespace AM.Controllers
        
         private readonly IMediator _mediator;
         private readonly IValidator<PatientModel> _validator;
-        private readonly ApplicationDbContext applicationDb;
+        private readonly IValidator<AppointmentModel> _appointmentValidator;
+        private readonly IPatientRepository patientRepository;
+
+        //private readonly ApplicationDbContext applicationDb;
+
 
 
         //private readonly IValidator<AppointmentModel> _appoinmentvalidator;
 
-        public PatientController(IMediator mediator , IValidator<PatientModel> validator , ApplicationDbContext applicationDb)
+        public PatientController(IMediator mediator , IValidator<PatientModel> pateintValidator ,IValidator<AppointmentModel> AppointmentValidator, ApplicationDbContext applicationDb, IPatientRepository patientRepository)
         {
-
+ 
             this._mediator = mediator;
-            this._validator = validator;
-            this.applicationDb = applicationDb;
+            this._validator = pateintValidator;
+            _appointmentValidator = AppointmentValidator;
+            this.patientRepository = patientRepository;
+            //this.applicationDb = applicationDb;
+
         }
 
 
@@ -168,7 +178,11 @@ namespace AM.Controllers
                 }
                 ViewBag.doctors = doctors.Result;
 
-                var time = applicationDb.Slots.ToList();
+                //var time = applicationDb.Slots.ToList();
+                //var time = patientRepository.GetAllSlots();
+                var time = _mediator.Send(new GetAllSlotsRequest()).Result;
+
+
 
                 ViewBag.timeSlot = time;
 
@@ -191,33 +205,33 @@ namespace AM.Controllers
         [HttpPost]
         public async Task<IActionResult> MakeAppoinment(AppointmentModel appointment)
         {
-            //var validation = await appoinmentvalidator.ValidateAsync(appointment);
-            //if (validation.IsValid)
-            //{
+            var validation = await _appointmentValidator.ValidateAsync(appointment);
+            if (validation.IsValid)
+            {
 
-            //var doctor = applicationDb.Doctors.Where(x => x.Id == doctorId).FirstOrDefault();
-            //var doctorSlots = doctor.AvailabilityTimeSlot.Split(',').Select(s => int.Parse(s))
-            //                                   .ToArray();
+                //var doctor = applicationDb.Doctors.Where(x => x.Id == doctorId).FirstOrDefault();
+                //var doctorSlots = doctor.AvailabilityTimeSlot.Split(',').Select(s => int.Parse(s))
+                //                                   .ToArray();
 
-            //var selectSlot = applicationDb.Slots.Where(x => doctorSlots.Contains(x.Id)).ToList();
-            //if (selectSlot != null)
-            //{
+                //var selectSlot = applicationDb.Slots.Where(x => doctorSlots.Contains(x.Id)).ToList();
+                //if (selectSlot != null)
+                //{
 
-            //  return selectSlot;
-            //}
+                //  return selectSlot;
+                //}
 
-            await _mediator.Send(new BookAppointmentsRequest(appointment));
+                await _mediator.Send(new BookAppointmentsRequest(appointment));
 
             return RedirectToAction("ViewAppoinment", "Patient");
-            //}
-            //else
-            //{
-            //    foreach (var error in validation.Errors)
-            //    {
-            //        ModelState.AddModelError(error.PropertyName, error.ErrorMessage);
-            //    }
-            //    return View();
-            //}
+            }
+            else
+            {
+                foreach (var error in validation.Errors)
+                {
+                    ModelState.AddModelError(error.PropertyName, error.ErrorMessage);
+                }
+                return View();
+            }
         }
 
         //return View();
@@ -266,6 +280,55 @@ namespace AM.Controllers
 
 
 
+
+
+        public async Task<IActionResult> GetDays(int doctorId)
+        {
+
+            var days = _mediator.Send(new GetDaysRequest(doctorId)).Result;
+            return  Json(days);
+       
+        }
+
+
+        public IActionResult SelectedSlots(int doctorId, string date)
+        {
+
+            var slot = _mediator.Send(new DisplayDoctorSlotsRequest(doctorId,date)).Result;
+            return Json(slot);
+            
+
+
+        }
+
+
+
+
+        //public async Task<IActionResult> GetDays(int doctorId)
+        //{
+
+            //var days = _mediator.Send(new GetDaysRequest(doctorId)).Result;
+            //var days = patientRepository.GetDays(doctorId).Result;
+            //return Json(days);
+            //     var doctor = await applicationDb.Doctors.Where(x => x.Id == doctorId).FirstOrDefaultAsync();
+            //     if (doctor == null)
+            //     {
+            //         return Json(new { message = "Doctor not found." });
+            //     }
+
+
+            //     var doctorAvailabilityDay = doctor.AvailabilityDays.Split(",")
+            //.Select(s => int.Parse(s))
+            //.Select(day => (DayOfWeek)day)
+            //.Select(day => day.ToString()).Select(s => s.Trim()) // Convert DayOfWeek enum to string (e.g., "Sunday", "Monday")
+            //.ToList();
+
+
+            //return Json(doctorAvailabilityDay);
+        //}
+
+
+
         //public IActionResult SelectedSlots(int doctorId, string date)
         //{
 
@@ -311,112 +374,6 @@ namespace AM.Controllers
         //    return Json(selectSlot);
 
         //}
-       
-
-        public IActionResult GetDays(int doctorId)
-        {
-            var doctor = applicationDb.Doctors.Where(x => x.Id == doctorId).FirstOrDefault();
-            if (doctor == null)
-            {
-                return Json(new { message = "Doctor not found." });
-            }
-
-            //Get selected doctor slots and convert to array of int
-            //var doctorSlots = doctor.AvailabilityTimeSlot.Split(',').Select(s => int.Parse(s)).ToArray();
-            var doctorAvailabilityDay = doctor.AvailabilityDays.Split(",")
-       .Select(s => int.Parse(s))
-       .Select(day => (DayOfWeek)day)
-       .Select(day => day.ToString()).Select(s => s.Trim()) // Convert DayOfWeek enum to string (e.g., "Sunday", "Monday")
-       .ToList();
-            //var doctorAvailabilityDay = doctor.AvailabilityDays.Split(",")
-            // .Select(s => s.Trim())  // Ensure any spaces are removed
-            // .ToList();
-
-            return Json(doctorAvailabilityDay);
-        }
-
-
-        public IActionResult SelectedSlots(int doctorId, string date)
-        {
-            DateTime dat = DateTime.Parse(date);
-            DayOfWeek userSelecteDay = dat.DayOfWeek;
-
-            // Select doctor from db
-            var doctor = applicationDb.Doctors.Where(x => x.Id == doctorId).FirstOrDefault();
-            if (doctor == null)
-            {
-                return Json(new { message = "Doctor not found." });
-            }
-
-            // Get selected doctor slots and convert to array of int
-            var doctorSlots = doctor.AvailabilityTimeSlot.Split(',').Select(s => int.Parse(s)).ToArray();
-
-            // Get doctor availability days
-            var doctorAvailabilityDays = doctor.AvailabilityDays.Split(",")
-                .Select(s => int.Parse(s))
-                .Select(day => (DayOfWeek)day)
-                .ToList();
-
-            // Check if the doctor is available on the selected day
-            //if (!doctorAvailabilityDays.Contains(userSelecteDay))
-            //{
-            //    return Json(new { message = "Doctor is not available on this day." });
-            //}
-
-
-
-            // Get booked slots for the given doctor and date
-            //var bookedSlotIds = applicationDb.Appoinments
-            //    .Where(a => a.DoctorId == doctorId )
-            //    .Select(a => int.Parse(a.BookedSlots))
-            //    .ToList();
-
-
-            // Get  slots for the given doctor and date
-            var bookedSlot = applicationDb.Appoinments
-                .Where(a => a.DoctorId == doctorId && a.AppointmentDate == dat && a.Status == AppoinmentStatus.Booked)
-                .Select(a => int.Parse(a.BookedSlots))
-                .ToList();
-
-            // Get  slots for the given doctor and date
-            var cancelAppointments = applicationDb.Appoinments
-                .Where(a => a.DoctorId == doctorId && a.AppointmentDate == dat && a.Status == AppoinmentStatus.Cancelled)
-                .Select(a=>int.Parse(a.BookedSlots))
-                .ToList();
-
-            //var selectCancelSlot = applicationDb.Slots.Where(x => cancelAppointments.Contains(x.Id)).ToArray();
-            
-
-            // Get all slots for the doctor
-            var allSlots = applicationDb.Slots
-                .Where(x => doctorSlots.Contains(x.Id))
-                .Select(x => new SelectListItem
-                {
-                    Value = x.Id.ToString(),
-                    Text = $"{x.StartTime:hh:mm tt} - {x.EndTime:hh:mm tt}",
-                    //Selected = bookedSlot.Contains(x.Id),
-                    Disabled = bookedSlot.Contains(x.Id),
-
-                    //Disabled = cancelAppointments.Contains(x.Id) && bookedSlot.Contains(x.Id)
-                    //Disabled =cancelAppoinment.Any(c=>c.AppointmentId==x.Id)
-                    //Disabled = bookedSlot.Contains(x)
-                }).ToList();
-
-
-
-
-            //     var doctorAvailabilityDayInString = doctor.AvailabilityDays.Split(",")
-            //.Select(s => int.Parse(s))
-            //.Select(day => (DayOfWeek)day)
-            //.Select(day => day.ToString()) // Convert DayOfWeek enum to string (e.g., "Sunday", "Monday")
-            //.ToList();
-            //return Json(allSlots,doctorAvailabilityDays);
-            return Json(allSlots);
-
-
-        }
-
-
         //public IActionResult SelectedSlots(int doctorId, string date)
         //{
         //    DateTime dat = DateTime.Parse(date);

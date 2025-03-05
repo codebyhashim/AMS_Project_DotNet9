@@ -91,7 +91,14 @@ else
                             {
                                 <tr>
                                     
-                                    <th scope="col"> @item.AppointmentDate.ToString("dd-MM-yyyy") </th>
+                                    <th scope="col">
+                                        @* @item.AppointmentDate.ToString("dd-MM-yyyy") *@
+
+                                        @item.AppointmentDate.ToString("dd MMM,yyyy")
+                                        <br />
+                                        @item.AppointmentDate.ToString("dddd")
+                                        @item.BookedSlots
+                                    </th>
                                     <th scope="col">@item.Doctor.Name</th>
                                     <th scope="col">@item.Doctor.Speciality</th>
                                     <th scope="col">@item.Patient.Name</th>

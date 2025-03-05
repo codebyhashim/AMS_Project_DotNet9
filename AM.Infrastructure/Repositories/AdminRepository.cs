@@ -236,6 +236,16 @@ namespace AM.Repositories
         {
             var appointments = await _context.Appoinments.Include(x => x.Doctor).Include(x => x.Patient).ToListAsync();
 
+            foreach (var item in appointments)
+            {
+                var BookedSlots = int.Parse(item.BookedSlots);
+                var slot = _context.Slots.FirstOrDefault(x => x.Id == BookedSlots);
+                item.BookedSlots = $"{slot.StartTime}-{slot.EndTime}";
+                //item.AppointmentDate = item.AppointmentDate.ToString("MM/dd/yyyy");
+
+            }
+
+
             return appointments;
         }
 
