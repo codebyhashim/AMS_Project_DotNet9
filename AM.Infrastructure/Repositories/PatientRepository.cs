@@ -132,7 +132,7 @@ namespace AM.Repositories
 
              If you have any questions or require further assistance, do not hesitate to reach out.
 
-             We look forward to seeing you on **{appointments.AppointmentDate.ToString("dd MMM,yyyy")}** at **{slot.StartTime - slot.EndTime}**.
+             We look forward to seeing you on **{appointments.AppointmentDate.ToString("dd MMM,yyyy")}** at **{timeSlot}**.
 
              Best regards,  
              HealthConnect  
@@ -143,7 +143,7 @@ namespace AM.Repositories
 
             await _context.Appoinments.AddAsync(appointments);
             await _context.SaveChangesAsync();
-            //await _emailService.SendEmailAsync(email, "Your Doctor Account Credentials", message);
+            await _emailService.SendEmailAsync(email, "Your Doctor Account Credentials", message);
             return true;
 
         }
