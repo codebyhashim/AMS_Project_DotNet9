@@ -131,18 +131,18 @@ namespace AM.Controllers
             return View();
         }
 
-        [HttpGet("Doctor/Delete")]
-        public async Task<IActionResult> Delete(int Id)
-        {
-            //var selectData = await context.Doctors.FindAsync(Id);
-            //var doctor = await adminRepository.GetDoctorById(Id);
+        //[HttpGet("Doctor/Delete")]
+        //public async Task<IActionResult> Delete(int Id)
+        //{
+        //    //var selectData = await context.Doctors.FindAsync(Id);
+        //    //var doctor = await adminRepository.GetDoctorById(Id);
 
-            var doctor = await _mediator.Send(new GetDoctorByIdRequest() { id = Id });
-            if (doctor == null) NotFound();
+        //    var doctor = await _mediator.Send(new GetDoctorByIdRequest() { id = Id });
+        //    if (doctor == null) NotFound();
 
-            return View(doctor);
-        }
-        [HttpPost("Doctor/Delete")]
+        //    return View(doctor);
+        //}
+        [HttpPost("Doctor/Delete/{Id}")]
         [ActionName("Delete")]
         public async Task<IActionResult> DeleteConfirmed(int Id)
         {

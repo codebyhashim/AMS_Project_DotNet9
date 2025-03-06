@@ -44,6 +44,11 @@ namespace AM.ApplicationCore.Validator
             RuleFor(x => x.Experience)
            .NotEmpty().WithMessage("Experience is required");
 
+
+            RuleFor(x => x.Address)
+          .NotEmpty().WithMessage("Address is required");
+
+
             RuleFor(x => x.PhoneNumber)
             .NotEmpty().WithMessage("Experience is required")
             .MinimumLength(10).WithMessage("PhoneNumber must not be less than 10 characters.")

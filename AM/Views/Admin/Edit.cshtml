@@ -126,15 +126,24 @@
 					</div>
 				</div>
 
-				<div class="col-md-3">
+			@* 	<div class="col-md-3">
 					<div class="form-group">
 						<label asp-for="IsActive" class="control-label"></label>
 						<input asp-for="IsActive" type="checkbox" class="form-check-input" />
 						<span asp-validation-for="IsActive" class="text-danger"></span>
 					</div>
+				</div> *@
+
+
+				<div class="col-md-3">
+					<div class="form-group">
+						<label asp-for="Address" class="control-label"></label>
+						<input asp-for="Address" class="form-control input-lg custom-input-width" />
+						<span asp-validation-for="Address" class="text-danger"></span>
+					</div>
 				</div>
 			</div>
-
+			
 
 			@* third row *@
 			@* <div class="row mb-4">
@@ -178,7 +187,13 @@
 
 				</div>
 			</div> *@
-
+			<div class="col-md-3">
+				<div class="form-group">
+					<label asp-for="IsActive" class="control-label"></label>
+					<input asp-for="IsActive" type="checkbox" class="form-check-input" />
+					<span asp-validation-for="IsActive" class="text-danger"></span>
+				</div>
+			</div>
 			
 			<div class="col-md-3">
 				<div class="form-group">

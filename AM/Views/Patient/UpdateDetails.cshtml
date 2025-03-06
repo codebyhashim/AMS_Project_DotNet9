@@ -5,9 +5,10 @@
 }
 @if (TempData["sucessMessage"] != null)
 {
-    <div id="msg" class="alert alert-success" role="alert">
+    <div id="msg" class="alert alert-success" >
         @TempData["sucessMessage"] 
     </div>
+
 }
 @if (@ViewBag.msg!=null){
 

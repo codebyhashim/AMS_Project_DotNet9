@@ -283,8 +283,9 @@ namespace AM.Repositories
                     WaitTime = item.WaitTime,
                     PhoneNumber = item.PhoneNumber,
                     Degree = item.Degree,
-                    UserId=item.UserId
-
+                    UserId=item.UserId,
+                    Description = item.Description,
+                    Address=item.Address
 
                 };
                 doctorModels.Add(doctor);
@@ -314,11 +315,30 @@ namespace AM.Repositories
         public async Task<bool> UpdateLockDoctor(DoctorModel doctors, List<string> AvailabilityDays, List<string> AvailabilityTimeSlot)
         {
 
-
+           
+           
             //var doctor = await _adminRepository.GetDoctorById(request._doctor.Id);
 
             var doctor = await _context.Doctors.FirstOrDefaultAsync(x => x.Id == doctors.Id);
+            if (doctor == null)
+            {
+                return false; // Return 404 if doctor not found
+            }
+            var user = await userManager.FindByIdAsync(doctor.UserId);
+            if (user != null)
+            {
+                user.Email = doctor.Email;
+                user.UserName = doctor.Email;
 
+                var result = await userManager.UpdateAsync(user);
+
+                if (!result.Succeeded)
+                {
+                    return false;
+                }
+
+
+            }
             doctor.Name = doctors.Name;
             doctor.Speciality = doctors.Speciality;
             doctor.Degree = doctors.Degree;

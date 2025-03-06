@@ -52,7 +52,14 @@ else
 @* } *@
 
 
-                @model List<AM.Models.AppointmentModel>
+@model List<AM.Models.AppointmentModel>
+
+@if (TempData["Message"] != null)
+{
+    <div id="confirmationMessage" class="alert alert-success">
+        @TempData["Message"]
+    </div>
+}
 
 @if (ViewBag.msg != null)
 {
@@ -167,6 +174,19 @@ else
        
     }
 }
+
+<script>
+    // Check if the message element exists
+    setTimeout(function() {
+        var messageElement = document.getElementById('confirmationMessage');
+        if (messageElement) {
+            messageElement.style.display = 'none'; // Hide the message
+        }
+    }, 2000);
+        
+    
+</script>
+
 @section scripts {
     <script src="~/Theme/vendor/jquery/jquery.min.js"></script>
     <script src="~/Theme/vendor/jquery-easing/jquery.easing.min.js"></script>

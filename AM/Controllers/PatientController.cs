@@ -221,8 +221,10 @@ namespace AM.Controllers
                 //}
 
                 await _mediator.Send(new BookAppointmentsRequest(appointment));
+                
+                TempData["Message"]= "Appointment has been booked successfully and email sent successfully ";
 
-            return RedirectToAction("ViewAppoinment", "Patient");
+                return RedirectToAction("ViewAppoinment", "Patient");
             }
             else
             {
@@ -269,8 +271,8 @@ namespace AM.Controllers
                 //}
                 //else
                 //{
-
-                    return View(data);
+                
+                return View(data);
                 //}
 
 

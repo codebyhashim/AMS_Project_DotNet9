@@ -1,11 +1,15 @@
 ﻿
 using System.Security.Claims;
+using AM.ApplicationCore.Interfaces;
 using AM.ApplicationCore.Models;
 using AM.Data;
+using AM.Data.Migrations;
+using AM.Infrastructure.Services;
 using AM.Interfaces;
 using AM.Models;
 using FluentValidation;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -16,13 +20,15 @@ namespace AM.Repositories
     {
         private readonly ApplicationDbContext _context;
         private readonly IHttpContextAccessor _httpContextAccessor;
-        
+        private readonly IEmailService _emailService;
+        private readonly UserManager<IdentityUser> userManager;
 
-        public PatientRepository(ApplicationDbContext _context, IHttpContextAccessor _HttpContextAccessor)
+        public PatientRepository(ApplicationDbContext _context, IHttpContextAccessor _HttpContextAccessor, IEmailService emailService, UserManager<IdentityUser> userManager)
         {
             this._context = _context;
             _httpContextAccessor = _HttpContextAccessor;
-           
+            this._emailService = emailService;
+            this.userManager = userManager;
         }
 
         public string GetLoginPatient()
@@ -42,7 +48,7 @@ namespace AM.Repositories
             var loginId = user.FindFirst(ClaimTypes.NameIdentifier).Value;
             patient.UserId = loginId;
 
-           await _context.Patients.AddAsync(patient);
+            await _context.Patients.AddAsync(patient);
             await _context.SaveChangesAsync();
             return true;
         }
@@ -82,13 +88,62 @@ namespace AM.Repositories
 
         public async Task<bool> GetAppointments(AppointmentModel appointments)
         {
-            //var slot = int.Parse(appointments.BookedSlots);
-            //var getSlot = _context.Slots.FirstOrDefault(x=>x.Id==slot);
-            //Console.WriteLine(getSlot);
+            //step1. get login user then get email for sending email
+            //step2. get doctor that select by user
+            //step3 from this doctor get doctor details .
+            //step4 then call inject email service and call sendemail method to send these credentials
 
-            //appointments.BookedSlots = $"{ getSlot.StartTime} - {getSlot.EndTime}";
+
+            // get email from login user 
+            var getUserCredentialDetails = _httpContextAccessor.HttpContext?.User;
+            var loginId = getUserCredentialDetails?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var getLoginUser = userManager.FindByIdAsync(loginId);
+            var email = getLoginUser?.Result.Email;
+
+            // get the doctor selected by user and retieve the doctor details
+            var getDoctor = _context.Doctors.FirstOrDefault(x => x.Id == appointments.DoctorId);
+
+
+            // get Patient Name
+            var getPatient = _context.Patients.FirstOrDefault(x => x.Id == appointments.PatientId);
+
+            // get date slots 
+            var slot = _context.Slots.FirstOrDefault(x => x.Id == int.Parse(appointments.BookedSlots));
+            //var slotTime = $"{slot.StartTime.ToString('h mm tt') - slot.EndTime.ToString('h mm tt')}";
+            var startTime = slot.StartTime.ToString("h:mm tt");
+            var endTime = slot.EndTime.ToString("h:mm tt");
+            var timeSlot = $"{startTime}-{endTime}";
+
+            //created emaily body message
+            var message = $@"
+             Dear {getPatient.Name},
+             
+             Your appointment with Dr. {getDoctor.Name}, {getDoctor.Speciality}, has been successfully scheduled. Below are the details for your upcoming visit:
+
+             - **Appointment Date:**   {appointments.AppointmentDate.ToString("dd MMM,yyyy")}            
+             - **Appointment Time:** {timeSlot}
+             - **Doctor’s Name:** Dr. {getDoctor.Name}
+             - **Location:** HealthConnect, {getDoctor.Address}
+             - **Contact Information:** {getDoctor.PhoneNumber}
+
+             - **Preparation Instructions:** Please arrive 15 minutes early.
+
+             If you need to cancel or reschedule your appointment, please contact us at least **20 hours** in advance by calling {getDoctor.PhoneNumber} or emailing {getDoctor.Email}.
+
+             If you have any questions or require further assistance, do not hesitate to reach out.
+
+             We look forward to seeing you on **{appointments.AppointmentDate.ToString("dd MMM,yyyy")}** at **{slot.StartTime - slot.EndTime}**.
+
+             Best regards,  
+             HealthConnect  
+             {getDoctor.PhoneNumber}
+             ";
+
+
+
             await _context.Appoinments.AddAsync(appointments);
             await _context.SaveChangesAsync();
+            //await _emailService.SendEmailAsync(email, "Your Doctor Account Credentials", message);
             return true;
 
         }
@@ -96,26 +151,26 @@ namespace AM.Repositories
         public async Task<List<AppointmentModel>> ViewAppoinments(PatientModel patient)
         {
             var slot = _context.Slots.ToList();
-           
-                
+
+
             var appointments = await _context.Appoinments.Where(x => x.PatientId == patient.Id).Include(x => x.Doctor).Include(x => x.Patient).ToListAsync();
-                foreach (var appointment in appointments)
-                {
+            foreach (var appointment in appointments)
+            {
                 var matchingSlots = slot.FirstOrDefault(x => x.Id.ToString() == appointment.BookedSlots);
-                    if (matchingSlots!=null)
-                    {
+                if (matchingSlots != null)
+                {
                     string slotTime = $"{matchingSlots.StartTime:hh:mm tt} - {matchingSlots.EndTime:hh:mm tt}";
-                  
+
                     appointment.BookedSlots = slotTime;
                 }
-                };
+            };
             return appointments;
-            
-            
+
+
 
         }
 
-       
+
 
         public async Task<List<string>> GetDays(int doctorId)
         {
@@ -137,9 +192,9 @@ namespace AM.Repositories
             return doctorAvailabilityDay;
         }
 
-       
 
-      public async  Task<List<SelectListItem>> DisplaySlots(int doctorId, string date)
+
+        public async Task<List<SelectListItem>> DisplaySlots(int doctorId, string date)
         {
             DateTime dat = DateTime.Parse(date);
             DayOfWeek userSelecteDay = dat.DayOfWeek;
@@ -188,8 +243,54 @@ namespace AM.Repositories
 
         public async Task<List<TimeSlotsModel>> GetAllSlots()
         {
-            var slots= _context.Slots.ToList();
+            var slots = _context.Slots.ToList();
             return slots;
         }
     }
 }
+
+
+
+//Dear [Patient's Name],
+
+//Your appointment with Dr. [Doctor's Name], [Doctor's Specialty], has been successfully scheduled. Below are the details for your upcoming visit:
+
+//Appointment Date: [Date]
+//Appointment Time: [Time]
+//Doctor’s Name: Dr. [Doctor’s Full Name]
+//Location: [Clinic/Hospital Name], [Full Address]
+//Contact Information: [Phone number or email for inquiries]
+//Reason for Appointment: [Brief reason for visit, such as consultation, routine check-up, etc.]
+
+//Preparation Instructions:
+//[Instructions, such as "Please arrive 15 minutes early," or "Fast for 12 hours prior to your visit."]
+//If you need to cancel or reschedule your appointment, please contact us at least [time frame, e.g., 24 hours] in advance by calling [Phone Number] or emailing [Email Address].
+
+//If you have any questions or require further assistance, do not hesitate to reach out.
+
+//We look forward to seeing you on [Date] at [Time].
+
+//Best regards,
+//[Your Clinic’s Name]
+//[Contact Details]Dear [Patient's Name],
+
+//Your appointment with Dr. [Doctor's Name], [Doctor's Specialty], has been successfully scheduled. Below are the details for your upcoming visit:
+
+//Appointment Date: [Date]
+//Appointment Time: [Time]
+//Doctor’s Name: Dr. [Doctor’s Full Name]
+//Location: [Clinic/Hospital Name], [Full Address]
+//Contact Information: [Phone number or email for inquiries]
+//Reason for Appointment: [Brief reason for visit, such as consultation, routine check-up, etc.]
+
+//Preparation Instructions:
+//[Instructions, such as "Please arrive 15 minutes early," or "Fast for 12 hours prior to your visit."]
+//If you need to cancel or reschedule your appointment, please contact us at least [time frame, e.g., 24 hours] in advance by calling [Phone Number] or emailing [Email Address].
+
+//If you have any questions or require further assistance, do not hesitate to reach out.
+
+//We look forward to seeing you on [Date] at [Time].
+
+//Best regards,
+//[Your Clinic’s Name]
+//[Contact Details]

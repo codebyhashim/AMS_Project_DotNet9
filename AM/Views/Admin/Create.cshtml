@@ -16,95 +16,95 @@
  *@
 
 
- 
+
 <div class="row justify-content-center card shadow">
-    <h4 class="text-center p-4">Create Doctor</h4>
-    <div class="col-md-12 card-body">
-        <!-- Adjust the form width here -->
-        <form  asp-action="Create" asp-controller="Doctor" method="post" id="userForm">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+	<h4 class="text-center p-4">Create Doctor</h4>
+	<div class="col-md-12 card-body">
+		<!-- Adjust the form width here -->
+		<form asp-action="Create" asp-controller="Doctor" method="post" id="userForm">
+			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-            <!-- First Row of Input Fields -->
-            <div class="row mb-4">
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label asp-for="Name" class="control-label"></label>
-                        <input asp-for="Name" class="form-control input-lg custom-input-width" />
-                        <span asp-validation-for="Name" class="text-danger"></span>
-                    </div>
-                </div>
-
-
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label asp-for="Email" class="control-label"></label>
-                        <input asp-for="Email" class="form-control input-lg custom-input-width" />
-                        <span asp-validation-for="Email" class="text-danger"></span>
-                    </div>
-                </div>
-
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label asp-for="Speciality" class="control-label"></label>
-                        <input asp-for="Speciality" class="form-control input-lg custom-input-width" />
-                        <span asp-validation-for="Speciality" class="text-danger"></span>
-                    </div>
-                </div>
-
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label asp-for="Degree" class="control-label"></label>
-                        <input asp-for="Degree" class="form-control input-lg custom-input-width" />
-                        <span asp-validation-for="Degree" class="text-danger"></span>
-                    </div>
-                </div>
+			<!-- First Row of Input Fields -->
+			<div class="row mb-4">
+				<div class="col-md-3">
+					<div class="form-group">
+						<label asp-for="Name" class="control-label"></label>
+						<input asp-for="Name" class="form-control input-lg custom-input-width" />
+						<span asp-validation-for="Name" class="text-danger"></span>
+					</div>
+				</div>
 
 
-            </div>
+				<div class="col-md-3">
+					<div class="form-group">
+						<label asp-for="Email" class="control-label"></label>
+						<input asp-for="Email" class="form-control input-lg custom-input-width" />
+						<span asp-validation-for="Email" class="text-danger"></span>
+					</div>
+				</div>
 
-            <!-- Second Row of Input Fields -->
-            <div class="row mb-4">
+				<div class="col-md-3">
+					<div class="form-group">
+						<label asp-for="Speciality" class="control-label"></label>
+						<input asp-for="Speciality" class="form-control input-lg custom-input-width" />
+						<span asp-validation-for="Speciality" class="text-danger"></span>
+					</div>
+				</div>
 
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label asp-for="City" class="control-label"></label>
-                        <input asp-for="City" class="form-control input-lg custom-input-width" />
-                        <span asp-validation-for="City" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label asp-for="PhoneNumber" class="control-label"></label>
-                        <input asp-for="PhoneNumber" class="form-control input-lg custom-input-width" />
-                        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
-                    </div>
-                </div>
-
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label asp-for="Experience" class="control-label"></label>
-                        <input asp-for="Experience" class="form-control input-lg custom-input-width" />
-                        <span asp-validation-for="Experience" class="text-danger"></span>
-                    </div>
-                </div>
-
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label asp-for="Description" class="control-label"></label>
-                        <input asp-for="Description" class="form-control input-lg custom-input-width" />
-                        <span asp-validation-for="Description" class="text-danger"></span>
-                    </div>
-                </div>
+				<div class="col-md-3">
+					<div class="form-group">
+						<label asp-for="Degree" class="control-label"></label>
+						<input asp-for="Degree" class="form-control input-lg custom-input-width" />
+						<span asp-validation-for="Degree" class="text-danger"></span>
+					</div>
+				</div>
 
 
+			</div>
+
+			<!-- Second Row of Input Fields -->
+			<div class="row mb-4">
+
+				<div class="col-md-3">
+					<div class="form-group">
+						<label asp-for="City" class="control-label"></label>
+						<input asp-for="City" class="form-control input-lg custom-input-width" />
+						<span asp-validation-for="City" class="text-danger"></span>
+					</div>
+				</div>
+				<div class="col-md-3">
+					<div class="form-group">
+						<label asp-for="PhoneNumber" class="control-label"></label>
+						<input asp-for="PhoneNumber" class="form-control input-lg custom-input-width" />
+						<span asp-validation-for="PhoneNumber" class="text-danger"></span>
+					</div>
+				</div>
+
+				<div class="col-md-3">
+					<div class="form-group">
+						<label asp-for="Experience" class="control-label"></label>
+						<input asp-for="Experience" class="form-control input-lg custom-input-width" />
+						<span asp-validation-for="Experience" class="text-danger"></span>
+					</div>
+				</div>
+
+				<div class="col-md-3">
+					<div class="form-group">
+						<label asp-for="Description" class="control-label"></label>
+						<input asp-for="Description" class="form-control input-lg custom-input-width" />
+						<span asp-validation-for="Description" class="text-danger"></span>
+					</div>
+				</div>
 
 
 
-            </div>
 
-            <!-- Third Row of Input Fields -->
-            <div class="row mb-4">
-                @*   <div class="col-md-3">
+
+			</div>
+
+			<!-- Third Row of Input Fields -->
+			<div class="row mb-4">
+				@*   <div class="col-md-3">
                     <div class="form-group">
                         <label asp-for="Address" class="control-label"></label>
                         <input asp-for="Address" class="form-control input-lg custom-input-width" />
@@ -114,14 +114,14 @@
 
 
 
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label asp-for="WaitTime" class="control-label"></label>
-                        <input asp-for="WaitTime" class="form-control input-lg custom-input-width" />
-                        <span asp-validation-for="WaitTime" class="text-danger"></span>
-                    </div>
-                </div>
-                @*  <div class="col-md-3">
+				<div class="col-md-3">
+					<div class="form-group">
+						<label asp-for="WaitTime" class="control-label"></label>
+						<input asp-for="WaitTime" class="form-control input-lg custom-input-width" />
+						<span asp-validation-for="WaitTime" class="text-danger"></span>
+					</div>
+				</div>
+				@*  <div class="col-md-3">
                     <div class="form-group">
                         <label asp-for="AvailabilityDays" class="control-label"></label>
                         <input asp-for="AvailabilityDays" class="form-control input-lg custom-input-width" />
@@ -129,7 +129,7 @@
                     </div>
                 </div>  *@
 
-                @* <div class="col-md-3">
+				@* <div class="col-md-3">
                     <div class="form-group">
                         <label asp-for="AvailabilityDays" class="control-label"></label>
                         <div>
@@ -152,35 +152,29 @@
                 </div> 
  *@
 
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label asp-for="AvailabilityDays" class="control-label"></label>
-                        <div>
-                            <select class="js-example-basic-multiple" name="AvailabilityDays" multiple="multiple">
+				<div class="col-md-3">
+					<div class="form-group">
+						<label asp-for="AvailabilityDays" class="control-label"></label>
+						<div>
+							<select class="js-example-basic-multiple" name="AvailabilityDays" multiple="multiple">
 
-                                @foreach (DayOfWeek day in Enum.GetValues(typeof(DayOfWeek)))
-                                {
-                                    <option value="@((int)day)">@day</option>
-                                }
+								@foreach (DayOfWeek day in Enum.GetValues(typeof(DayOfWeek)))
+								{
+									<option value="@((int)day)">@day</option>
+								}
 
-                               @*  <option value="Monday">Monday</option>
-                                <option value="Tuesday">Tuesday</option>
-                                <option value="Wednesday">Wednesday</option>
-                                <option value="Thursday">Thursday</option>
-                                <option value="Friday">Friday</option>
-                                <option value="Saturday">Saturday</option>
-                                <option value="Sunday">Sunday</option> *@
-                            </select>
 
-                        </div>
-                        <span asp-validation-for="AvailabilityDays" class="text-danger"></span>
-                    </div>
-                </div>
+							</select>
+
+						</div>
+						<span asp-validation-for="AvailabilityDays" class="text-danger"></span>
+					</div>
+				</div>
 
 
 
 
-                @*   <div class="col-md-3">
+				@*   <div class="col-md-3">
                     <div class="form-group">
                         <label asp-for="AvailabilityTimeSlot" class="control-label"></label>
                         <input asp-for="AvailabilityTimeSlot" class="form-control input-lg custom-input-width" />
@@ -188,34 +182,41 @@
                     </div>
 
                 </div>  *@
-                @* ViewBag.Slots *@
+				@* ViewBag.Slots *@
 
-                 <div class="col-md-5">
-                    <div class="form-group">
-                        <label asp-for="AvailabilityTimeSlot" class="control-label"></label>
-                        <div>
-
-
-
-                            <select class="js-example-basic-multiple" name="AvailabilityTimeSlot" multiple="multiple">
-
-                                @foreach (var slot in ViewBag.Slots as List<TimeSlotsModel>)
-                                {
-
-                                      <option value="@slot.Id">@slot.StartTime.ToString("hh:mm tt")-@slot.EndTime.ToString("hh-mm tt")</option>
-                                }) ;
+				<div class="col-md-3">
+					<div class="form-group">
+						<label asp-for="AvailabilityTimeSlot" class="control-label"></label>
+						<div>
 
 
-                            
-                        </select>
-                        </div>
-                        <span asp-validation-for="AvailabilityTimeSlot" class="text-danger"></span>
-                    </div>
 
-                </div> 
+							<select class="js-example-basic-multiple" name="AvailabilityTimeSlot" multiple="multiple">
+
+								@foreach (var slot in ViewBag.Slots as List<TimeSlotsModel>)
+								{
+
+									<option value="@slot.Id">@slot.StartTime.ToString("hh:mm tt")-@slot.EndTime.ToString("hh-mm tt")</option>
+								}) ;
 
 
-                <div class="col-md-3">
+
+							</select>
+						</div>
+						<span asp-validation-for="AvailabilityTimeSlot" class="text-danger"></span>
+					</div>
+
+				</div>
+
+
+				<div class="col-md-3">
+					<div class="form-group">
+						<label asp-for="Address" class="control-label"></label>
+						<input asp-for="Address" class="form-control input-lg custom-input-width" />
+						<span asp-validation-for="Address" class="text-danger"></span>
+					</div>
+				</div>
+				@* <div class="col-md-3">
                     <div class="form-check">
                         <input class="form-check-input" asp-for="IsActive" />
                         <label class="form-check-label" for="IsActive">
@@ -223,40 +224,52 @@
                         </label>
                     </div>
                     <span asp-validation-for="IsActive" class="text-danger"></span>
-                </div>
+                </div> *@
 
 
-                
 
 
-            <!-- Fourth Row of Input Fields -->
-            <div class="row mb-4">
+
+				<!-- Fourth Row of Input Fields -->
+				<div class="row mb-4">
+
+					@*  <div class="form-group">
+                        <label asp-for="Address" class="control-label"></label>
+                        <input asp-for="Address" class="form-control input-lg custom-input-width" />
+                        <span asp-validation-for="Address" class="text-danger"></span>
+                    </div> *@
+					<div class="col-md-3">
+						<div class="form-check">
+							<input class="form-check-input" asp-for="IsActive" />
+							<label class="form-check-label" for="IsActive">
+								@Html.DisplayNameFor(model => model.IsActive)
+							</label>
+						</div>
+						<span asp-validation-for="IsActive" class="text-danger"></span>
+					</div>
+
+					<div class="col-md-3" hidden>
+						<div class="form-group">
+							<label asp-for="UserId" class="control-label"></label>
+							<input asp-for="UserId" class="form-control input-lg custom-input-width" />
+							<span asp-validation-for="UserId" class="text-danger"></span>
+						</div>
+					</div>
 
 
-                </div>
+				</div>
 
-                 <div class="col-md-3" hidden>
-                    <div class="form-group">
-                        <label asp-for="UserId" class="control-label"></label>
-                        <input asp-for="UserId" class="form-control input-lg custom-input-width" />
-                        <span asp-validation-for="UserId" class="text-danger"></span>
-                    </div>
-                </div> 
+			</div>
 
-               
-            </div>
-
-           
-
-            <div class="form-group d-flex justify-content-center ">
-                <input type="submit" value="Create" class="btn btn-primary btn-sm  " style="width:200px; border-radius:20px" />
-            </div>
-            <div>
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            </div>
-        </form>
-    </div>
-</div> 
+			<div class="form-group d-flex justify-content-center ">
+				<input type="submit" value="Create" class="btn btn-primary btn-sm  " style="width:200px; border-radius:20px" />
+			</div>
+			<div>
+				@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+			</div>
+		</form>
+	</div>
+</div>
 
 @*  <div>
     <a asp-action="Index">Back to List</a>
@@ -268,9 +281,9 @@
 
 <script>
 
-           $(document).ready(function() {
-        $('.js-example-basic-multiple').select2();
-    });
+		   $(document).ready(function() {
+		$('.js-example-basic-multiple').select2();
+	});
 </script>
 
 
@@ -282,7 +295,7 @@
 
 
 <!-- jQuery, jQuery Validation, and Unobtrusive scripts -->
- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery-validation-unobtrusive@3.2.11/dist/jquery.validate.unobtrusive.min.js"></script>
- 
+
