@@ -42,11 +42,15 @@ options.ClientId = "213390042590-2avfghd2bpckfff3a49itpu0unfim5il.apps.googleuse
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(connectionString));
+
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
             builder.Services.AddHttpContextAccessor();
+            builder.Services.AddAuthorization(options =>
+            {
+                options.AddPolicy("IsAuthenticated", policy => policy.RequireAuthenticatedUser());
+            });
 
 
-            
 
             //builder.Services.AddInfrastructure(builder.Configuration);
 
@@ -54,10 +58,14 @@ options.ClientId = "213390042590-2avfghd2bpckfff3a49itpu0unfim5il.apps.googleuse
             //    .AddFluentValidationClientsideAdapters()
             //    .AddValidatorsFromAssemblies(AppDomain.CurrentDomain.GetAssemblies());
 
+            //builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false).AddRoles<IdentityRole>()
+            //    .AddEntityFrameworkStores<ApplicationDbContext>();
             builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false).AddRoles<IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+              .AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
             builder.Services.AddControllersWithViews();
-
+            
+        //    builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+        //.AddEntityFrameworkStores<ApplicationDbContext>();
 
             //Register repository pattern
             builder.Services.AddScoped<IDoctorRepository, DoctorRepository>();
