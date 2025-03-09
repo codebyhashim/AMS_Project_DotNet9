@@ -121,12 +121,17 @@ namespace AM.Areas.Identity.Pages.Account
                     var userRoll = await _signInManager.UserManager.GetRolesAsync(user);
                     
 
-                    var data = context.Patients.Where(x => x.UserId == user.Id).Count();
+
+                    // Assign the "Patient" role if it's not assigned
+                    if (!userRoll.Contains("Patient"))
+                    {
+                        await _signInManager.UserManager.AddToRoleAsync(user, "Patient");
+                    }
 
 
                     if (userRoll.Contains("Admin"))
                     {
-                        //HttpContext.Session.SetString("role","Admin");
+                            //HttpContext.Session.SetString("role","Admin");
                         return RedirectToAction("Index", "Admin");
                     }
 
@@ -152,6 +157,7 @@ namespace AM.Areas.Identity.Pages.Account
 
                         //HttpContext.Session.SetString("role", "Patient");
 
+                        var data = context.Patients.Where(x => x.UserId == user.Id).Count();
 
                         _logger.LogInformation("Logged Sucessfully");
                         if (data > 0)

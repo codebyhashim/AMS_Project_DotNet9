@@ -26,7 +26,7 @@ using Microsoft.EntityFrameworkCore;
 namespace AM.Controllers
 {
 
-    [Authorize(Roles = "Admin,Patient")]
+    [Authorize(Roles = "Patient")]
     public class PatientController : Controller
     {
 

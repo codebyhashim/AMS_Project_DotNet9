@@ -124,6 +124,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using AM.ApplicationCore.Interfaces;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages;
+using AM.Data;
 
 namespace AM.Controllers
 {
@@ -132,12 +133,14 @@ namespace AM.Controllers
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IEmailService _emailService;
+        private readonly ApplicationDbContext _context;
 
-        public AccountController(SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager, IEmailService emailService)
+        public AccountController(SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager, IEmailService emailService, ApplicationDbContext context)
         {
             _signInManager = signInManager;
             _userManager = userManager;
             this._emailService = emailService;
+            this._context = context;
         }
 
         // External login callback method (Google, for example)
@@ -296,13 +299,70 @@ namespace AM.Controllers
             }
 
             var result = await _userManager.ConfirmEmailAsync(user, token);
+
+
+
             if (result.Succeeded)
             {
                 // Successfully confirmed email
                 //return RedirectToAction("Login");
+                var userRoll = await _signInManager.UserManager.GetRolesAsync(user);
+
+
+
+                //// Assign the "Patient" role if it's not assigned
+                if (!userRoll.Contains("Patient"))
+                {
+                    await _signInManager.UserManager.AddToRoleAsync(user, "Patient");
+                }
+
+
+                if (userRoll.Contains("Admin"))
+                {
+                    //HttpContext.Session.SetString("role","Admin");
+                    return RedirectToAction("Index", "Admin");
+                }
+
+
+                if (userRoll.Contains("Doctor"))
+                {
+                    //HttpContext.Session.SetString("role", "Doctor");
+
+                    //ViewBag.doctor = "Doctor";
+                    return RedirectToAction("Index", "Doctor");  // Replace "DoctorDashboard" with your actual controller and action
+                }
+
+
+
+                //if (User.IsInRole("Doctor")) {
+                //    return RedirectToAction("Index", "DoctorDashboard");
+
+
+
+                //} else
+                if (User.IsInRole("Patient"))
+                {
+
+                    //HttpContext.Session.SetString("role", "Patient");
+
+                    var data = _context.Patients.Where(x => x.UserId == user.Id).Count();
+
+                   
+                    if (data > 0)
+                    {
+
+
+                        return RedirectToAction("ViewAppoinment", "Patient");
+                    }
+                    else
+                    {
+
+                        return RedirectToAction("PatientRegister", "Patient");
+                    }
+                }
                 await _signInManager.SignInAsync(user, isPersistent: false);
-               
-                return RedirectToAction("ViewAppoinment", "Patient");
+                return RedirectToAction("Login");
+                //return RedirectToAction("ViewAppoinment", "Patient");
                 //return RedirectToAction("ConfirmEmailSuccess");
             }
 
