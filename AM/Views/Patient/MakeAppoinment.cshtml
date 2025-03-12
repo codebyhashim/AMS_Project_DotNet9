@@ -17,8 +17,11 @@
 </style>
 
 <div class="row  ">
-
-	<div class="col-md-4 m-auto card shadow   " style="border-radius:10px">
+	@* <div class="col-md-6 card shadow ">
+		<img src="https://media.istockphoto.com/id/1265315874/photo/stethoscope-with-calendar-page-date-on-blue-background-doctor-appointment-medical-concept.webp?a=1&b=1&s=612x612&w=0&k=20&c=ndT8mfJ-QheUX5HKPAfUt5n8rETcb-a09HcoeCxOYDA="
+			 class="img-fluid rounded" alt="Doctor Consultation" />
+	</div> *@
+	<div class="col-md-4 m-auto  card shadow   " style="border-radius:10px">
 		<form asp-action="MakeAppoinment" asp-controller="Patient" method="post" class="card-body ">
 			<h4 class="text-center">Book Appoimdent</h4>
 			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -326,4 +329,5 @@
 	// $('#AppointmentDate').change(updateTimeSlot);
 
 </script>
+
 

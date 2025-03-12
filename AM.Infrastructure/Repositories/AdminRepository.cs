@@ -12,6 +12,7 @@ using Azure.Core;
 using MediatR;
 using AM.ApplicationCore.Models;
 using static System.Reflection.Metadata.BlobBuilder;
+using AM.Infrastructure.Services;
 
 namespace AM.Repositories
 {
@@ -20,7 +21,7 @@ namespace AM.Repositories
         private readonly ApplicationDbContext _context;
         private readonly UserManager<IdentityUser> userManager;
         private readonly RoleManager<IdentityRole> roleManager;
-        private readonly IEmailService emailService;
+        private readonly IEmailService _emailService;
         private readonly IHttpContextAccessor _httpContextAccessor;
 
 
@@ -30,7 +31,7 @@ namespace AM.Repositories
             this._context = _context;
             this.userManager = userManager;
             this.roleManager = roleManager;
-            this.emailService = emailService;
+            this._emailService = emailService;
             this._httpContextAccessor = httpContextAccessor;
 
         }
@@ -81,7 +82,7 @@ namespace AM.Repositories
                     var message = $"Hello, \n\nYour doctor account has been created. Please use the following details to log in:\n\nEmail: {user.Email}\nPassword: {password}\n\nLogin URL: {loginUrl}";
                     if (user.Email != null)
                     {
-                        await emailService.SendEmailAsync(user.Email, "Your Doctor Account Credentials", message);
+                        await _emailService.SendEmailAsync(user.Email, "Your Doctor Account Credentials", message);
                     }
 
                 }
@@ -109,9 +110,44 @@ namespace AM.Repositories
 
         public async Task<bool> CancelAppointment(AppointmentModel appointment)
         {
+
+            var email = _context.Appoinments.
+                Where(x => x.AppointmentId == appointment.AppointmentId).
+                Select(x => x.Patient.User.Email).FirstOrDefault();
+
+
+
+            // get the doctor selected by user and retieve the doctor details
+            var getDoctor = _context.Doctors.FirstOrDefault(x => x.Id == appointment.DoctorId);
+
+
+            // get Patient Name
+            var getPatient = _context.Patients.FirstOrDefault(x => x.Id == appointment.PatientId);
+
+            // get date slots 
+            var slot = _context.Slots.FirstOrDefault(x => x.Id == int.Parse(appointment.BookedSlots));
+            //var slotTime = $"{slot.StartTime.ToString('h mm tt') - slot.EndTime.ToString('h mm tt')}";
+            var startTime = slot.StartTime.ToString("h:mm tt");
+            var endTime = slot.EndTime.ToString("h:mm tt");
+            var timeSlot = $"{startTime}-{endTime}";
+
+            var message = $@"Dear {getPatient.Name},
+
+We regret to inform you that your scheduled appointment with Dr. {getDoctor.Name} on {appointment.AppointmentDate.ToString("dd MMM,yyyy")}, at {timeSlot} has been canceled.
+
+We understand this may be inconvenient and apologize for any disruption this may cause. If you would like to reschedule or need further assistance, please feel free to contact us at {getDoctor.Email} or you can book a new appointment through our online portal.
+
+We appreciate your understanding.
+
+Best regards,
+HealthConnect";
+
+
             appointment.Status = AppoinmentStatus.Cancelled;
             _context.Appoinments.Update(appointment);
             await _context.SaveChangesAsync();
+            await _emailService.SendEmailAsync(email, "Your Doctor Account Credentials", message);
+
             return true;
 
         }
@@ -276,7 +312,7 @@ namespace AM.Repositories
                     AvailabilityDays = item.AvailabilityDays,
                     //doctor.AvailabilityDays = string.Join(",", AvailabilityDays);
 
-
+                    ImagePath=item.ImagePath,
                     Experience = item.Experience,
                     City = item.City,
                     IsActive = item.IsActive,
@@ -324,6 +360,30 @@ namespace AM.Repositories
             {
                 return false; // Return 404 if doctor not found
             }
+            var existingImagPath = doctor.ImagePath;
+
+            string? uniqueFileName = null;
+            if (doctors.ImageFile != null && doctors.ImageFile.Length > 0)
+            {
+                string uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads");
+                uniqueFileName = Guid.NewGuid().ToString() + "_" + doctors.ImageFile.FileName;
+                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                //request._doctor.ImagePath = uniqueFileName;
+                // Ensure the directory exists
+                if (!Directory.Exists(uploadsFolder))
+                {
+                    Directory.CreateDirectory(uploadsFolder); // ✅ Creates the folder if it does not exist
+                }
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    await doctors.ImageFile.CopyToAsync(fileStream);
+                }
+            }
+            else
+            {
+                uniqueFileName = existingImagPath;
+            }
+
             var user = await userManager.FindByIdAsync(doctor.UserId);
             if (user != null)
             {
@@ -353,7 +413,7 @@ namespace AM.Repositories
             doctor.UserId = doctors.UserId;
             //doctor.AvailabilityDays = request._doctor.AvailabilityDays;
             doctor.AvailabilityDays = string.Join(',', AvailabilityDays);
-
+            doctor.ImagePath = uniqueFileName;
             doctor.AvailabilityTimeSlot = string.Join(',', AvailabilityTimeSlot);
             _context.Doctors.Update(doctor);
             //_context.Doctors.Update(doctor);

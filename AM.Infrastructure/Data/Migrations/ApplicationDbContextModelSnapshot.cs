@@ -683,6 +683,9 @@ namespace AM.Data.Migrations
                     b.Property<string>("Experience")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ImagePath")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 

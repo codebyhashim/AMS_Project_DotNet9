@@ -198,7 +198,7 @@ namespace AM.Controllers
             {
                 return RedirectToAction("PatientRegister", "Patient");
 
-            }
+            }   
 
 
         }
@@ -286,10 +286,18 @@ namespace AM.Controllers
 
         public async Task<IActionResult> GetDays(int doctorId)
         {
+            if (doctorId != null && doctorId>0)
+            {
 
-            var days = _mediator.Send(new GetDaysRequest(doctorId)).Result;
-            return  Json(days);
-       
+                var days = _mediator.Send(new GetDaysRequest(doctorId)).Result;
+
+                if (days != null)
+                {
+
+                    return Json(days);
+                }
+            }
+            return RedirectToAction("MakeAppoinment", "Patient");
         }
 
 

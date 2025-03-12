@@ -1,4 +1,5 @@
 ﻿//using System.Data.Entity;
+using AM.ApplicationCore.Interfaces;
 using AM.Data;
 using AM.Interfaces;
 using AM.Models;
@@ -8,10 +9,12 @@ namespace AM.Repositories
     public class DoctorRepository : IDoctorRepository
     {
         private readonly ApplicationDbContext _context;
+        private readonly IEmailService _emailService;
 
-        public DoctorRepository(ApplicationDbContext _context)
+        public DoctorRepository(ApplicationDbContext _context, IEmailService emailService)
         {
             this._context = _context;
+            this._emailService = emailService;
         }
 
         public async Task<DoctorModel> GetDoctor(string Id)
@@ -55,9 +58,41 @@ namespace AM.Repositories
 
         public async Task<bool> CanceleAppointment(AppointmentModel appointment)
         {
+            var email= _context.Appoinments.
+                Where(x => x.AppointmentId == appointment.AppointmentId).
+                Select(x=>x.Patient.User.Email).FirstOrDefault();
+            
+
+
+            // get the doctor selected by user and retieve the doctor details
+            var getDoctor = _context.Doctors.FirstOrDefault(x => x.Id == appointment.DoctorId);
+
+
+            // get Patient Name
+            var getPatient = _context.Patients.FirstOrDefault(x => x.Id == appointment.PatientId);
+
+            // get date slots 
+            var slot = _context.Slots.FirstOrDefault(x => x.Id == int.Parse(appointment.BookedSlots));
+            //var slotTime = $"{slot.StartTime.ToString('h mm tt') - slot.EndTime.ToString('h mm tt')}";
+            var startTime = slot.StartTime.ToString("h:mm tt");
+            var endTime = slot.EndTime.ToString("h:mm tt");
+            var timeSlot = $"{startTime}-{endTime}";
+
+            var message = $@"Dear {getPatient.Name},
+
+We regret to inform you that your scheduled appointment with Dr. {getDoctor.Name} on {appointment.AppointmentDate.ToString("dd MMM,yyyy")}, at {timeSlot} has been canceled.
+
+We understand this may be inconvenient and apologize for any disruption this may cause. If you would like to reschedule or need further assistance, please feel free to contact us at {getDoctor.Email} or you can book a new appointment through our online portal.
+
+We appreciate your understanding.
+
+Best regards,
+HealthConnect";
             appointment.Status = AppoinmentStatus.Cancelled;
             _context.Appoinments.Update(appointment);
             await _context.SaveChangesAsync();
+            await _emailService.SendEmailAsync(email, "Appointment Cancellation Notice", message);
+
             return true;
         }
 

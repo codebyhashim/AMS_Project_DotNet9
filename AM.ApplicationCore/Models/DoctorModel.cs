@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using AM.ApplicationCore.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 
 namespace AM.Models
@@ -25,7 +26,7 @@ namespace AM.Models
 
         public string? Email { get; set; }
 
-
+        
 
         public string? UserId { get; set; }
         [ForeignKey("UserId")]
@@ -35,7 +36,10 @@ namespace AM.Models
 
         //public DayOfWeek AvailabilityDays { get; set; }
 
+        public string? ImagePath { get; set; } // Stores image filename
 
+        [NotMapped] // Prevents EF from storing this in DB
+        public IFormFile? ImageFile { get; set; } // Only for form submission
         public string? AvailabilityTimeSlot { get; set; }
 
         //Navigation Property to Appointments

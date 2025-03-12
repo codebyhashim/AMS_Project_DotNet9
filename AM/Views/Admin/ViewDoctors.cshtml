@@ -129,11 +129,11 @@
 			<table class="table table-bordered" id="dataTable" width="100%">
 				<thead>
 					<tr>
-
+						<th>Image</th>
 						<th>Contact Information</th>
 						<th>Availability Information</th>
 						<th>Qualification</th>
-						<th>Experience</th>
+						@* <th>Experience</th> *@
 						@* <th>Speciality</th>
                         <th>Degree</th> *@
 						<th>About Details</th>
@@ -177,6 +177,20 @@
 
 						<tr>
 							<td>
+								@if (!string.IsNullOrEmpty(@item.ImagePath))
+								{
+									 <img src="@Url.Content("~/uploads/" + @item.ImagePath)" alt="Doctor Image" style="width:150px;height:150px;" /> 
+
+									
+								
+								}
+								else
+								{
+									<p>No image available</p>
+								}
+
+							</td>
+							<td>
 								Name: @item.Name  <br /> 
 								Email : @item.Email   <br /> 
 								PhoneNumber: @item.PhoneNumber <br />
@@ -205,12 +219,14 @@
 								}
 							</td>
 							<td>
-								Speciality :@item.Speciality  <br />   Degree: @item.Degree
+								Speciality :@item.Speciality  <br />
+								Degree: @item.Degree <br />
+								Experience : @item.Experience
 
 
 
 							</td>
-							<td>@item.Experience</td>
+							@* <td>@item.Experience</td> *@
 							<td>@item.Description</td>
 							@* <td>
 								AvailabilityDays: <br />

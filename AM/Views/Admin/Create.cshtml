@@ -21,7 +21,7 @@
 	<h4 class="text-center p-4">Create Doctor</h4>
 	<div class="col-md-12 card-body">
 		<!-- Adjust the form width here -->
-		<form asp-action="Create" asp-controller="Doctor" method="post" id="userForm">
+		<form asp-action="Create" asp-controller="Doctor" method="post" id="userForm" enctype="multipart/form-data">
 			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
 			<!-- First Row of Input Fields -->
@@ -226,9 +226,9 @@
                     <span asp-validation-for="IsActive" class="text-danger"></span>
                 </div> *@
 
+				</div>
 
-
-
+				<div>
 
 				<!-- Fourth Row of Input Fields -->
 				<div class="row mb-4">
@@ -238,7 +238,19 @@
                         <input asp-for="Address" class="form-control input-lg custom-input-width" />
                         <span asp-validation-for="Address" class="text-danger"></span>
                     </div> *@
-					<div class="col-md-3">
+
+					<div class="col-md-4">
+						<div class="form-group">
+							<label asp-for="ImageFile">Upload Image</label>
+							<input type="file" asp-for="ImageFile" class="form-control" />
+							
+							<span asp-validation-for="ImageFile" class="text-danger"></span>
+						</div>
+						
+					</div>
+
+
+					<div class="col-md-2">
 						<div class="form-check">
 							<input class="form-check-input" asp-for="IsActive" />
 							<label class="form-check-label" for="IsActive">
@@ -248,7 +260,7 @@
 						<span asp-validation-for="IsActive" class="text-danger"></span>
 					</div>
 
-					<div class="col-md-3" hidden>
+					<div class="col-md-1" hidden>
 						<div class="form-group">
 							<label asp-for="UserId" class="control-label"></label>
 							<input asp-for="UserId" class="form-control input-lg custom-input-width" />

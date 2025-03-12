@@ -31,6 +31,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.Blazor;
 using Serilog;
 using static System.Reflection.Metadata.BlobBuilder;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Model;
@@ -103,7 +104,7 @@ namespace AM.Controllers
 
 
         [HttpPost("Doctor/Create")]
-        public async Task<IActionResult> Create(DoctorModel doctor , List<string> AvailabilityDays, List<string> AvailabilityTimeSlot)
+        public async Task<IActionResult> Create([FromForm] DoctorModel doctor , List<string> AvailabilityDays, List<string> AvailabilityTimeSlot)
         {
 
             //var validator = await _validator.ValidateAsync(doctor);

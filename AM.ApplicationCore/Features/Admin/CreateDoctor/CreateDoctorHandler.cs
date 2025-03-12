@@ -15,6 +15,24 @@ namespace AM.ApplicationCore.Features.Admin.CreateDoctor
 
         public async Task<bool> Handle(CreateDoctorRequest request, CancellationToken cancellationToken)
         {
+            string? uniqueFileName = null;
+            if (request._doctor.ImageFile != null)
+            {
+                string uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads");
+                uniqueFileName = Guid.NewGuid().ToString() + "_" + request._doctor.ImageFile.FileName;
+                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                //request._doctor.ImagePath = uniqueFileName;
+                // Ensure the directory exists
+                if (!Directory.Exists(uploadsFolder))
+                {
+                    Directory.CreateDirectory(uploadsFolder); // ✅ Creates the folder if it does not exist
+                }
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    await request._doctor.ImageFile.CopyToAsync(fileStream);
+                }
+            }
+
             var doctor = new DoctorModel
             {
                 Name = request._doctor.Name,
@@ -29,7 +47,7 @@ namespace AM.ApplicationCore.Features.Admin.CreateDoctor
                 WaitTime = request._doctor.WaitTime,
                 Email = request._doctor.Email,
                 UserId = request._doctor.UserId,
-
+                ImagePath = uniqueFileName,
                 AvailabilityDays = request._doctor.AvailabilityDays,
                 AvailabilityTimeSlot = request._doctor.AvailabilityTimeSlot
             };

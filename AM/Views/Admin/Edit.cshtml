@@ -1,11 +1,11 @@
 ﻿@using AM.ApplicationCore.Models
 @model DoctorModel;
 
- @{
+@{
 	// ViewData["Title"] = "Edit Doctor";
 
 
-} 
+}
 
 
 <div class="row justify-content-center card shadow">
@@ -15,7 +15,7 @@
 
 		<hr />
 
-		<form asp-action="Edit" asp-controller="Doctor" method="post">
+		<form asp-action="Edit" asp-controller="Doctor" method="post" enctype="multipart/form-data">
 			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
 			@Html.AntiForgeryToken()
@@ -106,7 +106,7 @@
 				</div>
 
 
-				<div class="col-md-3" >
+				<div class="col-md-3">
 					<div class="form-group">
 						<label asp-for="AvailabilityTimeSlot" class="control-label"></label>
 
@@ -126,7 +126,7 @@
 					</div>
 				</div>
 
-			@* 	<div class="col-md-3">
+				@* 	<div class="col-md-3">
 					<div class="form-group">
 						<label asp-for="IsActive" class="control-label"></label>
 						<input asp-for="IsActive" type="checkbox" class="form-check-input" />
@@ -143,7 +143,7 @@
 					</div>
 				</div>
 			</div>
-			
+
 
 			@* third row *@
 			@* <div class="row mb-4">
@@ -156,7 +156,7 @@
 							<span asp-validation-for="AvailabilityDays" class="text-danger"></span>
 						</div>
 					</div>  
-				
+
 				  <div class="col-md-4">
 					<label asp-for="AvailabilityTimeSlot" class="control-label"></label>
 
@@ -166,7 +166,7 @@
 						<span asp-validation-for="AvailabilityTimeSlot" class="text-danger"></span>
 					</div>
 				  </div> 
- 
+
 				<div class="col-md-4">
 					<div class="form-group">
 						<label asp-for="Description" class="control-label"></label>
@@ -194,7 +194,40 @@
 					<span asp-validation-for="IsActive" class="text-danger"></span>
 				</div>
 			</div>
-			
+
+
+			<div class="col-md-4">
+				<div class="form-group">
+
+
+					<div>
+						<label>Current Image:</label><br>
+						@if (!string.IsNullOrEmpty(Model.ImagePath))
+						{
+							<img src="@Url.Content("~/uploads/" + Model.ImagePath)" alt="Doctor Image" style="width:80px;height:80px;" />
+						}
+
+					</div>
+
+					<div>
+						<label style="font-size:12px">Upload New Image:</label><br />
+						<input  style="font-size:12px" type="file" asp-for="ImageFile" accept="image/*" />
+						<input type="hidden" asp-for="ImagePath" />
+
+
+					</div>
+					<span asp-validation-for="ImageFile" class="text-danger"></span>
+
+				</div>
+			</div>
+
+			@* <div class="form-group">
+					<label asp-for="ImageFile">Upload Image</label>
+					<input type="file" asp-for="ImageFile" class="form-control" />
+
+					<span asp-validation-for="ImageFile" class="text-danger"></span>
+				</div> *@
+
 			<div class="col-md-3">
 				<div class="form-group">
 					<label asp-for="Id" class="control-label" hidden></label>
@@ -212,7 +245,7 @@
 					<span asp-validation-for="Name" class="text-danger"></span>
 				</div>
 			</div>
-		
+
 
 			<button type="submit" class="btn btn-primary">Save Changes</button>
 			<a asp-action="ViewDoctors" asp-controller="Admin" asp-route-id="id" class="btn btn-secondary">Back to List</a>

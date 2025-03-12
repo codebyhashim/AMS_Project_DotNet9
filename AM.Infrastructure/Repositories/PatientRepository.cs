@@ -190,6 +190,8 @@ namespace AM.Repositories
 
 
             return doctorAvailabilityDay;
+
+
         }
 
 
