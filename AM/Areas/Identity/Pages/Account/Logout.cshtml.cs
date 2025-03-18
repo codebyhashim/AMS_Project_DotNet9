@@ -28,7 +28,9 @@ namespace AM.Areas.Identity.Pages.Account
             {
                 //return LocalRedirect(returnUrl);
 
-                return RedirectToPage("/Account/Login");
+                //return RedirectToPage("/Account/Login");
+                return RedirectToPage("/Home/Index");
+
             }
             else
             {

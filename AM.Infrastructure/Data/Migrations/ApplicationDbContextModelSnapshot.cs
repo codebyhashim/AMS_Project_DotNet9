@@ -680,8 +680,8 @@ namespace AM.Data.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Experience")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("Experience")
+                        .HasColumnType("int");
 
                     b.Property<string>("ImagePath")
                         .HasColumnType("nvarchar(max)");

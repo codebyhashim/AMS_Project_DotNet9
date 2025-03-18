@@ -51,12 +51,12 @@ namespace AM.Controllers
         private readonly IValidator<DoctorModel> _validator;
         private readonly ApplicationDbContext applicationDbContext;
 
-        public AdminController(ApplicationDbContext _Context, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager, IMediator _mediator, ILogger<AdminController> logger, IValidator<DoctorModel> validator, ApplicationDbContext applicationDbContext )
+        public AdminController(ApplicationDbContext _Context, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager, IMediator _mediator, ILogger<AdminController> logger, IValidator<DoctorModel> validator, ApplicationDbContext applicationDbContext)
         {
             context = _Context;
             this.userManager = userManager;
             this.roleManager = roleManager;
-          
+
             this._mediator = _mediator;
             //this.logger = logger;
             this._validator = validator;
@@ -68,7 +68,7 @@ namespace AM.Controllers
 
         //  create button and action method in admin controllers
         // in action method we change logic of true and false
-
+        [Route("Admin/Index")]
         public async Task<IActionResult> Index()
         {
 

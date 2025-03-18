@@ -20,7 +20,11 @@ namespace AM.Infrastructure.Services
                     var smtpClient = new SmtpClient("smtp.gmail.com")  // Gmail SMTP server
                     {
                         Port = 587,  // Port 587 is commonly used for TLS
-                        Credentials = new NetworkCredential("hashim104243@gmail.com", "ripq ocvl svqj odsg"),  // Use App Password if using 2FA
+                        //Credentials = new NetworkCredential("hashim104243@gmail.com", "ripq ocvl svqj odsg"),  // Use App Password if using 2FA
+                        Credentials = new NetworkCredential("hashim104243@gmail.com", "boiu olch mvxy zhxy"),  // Use App Password if using 2FA
+
+                        UseDefaultCredentials = false,
+
                         EnableSsl = true,  // Enable SSL for secure connection
                     };
 
@@ -47,6 +51,7 @@ namespace AM.Infrastructure.Services
                 return false;
             }
         }
+        //boiu olch mvxy zhxy
     }
 
 }

@@ -91,8 +91,11 @@ namespace AM.Controllers
         [HttpPost("Patient/PatientRegister")]
         public async Task<IActionResult> PatientRegister(PatientModel patient)
         {
-            
 
+            if (!User.IsInRole("Patient"))
+            {
+                return Forbid(); // Prevents unauthorized access
+            }
             var validation =await _validator.ValidateAsync(patient);
             if (validation.IsValid)
             {
@@ -158,10 +161,10 @@ namespace AM.Controllers
             //TempData["sucessMessage"] = "Updated Successfully";
             //return RedirectToAction("Updatedetails");
         }
-
+        
         public async Task<IActionResult> MakeAppoinment()
         {
-
+            
             //var userId = _patientRepository.GetLoginPatient();
 
             var userId = _mediator.Send(new GetLoginUserIdRequest()).Result;

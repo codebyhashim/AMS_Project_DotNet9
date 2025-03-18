@@ -80,10 +80,12 @@ options.ClientId = "213390042590-2avfghd2bpckfff3a49itpu0unfim5il.apps.googleuse
             //builder.Services.AddControllersWithViews();
             // i have add role
 
-            builder.Services.AddControllersWithViews().AddRazorPagesOptions(options =>
-            {
-                options.Conventions.AddAreaPageRoute("Identity", "/Account/Login", "");
-            });
+            //builder.Services.AddControllersWithViews().AddRazorPagesOptions(options =>
+            //{
+            //    options.Conventions.AddAreaPageRoute("Identity", "/Account/Login", "");
+                
+
+            //});
           
            
             // add extension method
@@ -165,7 +167,9 @@ options.ClientId = "213390042590-2avfghd2bpckfff3a49itpu0unfim5il.apps.googleuse
             app.MapStaticAssets();
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Account}/{action=Login}/{id?}")
+                //pattern: "{controller=Account}/{action=Login}/{id?}")
+                pattern: "{controller=Home}/{action=Index}/{id?}")
+
                 .WithStaticAssets();
             app.MapRazorPages()
                .WithStaticAssets();

@@ -87,7 +87,7 @@ namespace AM.ApplicationCore.Validator
 
             RuleFor(x => x.Description)
            .NotEmpty().WithMessage("Description is required")
-           .MaximumLength(300).WithMessage("Description can't be longer than 300 characters.");
+           .MaximumLength(1000).WithMessage("Description can't be longer than 1000 characters.");
         }
 
         private bool BeAValidFile(IFormFile file)

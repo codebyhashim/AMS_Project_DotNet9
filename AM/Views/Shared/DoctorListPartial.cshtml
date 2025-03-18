@@ -1,0 +1,40 @@
+﻿@model IEnumerable<DoctorModel>
+
+<div class="row mt-5">
+    @if (Model != null && Model.Any())
+    {
+        @foreach (var doctor in Model)
+        {
+            <div class="col-md-3 mb-4">
+                <div class="card shadow-sm">
+                    <div class="m-auto pt-3">
+                        <img src="@Url.Content("~/uploads/" + doctor.ImagePath)" class="card-img-top" alt="Doctor Image" style="width:270px;height:170px;" />
+                    </div>
+                    <div class="card-body text-left">
+                        <span class="text-muted text-primary  " style="margin-bottom:10px; font-size:12px; border-radius:100px;background-color:#ADD8E6;padding: 5px 10px  ">@doctor.Speciality</span>
+                        <h5 class="card-title fw-bold mt-2">Dr. @doctor.Name</h5>
+                        <div>
+                            <span class="text-primary">@doctor.Experience Years <br /> @doctor.Degree  </span> <br />
+                            <span class="text-secondary">@doctor.Address</span>
+                            
+                        </div>
+                        @* <p class="text-primary">@doctor.Experience Years</p>
+                        <p class="text-secondary">@doctor.Address</p> *@
+                        @* <a asp-route="@doctor.Id" asp-action="ViewDetails" asp-controller="Home"  class="btn btn-outline-primary w-100  text-center mt-2" style="border-radius:100px;font-size:15px; padding:2px 10px;">Book Now</a> *@
+
+                        <a asp-action="ViewDetails" asp-controller="Home" asp-route-id="@doctor.Id" class="btn btn-outline-primary w-100 text-center mt-2" style="border-radius:100px;font-size:15px; padding:2px 10px;">
+                            Book Now
+                        </a>
+
+
+                    </div>
+                </div>
+            </div>
+        }
+
+    }
+    else
+    {
+        <p class="text-center text-muted">No doctors found.</p>
+    }
+</div>

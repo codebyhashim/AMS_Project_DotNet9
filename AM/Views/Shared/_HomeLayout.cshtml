@@ -1,0 +1,246 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Find & Book Appointment</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        footer {
+            background-color: #007bff;
+            /* background-color: gray; */
+            color: white;
+            position: relative;
+            padding: 20px 0;
+        }
+
+        #backToTop {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .hero-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 60px 80px;
+        }
+
+        .hero-text {
+            max-width: 50%;
+        }
+
+            .hero-text h1 {
+                font-weight: bold;
+            }
+
+                .hero-text h1 span {
+                    color: #007bff;
+                }
+
+            .hero-text p {
+                color: #6c757d;
+            }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+            padding: 10px 20px;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+
+        .navbar-nav {
+            gap: 15px;
+        }
+
+        .navbar .btn-primary {
+            padding: 8px 15px;
+            font-size: 14px;
+        }
+
+        .rotate-15 {
+            display: inline-block;
+            transform: rotate(-15deg);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+    <div class="container">
+        <a class="navbar-brand fw-bold text-primary" href="#">
+                <div class="sidebar-brand-icon rotate-n-15 ">
+                    <i style="font-size:25px" class="rotate-15  fas fa-plus-circle"></i>  HealthConnect
+            @* <div class="sidebar-brand-text mx-3"> HealthConnect </div> *@
+            </div>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <!-- Left side (me-auto pushes it left) -->
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item"><a class="nav-link" href="/Home/Index">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Explore</a></li>
+
+                @if (SignInManager.IsSignedIn(User))
+                {
+                    var currentUser = await UserManager.GetUserAsync(User);
+                    var roles = await UserManager.GetRolesAsync(currentUser);
+
+                    if (roles.Contains("Admin"))
+                    {
+                        <li class="nav-item"><a class="nav-link" asp-controller="Admin" asp-action="Index">Dashboard</a></li>
+                    }
+                    else if (roles.Contains("Doctor"))
+                    {
+                        <li class="nav-item"><a class="nav-link" asp-controller="Doctor" asp-action="Index">Dashboard</a></li>
+                    }
+                    else if (roles.Contains("Patient"))
+                    {
+                        <li class="nav-item"><a class="nav-link" asp-controller="Patient" asp-action="MakeAppoinment">Dashboard</a></li>
+                    }
+                }
+            </ul>
+
+            <!-- Right side (ms-auto pushes it right) -->
+            <ul class="navbar-nav ms-auto">
+                <partial name="_LoginPartial" />
+            </ul>
+        </div>
+    </div>
+</nav>
+
+   @*  <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-primary" href="#">
+                <div class="sidebar-brand-icon rotate-n-15">
+                    <i class="fas fa-plus-circle"></i>
+                </div>
+                <div class="sidebar-brand-text mx-3">  HealthConnect </div>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="/Home/Index" >Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Explore</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Contact Us</a></li>
+                    <partial name="_LoginPartial" />
+                   
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        var currentUser = await UserManager.GetUserAsync(User);
+                        var roles = await UserManager.GetRolesAsync(currentUser);
+
+                        if (roles.Contains("Admin"))
+                        {
+                            <li class="nav-item"><a class="nav-link" asp-controller="Admin" asp-action="Index">Dashboard</a></li>
+                        }
+                        else if (roles.Contains("Doctor"))
+                        {
+                            <li class="nav-item"><a class="nav-link" asp-controller="Doctor" asp-action="Index"> Dashboard</a></li>
+                        }
+                        else if (roles.Contains("Patient"))
+                        {
+                            <li class="nav-item"><a class="nav-link" asp-controller="Patient" asp-action="MakeAppoinment">Dashboard</a></li>
+                        }
+
+                       
+                    }
+                
+                </ul>
+                
+            </div>
+        </div>
+    </nav>
+ *@
+
+        @RenderBody()
+
+   @*  <footer class="bg-light text-dark py-4 mt-5 shadow-lg">
+        <div class="container">
+            <div class="row">
+                <!-- Contact Information -->
+                <div class="col-md-4">
+                    <h5 class="text-primary">Contact Us</h5>
+                    <p>Email: support@medicare.com</p>
+                    <p>Phone: +1 234 567 890</p>
+                    <p>Address: 123 Health St, Wellness City</p>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="col-md-4">
+                    <h5 class="text-primary">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="/" class="text-dark text-decoration-none">Home</a></li>
+                        <li><a href="/About" class="text-dark text-decoration-none">About</a></li>
+                        <li><a href="/Services" class="text-dark text-decoration-none">Services</a></li>
+                        <li><a href="/Contact" class="text-dark text-decoration-none">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Social Media Links -->
+                <div class="col-md-4">
+                    <h5 class="text-primary">Follow Us</h5>
+                    <a href="#" class="text-primary me-3"><i class="fab fa-facebook fa-lg"></i></a>
+                    <a href="#" class="text-primary me-3"><i class="fab fa-twitter fa-lg"></i></a>
+                    <a href="#" class="text-primary me-3"><i class="fab fa-instagram fa-lg"></i></a>
+                    <a href="#" class="text-primary me-3"><i class="fab fa-linkedin fa-lg"></i></a>
+                </div>
+            </div>
+
+            <div class="text-center mt-3">
+                <p class="mb-0">&copy; @DateTime.Now.Year MediCare. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer> *@
+
+   
+      
+
+    <footer class="text-center">
+        <div class="container position-relative">
+            <p class="mb-0">&copy; @DateTime.Now.Year HealthConnect. All Rights Reserved.</p>
+            <button class="btn btn-light rounded-pill px-4 py-2" id="backToTop">  <i style="font-size:25px" class="fas fa-angle-up"></i>   </button>
+        </div>
+    </footer>
+  
+    
+    </body>
+</html>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+<script>
+    document.getElementById("backToTop").addEventListener("click", function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+</script>
+    <!-- jQuery CDN should be loaded before your script -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Bootstrap 5 CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

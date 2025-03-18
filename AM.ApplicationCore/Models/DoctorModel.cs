@@ -18,7 +18,7 @@ namespace AM.Models
         public string? Degree { get; set; }
         public string? City { get; set; }
         public string? PhoneNumber { get; set; }
-        public string? Experience { get; set; }
+        public int? Experience { get; set; }
         public bool IsActive { get; set; }
         public string? Description { get; set; }
         public string? Address { get; set; }

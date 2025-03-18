@@ -129,6 +129,13 @@ namespace AM.Areas.Identity.Pages.Account
                     }
 
 
+                    if (userRoll.Contains("Doctor"))
+                    {
+                        //HttpContext.Session.SetString("role", "Doctor");
+                        _logger.LogInformation("Doctor role found, redirecting to Doctor dashboard.");
+                        //ViewBag.doctor = "Doctor";
+                        return RedirectToAction("Index", "Doctor");  // Replace "DoctorDashboard" with your actual controller and action
+                    }
                     if (userRoll.Contains("Admin"))
                     {
                             //HttpContext.Session.SetString("role","Admin");
@@ -136,13 +143,6 @@ namespace AM.Areas.Identity.Pages.Account
                     }
 
 
-                    if (userRoll.Contains("Doctor"))
-                    {
-                        //HttpContext.Session.SetString("role", "Doctor");
-
-                        //ViewBag.doctor = "Doctor";
-                        return RedirectToAction("Index", "Doctor");  // Replace "DoctorDashboard" with your actual controller and action
-                    }
 
 
 
