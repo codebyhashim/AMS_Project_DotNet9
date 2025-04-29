@@ -3,7 +3,7 @@ using MediatR;
 
 namespace AM.ApplicationCore.Features.Admin.BookAppoinment
 {
-    internal class BookAppointmentHandler(IAdminRepository adminRepository) : IRequestHandler<BookAppointmentRequest, bool>
+    public class BookAppointmentHandler(IAdminRepository adminRepository) : IRequestHandler<BookAppointmentRequest, bool>
     {
         public async Task<bool> Handle(BookAppointmentRequest request, CancellationToken cancellationToken)
         {
