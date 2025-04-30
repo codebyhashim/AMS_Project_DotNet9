@@ -1,5 +1,106 @@
-﻿
+﻿@model AM.Models.AppointmentModel
+
 @*
     For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 *@
+@if (User.IsInRole("Patient")){
+      <tr>
+                                    
+                                    <th scope="col">
+                                        @Model.AppointmentDate.ToString("dd MMM,yyyy")
+                                        <br />
+                                        @Model.AppointmentDate.ToString("dddd")
+                                        @Model.BookedSlots
+                                    </th>
+                                    <th scope="col">@Model.Doctor.Name</th>
+                                    <th scope="col">@Model.Doctor.Speciality</th>
+                                    <th scope="col">@Model.Patient.Name</th>
+                                    <th scope="col">@Model.BookedSlots</th>
 
+                                    <th scope="col">@Model.Status</th>
+                                </tr> 
+}else{
+
+
+
+
+<tr>
+    <td>
+
+        @Model.AppointmentDate.ToString("dd MMM,yyyy")
+        <br />
+        @Model.AppointmentDate.ToString("dddd")
+        @Model.BookedSlots
+    </td>
+    <td>
+        @Html.DisplayFor(modelModel => Model.Status)
+    </td>
+    <td>
+        @Html.DisplayFor(modelModel => Model.Doctor.Name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelModel => Model.Patient.Name)
+    </td>
+  
+
+
+
+  
+    <td style="width:80px">
+        @if (User.IsInRole("Admin"))
+        {
+
+            <a asp-action="Approve" asp-route-id="@Model.AppointmentId" asp-controller="Admin" style="font-size: 23px; color: #2196F3;">
+                <i class="fas fa-check-circle"></i>
+            </a>
+        }
+        @if (User.IsInRole("Doctor"))
+        {
+
+            <a asp-action="Approve" asp-route-id="@Model.AppointmentId" asp-controller="Doctor" style="font-size: 23px; color: #2196F3;">
+                <i class="fas fa-check-circle"></i>
+            </a>
+        }
+
+        @{
+                    @if (User.IsInRole("Admin"))
+        {
+
+                if (Model.Status == AppoinmentStatus.Cancelled)
+                {
+
+                    <a style="display: none" asp-action="Cancel" asp-route-id="@Model.AppointmentId" asp-controller="Admin" style="font-size: 23px;color: #FF5733"><i class="  fas fa-times-circle"></i></a>
+                }
+                else
+                {
+                    <a asp-action="Cancel" asp-route-id="@Model.AppointmentId" asp-controller="Admin" style="font-size: 23px;color: #FF5733"><i class="  fas fa-times-circle"></i></a>
+
+                }
+        }
+
+            @if (User.IsInRole("Doctor"))
+            {
+
+                if (Model.Status == AppoinmentStatus.Cancelled)
+                {
+
+                    <a style="display: none" asp-action="Cancel" asp-route-id="@Model.AppointmentId" asp-controller="Doctor" style="font-size: 23px;color: #FF5733"><i class="  fas fa-times-circle"></i></a>
+                }
+                else
+                {
+                    <a asp-action="Cancel" asp-route-id="@Model.AppointmentId" asp-controller="Doctor" style="font-size: 23px;color: #FF5733"><i class="  fas fa-times-circle"></i></a>
+
+                }
+            }
+          
+        }
+
+
+
+
+
+    </td>
+
+
+</tr>
+}

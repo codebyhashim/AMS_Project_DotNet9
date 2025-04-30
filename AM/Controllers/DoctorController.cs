@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AM.Controllers
 {
-    [Authorize(Roles = "Doctor")]
+    [Authorize(Roles = "Doctor,Admin")]
     
 
     public class DoctorController : Controller

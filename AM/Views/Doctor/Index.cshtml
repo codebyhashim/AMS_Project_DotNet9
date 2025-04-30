@@ -37,17 +37,16 @@
             <tbody>
                 @foreach (var item in Model)
                 {
-                    <tr>
+                    <partial name="_AppointmentsCards" model="item" />
+                   @*  <tr>
                         <td>
-                            @* @Html.DisplayFor(modelItem => item.AppointmentDate) *@
+                           
                             @item.AppointmentDate.ToString("dd MMM,yyyy")
                             <br />
                             @item.AppointmentDate.ToString("dddd")
                             @item.BookedSlots
                         </td>
-                       @*  <td>
-                            @item.AppointmentDate.ToString("dddd")s
-                        </td> *@
+                      
                         <td>
                             @Html.DisplayFor(modelItem => item.Status)
                         </td>
@@ -57,7 +56,7 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.Patient.Name)
                         </td>
-                        @* <td>@Html.DisplayFor(modelItem => item.BookedSlots)</td> *@
+                       
                         <td style="width:80px">
 
                             <form asp-action="Approve" asp-controller="Doctor" asp-route-id="@item.AppointmentId" method="post">
@@ -87,17 +86,12 @@
                                     </form>
                                 }
                             }
-                            @* <form asp-action="Cancel" asp-controller="Doctor" asp-route-id="@item.AppointmentId" method="post">
-
-                                <button type="submit" class="btn btn-danger">Cancel</button>
-
-                            </form> *@
+                          
 
 
 
-                            @* <a asp-action="Details" asp-route-id="@item.AppointmentId">Cancel</a> | *@
                         </td>
-                    </tr>
+                    </tr> *@
                 }
             </tbody>
         </table>

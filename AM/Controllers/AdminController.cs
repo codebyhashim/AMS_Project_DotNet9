@@ -301,6 +301,7 @@ namespace AM.Controllers
 
 
         }
+        [Authorize("Doctor")]
         public async Task<IActionResult> Approve(int id)
         {
             //var appointment = context.Appoinments.Find(id);
@@ -326,6 +327,8 @@ namespace AM.Controllers
         }
 
         //[HttpPost]    
+        [Authorize(Roles = "Doctor")]
+
         public async Task<IActionResult> Cancel(int id)
         {
 
