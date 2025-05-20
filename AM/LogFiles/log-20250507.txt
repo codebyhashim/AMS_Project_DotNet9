@@ -1,0 +1,182 @@
+2025-05-07 10:46:28.932 +05:00 [ERR] dvcasdfac
+2025-05-07 10:46:29.589 +05:00 [INF] User profile is available. Using 'C:\Users\hashi\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-05-07 10:46:30.761 +05:00 [INF] Executed DbCommand (47ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2025-05-07 10:46:30.801 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2025-05-07 10:46:30.802 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2025-05-07 10:46:30.851 +05:00 [INF] Executed DbCommand (6ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2025-05-07 10:46:30.895 +05:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+2025-05-07 10:46:30.904 +05:00 [INF] Executed DbCommand (3ms) [Parameters=[@__normalizedRoleName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedRoleName_0
+2025-05-07 10:46:30.930 +05:00 [INF] Executed DbCommand (4ms) [Parameters=[@__p_0='?' (Size = 450), @__p_1='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[UserId], [a].[RoleId]
+FROM [AspNetUserRoles] AS [a]
+WHERE [a].[UserId] = @__p_0 AND [a].[RoleId] = @__p_1
+2025-05-07 10:46:30.940 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedRoleName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedRoleName_0
+2025-05-07 10:46:30.942 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (Size = 450), @__p_1='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[UserId], [a].[RoleId]
+FROM [AspNetUserRoles] AS [a]
+WHERE [a].[UserId] = @__p_0 AND [a].[RoleId] = @__p_1
+2025-05-07 10:46:30.943 +05:00 [INF] Executed DbCommand (0ms) [Parameters=[@__normalizedRoleName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedRoleName_0
+2025-05-07 10:46:30.944 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (Size = 450), @__p_1='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[UserId], [a].[RoleId]
+FROM [AspNetUserRoles] AS [a]
+WHERE [a].[UserId] = @__p_0 AND [a].[RoleId] = @__p_1
+2025-05-07 10:46:30.945 +05:00 [INF] Executed DbCommand (0ms) [Parameters=[@__normalizedRoleName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedRoleName_0
+2025-05-07 10:46:30.946 +05:00 [INF] Executed DbCommand (0ms) [Parameters=[@__p_0='?' (Size = 450), @__p_1='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[UserId], [a].[RoleId]
+FROM [AspNetUserRoles] AS [a]
+WHERE [a].[UserId] = @__p_0 AND [a].[RoleId] = @__p_1
+2025-05-07 10:46:30.946 +05:00 [INF] Executed DbCommand (0ms) [Parameters=[@__normalizedRoleName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedRoleName_0
+2025-05-07 10:46:30.947 +05:00 [INF] Executed DbCommand (0ms) [Parameters=[@__p_0='?' (Size = 450), @__p_1='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[UserId], [a].[RoleId]
+FROM [AspNetUserRoles] AS [a]
+WHERE [a].[UserId] = @__p_0 AND [a].[RoleId] = @__p_1
+2025-05-07 10:46:30.948 +05:00 [INF] Executed DbCommand (0ms) [Parameters=[@__normalizedRoleName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedRoleName_0
+2025-05-07 10:46:30.948 +05:00 [INF] Executed DbCommand (0ms) [Parameters=[@__p_0='?' (Size = 450), @__p_1='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[UserId], [a].[RoleId]
+FROM [AspNetUserRoles] AS [a]
+WHERE [a].[UserId] = @__p_0 AND [a].[RoleId] = @__p_1
+2025-05-07 10:46:30.949 +05:00 [INF] Executed DbCommand (0ms) [Parameters=[@__normalizedRoleName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedRoleName_0
+2025-05-07 10:46:30.950 +05:00 [INF] Executed DbCommand (0ms) [Parameters=[@__p_0='?' (Size = 450), @__p_1='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[UserId], [a].[RoleId]
+FROM [AspNetUserRoles] AS [a]
+WHERE [a].[UserId] = @__p_0 AND [a].[RoleId] = @__p_1
+2025-05-07 10:46:30.951 +05:00 [INF] Executed DbCommand (0ms) [Parameters=[@__normalizedRoleName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedRoleName_0
+2025-05-07 10:46:30.951 +05:00 [INF] Executed DbCommand (0ms) [Parameters=[@__p_0='?' (Size = 450), @__p_1='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[UserId], [a].[RoleId]
+FROM [AspNetUserRoles] AS [a]
+WHERE [a].[UserId] = @__p_0 AND [a].[RoleId] = @__p_1
+2025-05-07 10:46:30.952 +05:00 [INF] Executed DbCommand (0ms) [Parameters=[@__normalizedRoleName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedRoleName_0
+2025-05-07 10:46:30.953 +05:00 [INF] Executed DbCommand (0ms) [Parameters=[@__p_0='?' (Size = 450), @__p_1='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[UserId], [a].[RoleId]
+FROM [AspNetUserRoles] AS [a]
+WHERE [a].[UserId] = @__p_0 AND [a].[RoleId] = @__p_1
+2025-05-07 10:46:30.953 +05:00 [INF] Executed DbCommand (0ms) [Parameters=[@__normalizedRoleName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedRoleName_0
+2025-05-07 10:46:30.954 +05:00 [INF] Executed DbCommand (0ms) [Parameters=[@__p_0='?' (Size = 450), @__p_1='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[UserId], [a].[RoleId]
+FROM [AspNetUserRoles] AS [a]
+WHERE [a].[UserId] = @__p_0 AND [a].[RoleId] = @__p_1
+2025-05-07 10:46:30.956 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedRoleName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedRoleName_0
+2025-05-07 10:46:30.958 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (Size = 450), @__p_1='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[UserId], [a].[RoleId]
+FROM [AspNetUserRoles] AS [a]
+WHERE [a].[UserId] = @__p_0 AND [a].[RoleId] = @__p_1
+2025-05-07 10:46:30.959 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedRoleName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedRoleName_0
+2025-05-07 10:46:30.960 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (Size = 450), @__p_1='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[UserId], [a].[RoleId]
+FROM [AspNetUserRoles] AS [a]
+WHERE [a].[UserId] = @__p_0 AND [a].[RoleId] = @__p_1
+2025-05-07 10:46:36.830 +05:00 [INF] Now listening on: https://localhost:7251
+2025-05-07 10:46:36.830 +05:00 [INF] Now listening on: http://localhost:5018
+2025-05-07 10:46:36.862 +05:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-05-07 10:46:36.862 +05:00 [INF] Hosting environment: Development
+2025-05-07 10:46:36.862 +05:00 [INF] Content root path: C:\Users\hashi\source\repos\AMSystem\AM
+2025-05-07 10:46:37.584 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7251/ - null null
+2025-05-07 10:46:38.176 +05:00 [INF] Executing endpoint 'AM.Controllers.HomeController.Index (AM)'
+2025-05-07 10:46:38.184 +05:00 [INF] Route matched with {action = "Index", controller = "Home", page = "", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller AM.Controllers.HomeController (AM).
+2025-05-07 10:46:38.201 +05:00 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [d].[Id], [d].[Address], [d].[AvailabilityDays], [d].[AvailabilityTimeSlot], [d].[City], [d].[Degree], [d].[Description], [d].[Email], [d].[Experience], [d].[ImagePath], [d].[IsActive], [d].[Name], [d].[PhoneNumber], [d].[Speciality], [d].[UserId], [d].[WaitTime]
+FROM [Doctors] AS [d]
+WHERE [d].[IsActive] = CAST(1 AS bit)
+2025-05-07 10:46:38.222 +05:00 [INF] Executing ViewResult, running view Index.
+2025-05-07 10:46:38.385 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7251/uploads/e65187a6-6dfa-4d1e-8872-9800bad8e402_author1.jpg - null null
+2025-05-07 10:46:38.385 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7251/_framework/aspnetcore-browser-refresh.js - null null
+2025-05-07 10:46:38.385 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7251/uploads/76ac1bf4-5ea8-48e2-beeb-97c3b51e7206_mission-img.jpg - null null
+2025-05-07 10:46:38.401 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7251/uploads/fb1dd44f-9896-444d-ad22-872812f6b85d_mission-img.jpg - null null
+2025-05-07 10:46:38.457 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7251/uploads/c171e39c-3e7b-4543-a2cb-648968734fd1_author3.jpg - null null
+2025-05-07 10:46:38.465 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7251/uploads/b1dbb3ba-c5f0-4774-af66-4791c8ac2f25_author1.jpg - null null
+2025-05-07 10:46:38.476 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7251/uploads/31431eaa-5fb0-4923-ad27-db49af860504_author3.jpg - null null
+2025-05-07 10:46:38.486 +05:00 [INF] Executed ViewResult - view Index executed in 166.1618ms.
+2025-05-07 10:46:38.533 +05:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2025-05-07 10:46:38.533 +05:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2025-05-07 10:46:38.534 +05:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2025-05-07 10:46:38.533 +05:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2025-05-07 10:46:38.533 +05:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2025-05-07 10:46:38.533 +05:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2025-05-07 10:46:38.533 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7251/_vs/browserLink - null null
+2025-05-07 10:46:38.576 +05:00 [INF] Executed action AM.Controllers.HomeController.Index (AM) in 391.8933ms
+2025-05-07 10:46:38.579 +05:00 [INF] Executed endpoint 'AM.Controllers.HomeController.Index (AM)'
+2025-05-07 10:46:38.580 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7251/_framework/aspnetcore-browser-refresh.js - 200 13756 application/javascript; charset=utf-8 194.5118ms
+2025-05-07 10:46:38.581 +05:00 [INF] The file uploads/b1dbb3ba-c5f0-4774-af66-4791c8ac2f25_author1.jpg was not modified
+2025-05-07 10:46:38.581 +05:00 [INF] The file uploads/fb1dd44f-9896-444d-ad22-872812f6b85d_mission-img.jpg was not modified
+2025-05-07 10:46:38.581 +05:00 [INF] The file uploads/e65187a6-6dfa-4d1e-8872-9800bad8e402_author1.jpg was not modified
+2025-05-07 10:46:38.582 +05:00 [INF] The file uploads/c171e39c-3e7b-4543-a2cb-648968734fd1_author3.jpg was not modified
+2025-05-07 10:46:38.583 +05:00 [INF] The file uploads/76ac1bf4-5ea8-48e2-beeb-97c3b51e7206_mission-img.jpg was not modified
+2025-05-07 10:46:38.583 +05:00 [INF] The file uploads/31431eaa-5fb0-4923-ad27-db49af860504_author3.jpg was not modified
+2025-05-07 10:46:38.585 +05:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2025-05-07 10:46:38.586 +05:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2025-05-07 10:46:38.585 +05:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2025-05-07 10:46:38.586 +05:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2025-05-07 10:46:38.586 +05:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2025-05-07 10:46:38.586 +05:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2025-05-07 10:46:38.587 +05:00 [INF] HTTP GET /uploads/76ac1bf4-5ea8-48e2-beeb-97c3b51e7206_mission-img.jpg responded 304 in 52.7524 ms
+2025-05-07 10:46:38.587 +05:00 [INF] HTTP GET /uploads/c171e39c-3e7b-4543-a2cb-648968734fd1_author3.jpg responded 304 in 53.1304 ms
+2025-05-07 10:46:38.588 +05:00 [INF] HTTP GET /uploads/76ac1bf4-5ea8-48e2-beeb-97c3b51e7206_mission-img.jpg responded 304 in 195.4620 ms
+2025-05-07 10:46:38.587 +05:00 [INF] HTTP GET /uploads/31431eaa-5fb0-4923-ad27-db49af860504_author3.jpg responded 304 in 52.4249 ms
+2025-05-07 10:46:38.587 +05:00 [INF] HTTP GET / responded 200 in 404.9866 ms
+2025-05-07 10:46:38.588 +05:00 [INF] HTTP GET /uploads/31431eaa-5fb0-4923-ad27-db49af860504_author3.jpg responded 304 in 111.5413 ms
+2025-05-07 10:46:38.587 +05:00 [INF] HTTP GET /uploads/fb1dd44f-9896-444d-ad22-872812f6b85d_mission-img.jpg responded 304 in 51.5905 ms
+2025-05-07 10:46:38.588 +05:00 [INF] HTTP GET /uploads/c171e39c-3e7b-4543-a2cb-648968734fd1_author3.jpg responded 304 in 124.1031 ms
+2025-05-07 10:46:38.588 +05:00 [INF] HTTP GET /uploads/fb1dd44f-9896-444d-ad22-872812f6b85d_mission-img.jpg responded 304 in 187.2119 ms
+2025-05-07 10:46:38.587 +05:00 [INF] HTTP GET /uploads/e65187a6-6dfa-4d1e-8872-9800bad8e402_author1.jpg responded 304 in 52.7168 ms
+2025-05-07 10:46:38.587 +05:00 [INF] HTTP GET /uploads/b1dbb3ba-c5f0-4774-af66-4791c8ac2f25_author1.jpg responded 304 in 52.8351 ms
+2025-05-07 10:46:38.588 +05:00 [INF] HTTP GET /uploads/e65187a6-6dfa-4d1e-8872-9800bad8e402_author1.jpg responded 304 in 196.8002 ms
+2025-05-07 10:46:38.588 +05:00 [INF] HTTP GET /uploads/b1dbb3ba-c5f0-4774-af66-4791c8ac2f25_author1.jpg responded 304 in 123.1044 ms
+2025-05-07 10:46:38.630 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7251/uploads/76ac1bf4-5ea8-48e2-beeb-97c3b51e7206_mission-img.jpg - 304 null image/jpeg 245.5798ms
+2025-05-07 10:46:38.630 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7251/uploads/c171e39c-3e7b-4543-a2cb-648968734fd1_author3.jpg - 304 null image/jpeg 212.6743ms
+2025-05-07 10:46:38.630 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7251/uploads/fb1dd44f-9896-444d-ad22-872812f6b85d_mission-img.jpg - 304 null image/jpeg 229.3226ms
+2025-05-07 10:46:38.630 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7251/uploads/e65187a6-6dfa-4d1e-8872-9800bad8e402_author1.jpg - 304 null image/jpeg 245.1021ms
+2025-05-07 10:46:38.630 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7251/uploads/31431eaa-5fb0-4923-ad27-db49af860504_author3.jpg - 304 null image/jpeg 153.7208ms
+2025-05-07 10:46:38.630 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7251/uploads/b1dbb3ba-c5f0-4774-af66-4791c8ac2f25_author1.jpg - 304 null image/jpeg 165.4175ms
+2025-05-07 10:46:38.631 +05:00 [INF] HTTP GET / responded 200 in 785.2876 ms
+2025-05-07 10:46:38.637 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7251/ - 200 null text/html; charset=utf-8 1064.6085ms
+2025-05-07 10:46:38.677 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7251/_vs/browserLink - 200 null text/javascript; charset=UTF-8 190.6745ms
