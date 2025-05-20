@@ -2,9 +2,7 @@
 
 @{
     ViewData["Title"] = "ViewAppoinments";
-    
 }
-
 
 @* <h1>ViewAppoinments</h1> *@
 
@@ -91,11 +89,9 @@
                     <tbody>
                         @foreach (var item in Model)
                         {
-
-                            <partial  name="_AppointmentsCards" model="item"/>
-                         @*    <tr>
+                            <tr>
                                 <td>
-                                    
+                                     @* @item.AppointmentDate.ToString("MM-dd-yyyy")  *@
                                      @item.AppointmentDate.ToString("dd MMM,yyyy")
                                     <br />
                                     @item.AppointmentDate.ToString("dddd")
@@ -134,11 +130,17 @@
 
 
 
-                                   
+                                    @* <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.Id">Delete<i class="fa-solid fa-trash"></i></a> *@
+                                    @* <a asp-action="Cancel" asp-route-id="@item.AppointmentId" asp-controller="Admin" style="font-size: 23px;color: #FF5733"><i class="  fas fa-times-circle"></i></a> *@
                                 </td>
 
-                          
-                            </tr> *@
+                                @* <td>
+
+                                <a asp-action="Edit" asp-route-id="@item.AppointmentId">Edit</a> |
+                                <a asp-action="Details" asp-route-id="@item.AppointmentId">Details</a> |
+                                <a asp-action="Delete" asp-route-id="@item.AppointmentId">Delete</a>
+                            </td> *@
+                            </tr>
                         }
                     </tbody>
 

@@ -96,10 +96,11 @@ else
                         <tbody>
                             @foreach (var item in Model)
                             {
-                                <partial name="_AppointmentsCards" model="item" />
-                            @*     <tr>
+                                <tr>
                                     
                                     <th scope="col">
+                                        @* @item.AppointmentDate.ToString("dd-MM-yyyy") *@
+
                                         @item.AppointmentDate.ToString("dd MMM,yyyy")
                                         <br />
                                         @item.AppointmentDate.ToString("dddd")
@@ -111,7 +112,11 @@ else
                                     <th scope="col">@item.BookedSlots</th>
 
                                     <th scope="col">@item.Status</th>
-                                </tr> *@
+
+
+
+
+                                </tr>
                             }
 
 
